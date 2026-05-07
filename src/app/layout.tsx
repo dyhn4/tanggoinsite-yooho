@@ -1,0 +1,38 @@
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "탱고인사이트 | AI 기반 문서 데이터화 전문 기업",
+  description:
+    "딥러닝 기반 Data-Adaptive OCR 기술과 KPO 서비스로 기업의 문서 디지털화를 지원합니다. 탱고인사이트는 AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱 전문 기업입니다.",
+  keywords: [
+    "탱고인사이트",
+    "Tango Insight",
+    "OCR",
+    "AI OCR",
+    "문서 디지털화",
+    "KPO",
+    "지식 프로세스 아웃소싱",
+    "데이터 가공",
+    "딥러닝",
+  ],
+  openGraph: {
+    title: "탱고인사이트 | AI 기반 문서 데이터화 전문 기업",
+    description:
+      "딥러닝 기반 Data-Adaptive OCR 기술과 KPO 서비스로 기업의 문서 디지털화를 지원합니다.",
+    type: "website",
+    locale: "ko_KR",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="ko" className="h-full">
+      <body className="min-h-full flex flex-col antialiased">{children}</body>
+    </html>
+  );
+}
