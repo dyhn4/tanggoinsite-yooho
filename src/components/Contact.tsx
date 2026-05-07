@@ -1,16 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Send, MapPin, Mail, Phone, CheckCircle } from "lucide-react";
+import { Send, MapPin, Mail, CheckCircle } from "lucide-react";
 
-const serviceOptions = [
-  "AI OCR 문서 인식",
-  "워크플로우 기반 문서 처리",
-  "데이터 변환 및 가공",
-  "지식 프로세스 아웃소싱(KPO)",
-  "문서 디지털 아카이빙",
-  "맞춤형 솔루션 컨설팅",
-  "기타",
+const inquiryTypes = [
+  { value: "consultation", label: "도입 상담" },
+  { value: "demo", label: "데모 요청" },
+  { value: "technical", label: "기술 문의" },
+  { value: "other", label: "기타" },
 ];
 
 export default function Contact() {
@@ -19,6 +16,7 @@ export default function Contact() {
     email: "",
     phone: "",
     company: "",
+    position: "",
     service: "",
     message: "",
   });
@@ -37,11 +35,20 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company
+            ? `${form.company}${form.position ? ` · ${form.position}` : ""}`
+            : form.position,
+          service: form.service,
+          message: form.message,
+        }),
       });
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", email: "", phone: "", company: "", service: "", message: "" });
+        setForm({ name: "", email: "", phone: "", company: "", position: "", service: "", message: "" });
       } else {
         setStatus("error");
       }
@@ -59,11 +66,11 @@ export default function Contact() {
             Contact
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-            문의하기
+            도입 문의
           </h2>
           <p className="text-slate-600 max-w-xl mx-auto">
-            문서 디지털화 도입을 고민하고 계신가요? 전문 컨설턴트가 맞춤 솔루션을
-            제안해 드립니다.
+            담당자가 영업일 기준 1일 이내 연락드립니다.
+            고문헌 샘플을 보내주시면 무료로 테스트 결과를 제공해 드립니다.
           </p>
         </div>
 
@@ -74,21 +81,8 @@ export default function Contact() {
               <h3 className="font-bold text-lg mb-6">연락처 정보</h3>
               <div className="space-y-5">
                 {[
-                  {
-                    icon: MapPin,
-                    label: "주소",
-                    value: "서울 성동구 왕십리",
-                  },
-                  {
-                    icon: Mail,
-                    label: "이메일",
-                    value: "contact@tangoinsight.ai",
-                  },
-                  {
-                    icon: Phone,
-                    label: "전화",
-                    value: "문의 후 안내드립니다",
-                  },
+                  { icon: MapPin, label: "주소", value: "서울 성동구 왕십리" },
+                  { icon: Mail, label: "이메일", value: "contact@tangoinsight.ai" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
@@ -103,12 +97,26 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 border border-slate-100">
-              <h4 className="font-semibold text-slate-900 mb-3">빠른 답변 보장</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                평일 기준 24시간 내 담당 컨설턴트가 연락드립니다. 파일럿 프로젝트를 통해
-                실제 효과를 확인하신 후 도입을 결정하실 수 있습니다.
-              </p>
+            {/* 안내 박스 */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-100 space-y-4">
+              <div>
+                <h4 className="font-semibold text-slate-900 mb-1.5 text-sm">🎯 무료 테스트 제공</h4>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  보유 중인 고문헌 샘플 이미지를 보내주시면 실제 인식 결과를 무료로 확인하실 수 있습니다.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-900 mb-1.5 text-sm">⚡ 빠른 답변 보장</h4>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  영업일 기준 24시간 내 담당 컨설턴트가 연락드립니다.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-900 mb-1.5 text-sm">🔒 보안 배포 지원</h4>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  기밀 자료도 내부망(On-Premise) 환경에서 안전하게 처리 가능합니다.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -135,7 +143,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      이름 <span className="text-red-500">*</span>
+                      담당자명 <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -157,7 +165,7 @@ export default function Contact() {
                       required
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="hong@company.com"
+                      placeholder="hong@org.kr"
                       className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm"
                     />
                   </div>
@@ -166,27 +174,28 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      연락처
+                      소속 기관/기업명 <span className="text-red-500">*</span>
                     </label>
                     <input
-                      type="tel"
-                      name="phone"
-                      value={form.phone}
+                      type="text"
+                      name="company"
+                      required
+                      value={form.company}
                       onChange={handleChange}
-                      placeholder="010-0000-0000"
+                      placeholder="국립○○도서관"
                       className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      회사명
+                      직책
                     </label>
                     <input
                       type="text"
-                      name="company"
-                      value={form.company}
+                      name="position"
+                      value={form.position}
                       onChange={handleChange}
-                      placeholder="(주)회사명"
+                      placeholder="학예연구사"
                       className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm"
                     />
                   </div>
@@ -194,7 +203,7 @@ export default function Contact() {
 
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                    관심 서비스
+                    문의 유형
                   </label>
                   <select
                     name="service"
@@ -202,10 +211,10 @@ export default function Contact() {
                     onChange={handleChange}
                     className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm bg-white"
                   >
-                    <option value="">서비스를 선택해주세요</option>
-                    {serviceOptions.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
+                    <option value="">선택해주세요</option>
+                    {inquiryTypes.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
                       </option>
                     ))}
                   </select>
@@ -221,7 +230,7 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     rows={5}
-                    placeholder="문서 종류, 처리 규모, 현재 상황 등을 알려주시면 더 정확한 안내가 가능합니다."
+                    placeholder="예: 조선시대 고문서 약 10만 페이지 디지털화 프로젝트 관련 상담 희망. 한자·한글 혼용 자료이며 On-Premise 환경 적용 가능 여부도 문의드립니다."
                     className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm resize-none"
                   />
                 </div>
@@ -244,7 +253,7 @@ export default function Contact() {
                     </>
                   ) : (
                     <>
-                      문의 전송
+                      문의 보내기
                       <Send size={16} />
                     </>
                   )}
