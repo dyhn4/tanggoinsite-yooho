@@ -1,35 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  /* tango.ai.kr 기반 팔레트 */
-  --color-primary: #6C5CE7;
-  --color-primary-dark: #5849C4;
-  --color-primary-light: #A29BFE;
-  --color-accent: #f59e0b;        /* 도서관 골드 */
+  /* 모던 서점 + AI 팔레트 */
+  --color-primary: #3730a3;
+  --color-primary-mid: #4338ca;
+  --color-primary-light: #818cf8;
+  --color-amber: #d97706;
+  --color-gold: #c9a84c;
 
-  /* 그라디언트 */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-warm: linear-gradient(135deg, #a78bfa 0%, #fbbf24 100%);
+  --color-bg-cream: #fefcf8;
+  --color-bg-warm: #f5ede0;
+  --color-bg-paper: #fffdf5;
+  --color-bg-dark: #1a0f06;
 
-  /* 배경 */
-  --color-bg-white: #ffffff;
-  --color-bg-light: #f8f9ff;      /* tango.ai.kr 라이트 배경 */
-  --color-bg-dark: #0a0718;       /* 딥 퍼플 다크 */
+  --color-text-dark: #1c0f06;
+  --color-text-brown: #3d2410;
+  --color-text-muted: #7a5e42;
+  --color-text-light: #a08060;
 
-  /* 텍스트 */
-  --color-text-dark: #2d3561;     /* tango.ai.kr 텍스트 다크 */
-  --color-text-gray: #7e8ba3;     /* tango.ai.kr 텍스트 그레이 */
-  --color-text-muted: #a8b3c5;
+  --color-border: #dfd0b4;
+  --color-border-light: #ede5d4;
 
-  /* 보더/쉐도우 */
-  --color-border: #e8ecf4;
-  --shadow-sm: 0 2px 10px rgba(108, 92, 231, 0.08);
-  --shadow-md: 0 10px 30px rgba(108, 92, 231, 0.12);
-  --shadow-lg: 0 20px 50px rgba(108, 92, 231, 0.15);
-  --shadow-hover: 0 15px 40px rgba(108, 92, 231, 0.22);
+  --shadow-warm: 0 4px 20px rgba(201, 168, 76, 0.15);
+  --shadow-warm-md: 0 8px 30px rgba(201, 168, 76, 0.18);
 
-  --background: var(--color-bg-light);
-  --foreground: var(--color-text-dark);
+  --background: var(--color-bg-cream);
+  --foreground: var(--color-text-brown);
 }
 
 @theme inline {
@@ -37,9 +34,7 @@
   --color-foreground: var(--foreground);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--background);
@@ -49,46 +44,29 @@ body {
 }
 
 @layer utilities {
-  /* 히어로 그라디언트 텍스트: 바이올렛 → 골드 (AI + 도서관) */
+  /* 인디고 → 앰버 그라디언트 텍스트 (AI meets 서점) */
   .text-gradient {
-    background: linear-gradient(135deg, #a78bfa 0%, #fbbf24 100%);
+    background: linear-gradient(135deg, #4338ca 0%, #d97706 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* 퍼플 그라디언트 텍스트 (tango.ai.kr 스타일) */
-  .text-gradient-purple {
-    background: var(--gradient-primary);
+  /* 크림 → 골드 그라디언트 (다크 섹션용) */
+  .text-gradient-warm {
+    background: linear-gradient(135deg, #fde8c0 0%, #fbbf24 60%, #f59e0b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* 섹션 배지 (tango.ai.kr .section-badge 스타일) */
-  .section-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 1.25rem;
-    background: rgba(108, 92, 231, 0.1);
-    color: var(--color-primary);
-    border-radius: 50px;
-    font-size: 0.875rem;
-    font-weight: 600;
+  /* 세리프 서체 — 서점/책 느낌 헤딩 */
+  .font-serif-kr {
+    font-family: "Noto Serif KR", "Batang", "HY신명조", Georgia, serif;
   }
 }
 
-/* 스크롤바 */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-bg-light);
-}
-::-webkit-scrollbar-thumb {
-  background: #b2a8f0;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #8b7fdd;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fefcf8; }
+::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #d97706; }
