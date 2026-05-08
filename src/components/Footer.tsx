@@ -2,13 +2,16 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-slate-400">
+    <footer className="bg-[#0a0718] text-slate-500">
+      {/* 상단 앰버 강조선 — 도서관 느낌 */}
+      <div className="h-0.5 bg-gradient-to-r from-indigo-600 via-violet-500 to-amber-500" />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-          {/* 브랜드 */}
+          {/* 브랜드 — tango.ai.kr 로고 스타일 */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-700 to-sky-500 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-md">
                 <span className="text-white font-bold text-sm">T</span>
               </div>
               <span className="text-white font-bold text-lg">탱고인사이트</span>
@@ -36,7 +39,7 @@ export default function Footer() {
                 "보안 배포 (On-Premise)",
               ].map((item) => (
                 <li key={item}>
-                  <span className="hover:text-white transition-colors cursor-default">
+                  <span className="hover:text-violet-400 transition-colors cursor-default">
                     {item}
                   </span>
                 </li>
@@ -52,7 +55,7 @@ export default function Footer() {
               <li>설립: 2022년 9월</li>
               <li>위치: 서울 성동구 왕십리</li>
               <li className="pt-2">
-                <a href="#contact" className="text-sky-400 hover:text-sky-300 transition-colors">
+                <a href="#contact" className="text-violet-400 hover:text-violet-300 transition-colors">
                   도입 문의 →
                 </a>
               </li>
@@ -60,11 +63,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <p>© {currentYear} 탱고인사이트(Tango Insight). All rights reserved.</p>
           <div className="flex gap-4">
-            <span className="hover:text-white transition-colors cursor-default">개인정보처리방침</span>
-            <span className="hover:text-white transition-colors cursor-default">이용약관</span>
+            <span className="hover:text-slate-300 transition-colors cursor-default">개인정보처리방침</span>
+            <span className="hover:text-slate-300 transition-colors cursor-default">이용약관</span>
           </div>
         </div>
       </div>

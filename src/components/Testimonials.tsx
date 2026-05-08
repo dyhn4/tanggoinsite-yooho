@@ -5,7 +5,7 @@ const testimonials = [
     name: "김지선",
     role: "국립도서관 디지털 아카이빙팀",
     initial: "김",
-    color: "bg-blue-700",
+    gradient: "from-indigo-500 to-violet-600",
   },
   {
     quote:
@@ -13,7 +13,7 @@ const testimonials = [
     name: "이성우 교수",
     role: "OO대학교 역사학과",
     initial: "이",
-    color: "bg-sky-600",
+    gradient: "from-violet-500 to-purple-600",
   },
   {
     quote:
@@ -21,7 +21,7 @@ const testimonials = [
     name: "박민준 연구원",
     role: "한국학 연구원",
     initial: "박",
-    color: "bg-indigo-600",
+    gradient: "from-amber-500 to-orange-500",
   },
 ];
 
@@ -36,44 +36,45 @@ const clients = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 px-4 sm:px-6 bg-slate-50">
+    <section className="py-24 px-4 sm:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* 헤더 */}
         <div className="text-center mb-16">
-          <span className="inline-block text-blue-700 font-semibold text-sm tracking-widest uppercase mb-4">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-violet-100 text-violet-700 font-semibold text-sm mb-4">
             고객 평가
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#2d3561] mb-4">
             도입 기관의 목소리
           </h2>
-          <p className="text-slate-600 max-w-xl mx-auto">
+          <p className="text-[#7e8ba3] max-w-xl mx-auto text-lg">
             실제 사용자들의 생생한 경험을 들어보세요.
           </p>
         </div>
 
-        {/* 후기 카드 */}
+        {/* 후기 카드 — tango.ai.kr .testimonial-card 스타일 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="bg-white rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all duration-300 flex flex-col"
+              className="bg-[#f8f9ff] rounded-3xl p-7 border border-[#e8ecf4] hover:-translate-y-2 hover:shadow-2xl hover:border-violet-100 transition-all duration-300 flex flex-col"
+              style={{ boxShadow: "0 2px 10px rgba(108, 92, 231, 0.06)" }}
             >
-              {/* 따옴표 */}
-              <div className="text-blue-200 text-5xl font-serif leading-none mb-4 select-none">
+              {/* 따옴표 — 바이올렛 */}
+              <div className="text-violet-200 text-5xl font-serif leading-none mb-4 select-none">
                 "
               </div>
-              <p className="text-slate-700 text-sm leading-relaxed flex-1 mb-6">
+              <p className="text-[#7e8ba3] text-sm leading-relaxed flex-1 mb-6">
                 {t.quote}
               </p>
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-3 pt-4 border-t border-[#e8ecf4]">
                 <div
-                  className={`w-10 h-10 rounded-full ${t.color} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}
+                  className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-md`}
                 >
                   {t.initial}
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-900 text-sm">{t.name}</div>
-                  <div className="text-slate-500 text-xs">{t.role}</div>
+                  <div className="font-semibold text-[#2d3561] text-sm">{t.name}</div>
+                  <div className="text-[#a8b3c5] text-xs">{t.role}</div>
                 </div>
               </div>
             </div>
@@ -82,14 +83,14 @@ export default function Testimonials() {
 
         {/* 도입 기관 배지 */}
         <div className="text-center">
-          <p className="text-slate-400 text-sm mb-6 font-medium">
+          <p className="text-[#a8b3c5] text-sm mb-6 font-medium">
             50+ 기관에서 신뢰하는 탱고인사이트
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {clients.map((client) => (
               <span
                 key={client}
-                className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium"
+                className="px-5 py-2 rounded-full bg-[#f8f9ff] border border-[#e8ecf4] hover:border-violet-200 hover:bg-violet-50 text-[#7e8ba3] hover:text-violet-700 text-sm font-medium transition-all duration-200"
               >
                 {client}
               </span>

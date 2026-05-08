@@ -36,21 +36,21 @@ const techSpecs = [
     label: "고문헌 인식 정확도",
     value: "98.7%",
     sub: "일반 OCR 대비 3배 향상",
-    color: "from-blue-600 to-blue-700",
+    color: "from-indigo-500 to-violet-600",
     pct: 98,
   },
   {
     label: "현대 문서 정확도",
     value: "99.5%+",
     sub: "인쇄체 기준",
-    color: "from-sky-500 to-sky-600",
+    color: "from-violet-500 to-purple-600",
     pct: 99,
   },
   {
     label: "처리 속도",
     value: "≤ 2초",
     sub: "페이지당 평균",
-    color: "from-indigo-500 to-indigo-600",
+    color: "from-amber-500 to-orange-400",
     pct: 95,
   },
 ];
@@ -61,49 +61,62 @@ export default function Technology() {
       <div className="max-w-6xl mx-auto">
         {/* 헤더 */}
         <div className="text-center mb-16">
-          <span className="inline-block text-blue-700 font-semibold text-sm tracking-widest uppercase mb-4">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-violet-100 text-violet-700 font-semibold text-sm mb-4">
             사용 방법
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#2d3561] mb-4">
             이렇게 사용합니다
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto">
+          <p className="text-[#7e8ba3] max-w-2xl mx-auto text-lg leading-relaxed">
             복잡한 과정 없이 간단하게 시작하세요.
             업로드부터 결과물 저장까지 4단계로 완성됩니다.
           </p>
         </div>
 
-        {/* 4단계 프로세스 */}
+        {/* 4단계 프로세스 — tango.ai.kr .how-step 스타일 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {processSteps.map((step, index) => (
-            <div key={step.step} className="relative group">
-              {/* 화살표 연결선 (마지막 제외) */}
+            <div key={step.step} className="relative group text-center">
               {index < processSteps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-full w-6 text-slate-300 text-xl font-bold z-10 -translate-x-3">
+                <div className="hidden lg:block absolute top-8 left-full w-6 text-violet-300 text-xl font-bold z-10 -translate-x-3">
                   →
                 </div>
               )}
-              <div className="bg-slate-50 hover:bg-blue-50 border border-slate-100 hover:border-blue-200 rounded-2xl p-5 transition-all duration-300 h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-blue-700 flex items-center justify-center flex-shrink-0">
-                    <step.icon size={18} className="text-white" />
-                  </div>
-                  <span className="text-blue-700 font-bold text-sm">{step.step}</span>
+              <div
+                className="bg-[#f8f9ff] hover:bg-white border border-[#e8ecf4] hover:border-violet-200 rounded-3xl p-6 transition-all duration-300 h-full hover:-translate-y-1"
+                style={{ boxShadow: "0 2px 10px rgba(108, 92, 231, 0.05)" }}
+              >
+                {/* 스텝 번호 — tango.ai.kr .how-step-number 스타일 */}
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-violet-200">
+                  <step.icon size={22} className="text-white" />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2">{step.title}</h3>
-                <p className="text-slate-600 text-sm mb-2 leading-relaxed">{step.desc}</p>
-                <p className="text-slate-400 text-xs">{step.detail}</p>
+                <div className="text-violet-500 font-bold text-sm font-mono mb-2">{step.step}</div>
+                <h3 className="font-bold text-[#2d3561] mb-2">{step.title}</h3>
+                <p className="text-[#7e8ba3] text-sm mb-2 leading-relaxed">{step.desc}</p>
+                <p className="text-[#a8b3c5] text-xs">{step.detail}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* 기술 성능 지표 */}
-        <div className="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-3xl p-8 md:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            {/* 왼쪽 텍스트 */}
+        {/* 기술 성능 지표 — 딥 퍼플 다크 패널 */}
+        <div className="bg-[#0a0718] rounded-3xl p-8 md:p-12 relative overflow-hidden">
+          {/* 배경 장식 */}
+          <div className="absolute -top-24 -right-24 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-48 h-48 bg-amber-600/10 rounded-full blur-2xl pointer-events-none" />
+          <div
+            className="absolute inset-0 opacity-[0.06] pointer-events-none"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(167,139,250,0.5) 1px, transparent 0)`,
+              backgroundSize: "32px 32px",
+            }}
+          />
+
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            {/* 왼쪽 */}
             <div>
-              <span className="inline-block text-sky-400 font-semibold text-sm tracking-widest uppercase mb-4">
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-violet-500/20 text-violet-300 font-semibold text-sm mb-4">
                 기술력
               </span>
               <h3 className="text-white font-bold text-2xl md:text-3xl mb-4 leading-tight">
@@ -116,11 +129,11 @@ export default function Technology() {
                 98.7%의 인식 정확도를 달성합니다. 사용할수록 특정 문서에 최적화되는
                 Data-Adaptive 학습 엔진이 핵심입니다.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {["한자 인식", "훈민정음", "세로쓰기", "필사체", "On-Premise"].map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-medium"
+                    className="px-3 py-1 rounded-full bg-violet-500/20 border border-violet-400/25 text-violet-300 text-xs font-medium"
                   >
                     {tag}
                   </span>
@@ -148,11 +161,11 @@ export default function Technology() {
                 </div>
               ))}
 
-              <div className="mt-6 p-4 bg-white/5 border border-white/10 rounded-xl flex items-center gap-4">
-                <div className="text-3xl font-bold text-white">5M+</div>
+              <div className="mt-6 p-4 bg-white/5 border border-violet-700/20 rounded-2xl flex items-center gap-4">
+                <div className="text-3xl font-bold text-gradient-purple">5M+</div>
                 <div>
                   <div className="text-white text-sm font-medium">누적 처리 페이지</div>
-                  <div className="text-slate-400 text-xs">50+ 기관 · 국립도서관·대학·연구원</div>
+                  <div className="text-slate-500 text-xs">50+ 기관 · 국립도서관·대학·연구원</div>
                 </div>
               </div>
             </div>

@@ -1,11 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #1e40af;
-  --primary-dark: #1e3a8a;
-  --accent: #0ea5e9;
+  /* tango.ai.kr 기반 팔레트 */
+  --color-primary: #6C5CE7;
+  --color-primary-dark: #5849C4;
+  --color-primary-light: #A29BFE;
+  --color-accent: #f59e0b;        /* 도서관 골드 */
+
+  /* 그라디언트 */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-warm: linear-gradient(135deg, #a78bfa 0%, #fbbf24 100%);
+
+  /* 배경 */
+  --color-bg-white: #ffffff;
+  --color-bg-light: #f8f9ff;      /* tango.ai.kr 라이트 배경 */
+  --color-bg-dark: #0a0718;       /* 딥 퍼플 다크 */
+
+  /* 텍스트 */
+  --color-text-dark: #2d3561;     /* tango.ai.kr 텍스트 다크 */
+  --color-text-gray: #7e8ba3;     /* tango.ai.kr 텍스트 그레이 */
+  --color-text-muted: #a8b3c5;
+
+  /* 보더/쉐도우 */
+  --color-border: #e8ecf4;
+  --shadow-sm: 0 2px 10px rgba(108, 92, 231, 0.08);
+  --shadow-md: 0 10px 30px rgba(108, 92, 231, 0.12);
+  --shadow-lg: 0 20px 50px rgba(108, 92, 231, 0.15);
+  --shadow-hover: 0 15px 40px rgba(108, 92, 231, 0.22);
+
+  --background: var(--color-bg-light);
+  --foreground: var(--color-text-dark);
 }
 
 @theme inline {
@@ -25,24 +49,46 @@ body {
 }
 
 @layer utilities {
+  /* 히어로 그라디언트 텍스트: 바이올렛 → 골드 (AI + 도서관) */
   .text-gradient {
-    background: linear-gradient(135deg, #1e40af 0%, #0ea5e9 100%);
+    background: linear-gradient(135deg, #a78bfa 0%, #fbbf24 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* 퍼플 그라디언트 텍스트 (tango.ai.kr 스타일) */
+  .text-gradient-purple {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* 섹션 배지 (tango.ai.kr .section-badge 스타일) */
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    background: rgba(108, 92, 231, 0.1);
+    color: var(--color-primary);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
 }
 
+/* 스크롤바 */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-bg-light);
 }
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #b2a8f0;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #8b7fdd;
 }
