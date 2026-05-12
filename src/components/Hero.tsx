@@ -6,41 +6,30 @@ export default function Hero() {
   const scrollToContact = () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
   };
+
   const scrollToServices = () => {
     document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#1a0f06]">
-      {/* 배경 — 따뜻한 서점 야간 조명 + AI 인디고 */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* 앰버 골드 글로우 — 서점 조명 */}
-        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-amber-700/25 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-800/20 rounded-full blur-3xl" />
-        {/* 인디고 글로우 — AI */}
-        <div className="absolute top-1/2 right-1/3 w-[350px] h-[350px] bg-indigo-800/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 right-0 w-[300px] h-[300px] bg-indigo-900/15 rounded-full blur-2xl" />
-        {/* 책 페이지 수평선 패턴 */}
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-amber-700/25 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-800/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 right-1/3 w-[350px] h-[350px] bg-indigo-800/25 rounded-full blur-3xl animate-bounce" />
+
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(201,168,76,0.8) 31px, rgba(201,168,76,0.8) 32px)`,
-          }}
-        />
-        {/* 도트 그리드 */}
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(201,168,76,0.7) 1px, transparent 0)`,
-            backgroundSize: "36px 36px",
+            backgroundImage:
+              "repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(201,168,76,0.8) 31px, rgba(201,168,76,0.8) 32px)",
           }}
         />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 pt-32 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* 왼쪽 텍스트 */}
-          <div>
+          <div className="animate-[fadeUp_0.9s_ease-out_both]">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-400/25 text-amber-300 text-sm font-semibold mb-6">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
               AI-Powered Document Intelligence
@@ -67,6 +56,7 @@ export default function Hero() {
                 도입 문의하기
                 <ArrowRight size={18} />
               </button>
+
               <button
                 onClick={scrollToServices}
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-amber-900/20 hover:bg-amber-900/30 border border-amber-600/30 text-[#fde8c0] font-semibold transition-all duration-200"
@@ -76,65 +66,90 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* 오른쪽 — OCR 시각화 카드 */}
           <div className="hidden lg:block">
-            <div className="relative">
-              <div className="bg-amber-950/30 backdrop-blur-sm border border-amber-700/20 rounded-3xl p-6 shadow-2xl shadow-amber-950/40">
+            <div className="relative animate-[float_4s_ease-in-out_infinite]">
+              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-r from-amber-500/20 via-indigo-500/20 to-amber-500/20 blur-2xl animate-pulse" />
+
+              <div className="relative bg-amber-950/30 backdrop-blur-sm border border-amber-700/20 rounded-3xl p-6 shadow-2xl shadow-amber-950/40">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-3 h-3 rounded-full bg-amber-600/80" />
                   <div className="w-3 h-3 rounded-full bg-amber-400/80" />
                   <div className="w-3 h-3 rounded-full bg-indigo-400/80" />
-                  <span className="text-[#7a5e42] text-xs ml-2 font-mono">고문헌 AI 분석 중...</span>
+                  <span className="text-[#7a5e42] text-xs ml-2 font-mono">
+                    고문헌 AI 분석 중...
+                  </span>
                 </div>
 
                 <div className="space-y-3 mb-5">
-                  <div className="flex gap-2 items-center">
-                    <div className="w-16 h-3 bg-amber-500/45 rounded-sm" />
-                    <div className="w-32 h-3 bg-amber-700/30 rounded-sm" />
-                    <div className="w-20 h-3 bg-amber-900/30 rounded-sm" />
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <div className="w-24 h-3 bg-amber-700/30 rounded-sm" />
-                    <div className="w-28 h-3 bg-amber-900/25 rounded-sm" />
-                    <div className="w-16 h-3 bg-amber-500/35 rounded-sm" />
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <div className="w-20 h-3 bg-amber-900/25 rounded-sm" />
-                    <div className="w-36 h-3 bg-amber-700/30 rounded-sm" />
-                    <div className="w-12 h-3 bg-amber-900/25 rounded-sm" />
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <div className="w-28 h-3 bg-indigo-500/35 rounded-sm" />
-                    <div className="w-20 h-3 bg-amber-700/30 rounded-sm" />
-                    <div className="w-24 h-3 bg-amber-500/25 rounded-sm" />
-                  </div>
+                  {[
+                    ["w-16", "w-32", "w-20"],
+                    ["w-24", "w-28", "w-16"],
+                    ["w-20", "w-36", "w-12"],
+                    ["w-28", "w-20", "w-24"],
+                  ].map((row, index) => (
+                    <div key={index} className="flex gap-2 items-center">
+                      {row.map((width, i) => (
+                        <div
+                          key={i}
+                          className={`${width} h-3 rounded-sm bg-amber-500/35 animate-pulse`}
+                          style={{ animationDelay: `${index * 0.25 + i * 0.15}s` }}
+                        />
+                      ))}
+                    </div>
+                  ))}
                 </div>
 
-                <div className="bg-amber-800/20 border border-amber-600/20 rounded-2xl p-3 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-600/40 to-amber-400/30 flex items-center justify-center text-amber-300 text-sm">✓</div>
-                  <div>
-                    <div className="text-amber-300 text-xs font-semibold">인식 완료</div>
-                    <div className="text-[#7a5e42] text-xs font-mono">정확도 98.7% · 처리 시간 1.8초</div>
+                <div className="relative h-52 rounded-2xl overflow-hidden border border-amber-600/20 bg-[#2a1608]">
+                  <div className="absolute inset-0 p-5 font-serif-kr text-amber-200/70 leading-8 text-lg">
+                    訓民正音 國之語音 異乎中國
+                    <br />
+                    與文字不相流通 故愚民有所欲言
+                    <br />
+                    而終不得伸其情者多矣
+                    <br />
+                    予爲此憫然 新制二十八字
+                  </div>
+
+                  <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-indigo-400/30 to-transparent animate-[scan_2.4s_ease-in-out_infinite]" />
+
+                  <div className="absolute bottom-4 left-4 right-4 bg-amber-800/30 border border-amber-500/20 rounded-xl p-3">
+                    <div className="text-amber-300 text-xs font-semibold">
+                      AI OCR 변환 결과
+                    </div>
+                    <div className="text-[#fde8c0] text-sm mt-1">
+                      훈민정음 · 정확도 98.7%
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-[#3730a3] to-[#4338ca] text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-indigo-950/50">
-                한자 · 훈민정음 지원
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-[#fde8c0] text-[#1c0f06] text-xs font-bold px-4 py-2 rounded-full shadow-lg font-serif-kr">
-                50+ 기관 도입
+              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-[#3730a3] to-[#4338ca] text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
+                실시간 분석
               </div>
             </div>
           </div>
         </div>
 
-        {/* 하단 통계 */}
         <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { icon: BookOpen, value: "5M+", label: "누적 처리 페이지", desc: "고문헌부터 현대 문서까지" },
-            { icon: Users, value: "50+", label: "도입 기관", desc: "국립도서관·대학·연구원" },
-            { icon: Cpu, value: "98.7%", label: "고문헌 인식 정확도", desc: "일반 OCR 대비 3배 향상" },
+            {
+              icon: BookOpen,
+              value: "5M+",
+              label: "누적 처리 페이지",
+              desc: "고문헌부터 현대 문서까지",
+            },
+            {
+              icon: Users,
+              value: "50+",
+              label: "도입 기관",
+              desc: "국립도서관·대학·연구원",
+            },
+            {
+              icon: Cpu,
+              value: "98.7%",
+              label: "고문헌 인식 정확도",
+              desc: "일반 OCR 대비 3배 향상",
+            },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -144,14 +159,53 @@ export default function Hero() {
                 <stat.icon size={22} className="text-amber-400" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-[#fde8c0] font-serif-kr">{stat.value}</div>
-                <div className="text-sm text-[#c9a070] font-medium">{stat.label}</div>
+                <div className="text-2xl font-bold text-[#fde8c0] font-serif-kr">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-[#c9a070] font-medium">
+                  {stat.label}
+                </div>
                 <div className="text-xs text-[#7a5e42]">{stat.desc}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-18px);
+          }
+        }
+
+        @keyframes scan {
+          0% {
+            transform: translateY(-70px);
+          }
+          50% {
+            transform: translateY(220px);
+          }
+          100% {
+            transform: translateY(-70px);
+          }
+        }
+
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(28px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }
