@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, BookOpen, Cpu, Users } from "lucide-react";
+import { ArrowRight, BookOpen, Cpu, Sparkles, Users } from "lucide-react";
 
 export default function Hero() {
   const scrollToContact = () => {
@@ -12,17 +12,18 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#1a0f06]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#f8fbff] via-[#f3f0ff] to-[#eaf5ff]">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-amber-700/25 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-800/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 right-1/3 w-[350px] h-[350px] bg-indigo-800/25 rounded-full blur-3xl animate-bounce" />
+        <div className="absolute -top-40 -right-32 w-[680px] h-[680px] bg-violet-300/40 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 -left-32 w-[560px] h-[560px] bg-sky-300/40 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/3 left-1/2 w-[420px] h-[420px] bg-blue-300/30 rounded-full blur-3xl animate-[float_6s_ease-in-out_infinite]" />
 
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.22]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(201,168,76,0.8) 31px, rgba(201,168,76,0.8) 32px)",
+              "linear-gradient(rgba(99,102,241,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.12) 1px, transparent 1px)",
+            backgroundSize: "42px 42px",
           }}
         />
       </div>
@@ -30,28 +31,31 @@ export default function Hero() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 pt-32 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-[fadeUp_0.9s_ease-out_both]">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-400/25 text-amber-300 text-sm font-semibold mb-6">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              AI-Powered Document Intelligence
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 border border-violet-200 text-violet-700 text-sm font-semibold mb-6 shadow-sm backdrop-blur-md">
+              <Sparkles size={16} className="text-blue-500" />
+              AI Heritage Document Intelligence
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-bold text-[#fde8c0] leading-tight mb-6 font-serif-kr">
-              고문헌부터 현대 문서까지,
+            <h1 className="text-4xl sm:text-6xl font-bold text-slate-950 leading-tight mb-6 tracking-tight">
+              고문헌을 읽는
               <br />
-              <span className="text-gradient-warm">훈민정음까지</span>
+              <span className="bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                차세대 AI OCR
+              </span>
               <br />
-              가능한 AI OCR
+              플랫폼
             </h1>
 
-            <p className="text-lg text-[#b89870] leading-relaxed mb-10">
-              한자부터 현대 문서까지 정확하게 인식하고, 편집하고, 데이터를
-              추출하세요. 탱고인사이트와 함께 역사적 자료를 디지털 지식 자산으로.
+            <p className="text-lg text-slate-600 leading-relaxed mb-10 max-w-xl">
+              한자, 고문헌, 현대 문서를 AI가 정밀하게 인식하고 구조화합니다.
+              탱고인사이트는 역사적 자료를 검색 가능한 디지털 지식 자산으로
+              전환합니다.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={scrollToContact}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#3730a3] to-[#4338ca] hover:opacity-90 text-white font-semibold transition-all duration-200 shadow-lg shadow-indigo-950/60 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-500 hover:from-violet-500 hover:to-blue-400 text-white font-semibold transition-all duration-200 shadow-xl shadow-blue-500/25 hover:-translate-y-0.5"
               >
                 도입 문의하기
                 <ArrowRight size={18} />
@@ -59,7 +63,7 @@ export default function Hero() {
 
               <button
                 onClick={scrollToServices}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-amber-900/20 hover:bg-amber-900/30 border border-amber-600/30 text-[#fde8c0] font-semibold transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/70 hover:bg-white border border-violet-200 text-slate-800 font-semibold transition-all duration-200 shadow-sm backdrop-blur-md"
               >
                 서비스 자세히 보기
               </button>
@@ -68,15 +72,15 @@ export default function Hero() {
 
           <div className="hidden lg:block">
             <div className="relative animate-[float_4s_ease-in-out_infinite]">
-              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-r from-amber-500/20 via-indigo-500/20 to-amber-500/20 blur-2xl animate-pulse" />
+              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-r from-violet-300/50 via-blue-300/40 to-cyan-300/50 blur-2xl animate-pulse" />
 
-              <div className="relative bg-amber-950/30 backdrop-blur-sm border border-amber-700/20 rounded-3xl p-6 shadow-2xl shadow-amber-950/40">
+              <div className="relative bg-white/65 backdrop-blur-xl border border-white/70 rounded-3xl p-6 shadow-2xl shadow-blue-500/15">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-3 h-3 rounded-full bg-amber-600/80" />
-                  <div className="w-3 h-3 rounded-full bg-amber-400/80" />
-                  <div className="w-3 h-3 rounded-full bg-indigo-400/80" />
-                  <span className="text-[#7a5e42] text-xs ml-2 font-mono">
-                    고문헌 AI 분석 중...
+                  <div className="w-3 h-3 rounded-full bg-violet-400" />
+                  <div className="w-3 h-3 rounded-full bg-blue-400" />
+                  <div className="w-3 h-3 rounded-full bg-cyan-400" />
+                  <span className="text-slate-400 text-xs ml-2 font-mono">
+                    heritage-ai.scan / live
                   </span>
                 </div>
 
@@ -91,16 +95,18 @@ export default function Hero() {
                       {row.map((width, i) => (
                         <div
                           key={i}
-                          className={`${width} h-3 rounded-sm bg-amber-500/35 animate-pulse`}
-                          style={{ animationDelay: `${index * 0.25 + i * 0.15}s` }}
+                          className={`${width} h-3 rounded-full bg-gradient-to-r from-violet-200 to-blue-200 animate-pulse`}
+                          style={{
+                            animationDelay: `${index * 0.25 + i * 0.15}s`,
+                          }}
                         />
                       ))}
                     </div>
                   ))}
                 </div>
 
-                <div className="relative h-52 rounded-2xl overflow-hidden border border-amber-600/20 bg-[#2a1608]">
-                  <div className="absolute inset-0 p-5 font-serif-kr text-amber-200/70 leading-8 text-lg">
+                <div className="relative h-56 rounded-2xl overflow-hidden border border-violet-100 bg-gradient-to-br from-white via-violet-50 to-blue-50">
+                  <div className="absolute inset-0 p-5 font-serif-kr text-slate-700/75 leading-8 text-lg">
                     訓民正音 國之語音 異乎中國
                     <br />
                     與文字不相流通 故愚民有所欲言
@@ -110,21 +116,25 @@ export default function Hero() {
                     予爲此憫然 新制二十八字
                   </div>
 
-                  <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-indigo-400/30 to-transparent animate-[scan_2.4s_ease-in-out_infinite]" />
+                  <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-blue-400/25 to-transparent animate-[scan_2.4s_ease-in-out_infinite]" />
 
-                  <div className="absolute bottom-4 left-4 right-4 bg-amber-800/30 border border-amber-500/20 rounded-xl p-3">
-                    <div className="text-amber-300 text-xs font-semibold">
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/80 border border-white rounded-2xl p-4 shadow-lg backdrop-blur-md">
+                    <div className="text-violet-600 text-xs font-bold mb-1">
                       AI OCR 변환 결과
                     </div>
-                    <div className="text-[#fde8c0] text-sm mt-1">
-                      훈민정음 · 정확도 98.7%
+                    <div className="text-slate-900 text-sm font-semibold">
+                      훈민정음 · 정확도 98.7% · 구조화 완료
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-[#3730a3] to-[#4338ca] text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
+              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-violet-600 to-blue-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-blue-500/30">
                 실시간 분석
+              </div>
+
+              <div className="absolute -bottom-4 -left-4 bg-white/90 text-slate-800 text-xs font-bold px-4 py-2 rounded-full shadow-lg border border-violet-100">
+                고문헌 특화 AI
               </div>
             </div>
           </div>
@@ -153,19 +163,19 @@ export default function Hero() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="flex items-center gap-4 p-4 rounded-2xl bg-amber-950/25 border border-amber-700/20 backdrop-blur-sm"
+              className="flex items-center gap-4 p-4 rounded-2xl bg-white/65 border border-white/70 backdrop-blur-xl shadow-lg shadow-blue-500/10"
             >
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-amber-700/35 to-amber-500/25 flex items-center justify-center">
-                <stat.icon size={22} className="text-amber-400" />
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+                <stat.icon size={22} className="text-white" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-[#fde8c0] font-serif-kr">
+                <div className="text-2xl font-bold text-slate-950">
                   {stat.value}
                 </div>
-                <div className="text-sm text-[#c9a070] font-medium">
+                <div className="text-sm text-slate-700 font-medium">
                   {stat.label}
                 </div>
-                <div className="text-xs text-[#7a5e42]">{stat.desc}</div>
+                <div className="text-xs text-slate-500">{stat.desc}</div>
               </div>
             </div>
           ))}
@@ -185,13 +195,13 @@ export default function Hero() {
 
         @keyframes scan {
           0% {
-            transform: translateY(-70px);
+            transform: translateY(-80px);
           }
           50% {
-            transform: translateY(220px);
+            transform: translateY(240px);
           }
           100% {
-            transform: translateY(-70px);
+            transform: translateY(-80px);
           }
         }
 
