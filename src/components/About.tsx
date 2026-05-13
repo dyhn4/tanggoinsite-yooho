@@ -1,26 +1,10 @@
 import { Building2, Calendar, MapPin, Award } from "lucide-react";
 
 const highlights = [
-  {
-    icon: Calendar,
-    label: "설립연도",
-    value: "2022년 9월",
-  },
-  {
-    icon: MapPin,
-    label: "위치",
-    value: "서울 성동구 (왕십리)",
-  },
-  {
-    icon: Building2,
-    label: "기업 유형",
-    value: "비상장 중소기업",
-  },
-  {
-    icon: Award,
-    label: "핵심 기술",
-    value: "Data-Adaptive OCR",
-  },
+  { icon: Calendar, label: "설립연도", value: "2022년 9월" },
+  { icon: MapPin, label: "위치", value: "서울 성동구 (왕십리)" },
+  { icon: Building2, label: "기업 유형", value: "비상장 중소기업" },
+  { icon: Award, label: "핵심 기술", value: "Data-Adaptive OCR" },
 ];
 
 export default function About() {
@@ -28,48 +12,54 @@ export default function About() {
     <section id="about" className="py-24 px-4 sm:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* 텍스트 영역 */}
+          {/* 텍스트 영역 - 2번 구조/문구, 1번 색감 */}
           <div>
-            <span className="inline-block text-blue-700 font-semibold text-sm tracking-widest uppercase mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-sm mb-4">
               About Us
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight">
-              AI로 문서의 가치를
+
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
+              고문헌부터 현대 문서까지,
               <br />
-              재정의합니다
+              인식에서 활용까지
+              <br />
+              하나의 플랫폼에서
             </h2>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+
+            <div className="space-y-4 text-slate-600 leading-relaxed text-[1.05rem]">
               <p>
                 탱고인사이트(Tango Insight)는 2022년 설립된 AI 기반 문서 데이터화 및
                 지식 프로세스 아웃소싱(KPO) 전문 기업입니다.
               </p>
               <p>
-                딥러닝 기반의 Data-Adaptive OCR 기술을 핵심으로, 종이 문서의 디지털화와
-                데이터 가공 업무를 대행합니다. 단순한 텍스트 인식을 넘어 문서 내 정보를
-                구조화하고 활용 가능한 데이터로 변환합니다.
+                딥러닝 기반의{" "}
+                <strong className="text-slate-900">Data-Adaptive OCR</strong>을 핵심 기술로,
+                한자·훈민정음·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의
+                인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등
+                50개 이상의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.
               </p>
               <p>
-                기업이 핵심 역량에 집중할 수 있도록, 복잡한 문서 처리 업무를 탱고인사이트가
-                전문적으로 대행합니다.
+                단순 텍스트 인식을 넘어, 인터랙티브 웹 편집·AI 문서 대화·데이터
+                추출까지 하나의 플랫폼에서 제공합니다. 기업과 연구기관이 핵심 역량에
+                집중할 수 있도록 복잡한 문서 디지털화 업무 전체를 대행합니다.
               </p>
             </div>
 
-            {/* 미션 박스 */}
+            {/* 미션 박스 - 1번 색감 */}
             <div className="mt-8 p-5 rounded-2xl bg-blue-50 border border-blue-100">
-              <p className="text-blue-800 font-medium text-sm leading-relaxed">
-                <span className="font-bold">미션:</span> "모든 기업의 문서가 데이터 자산이
-                되는 세상" — 아날로그 정보를 디지털 지식으로, 복잡한 업무를 지능적인
-                워크플로우로 전환합니다.
+              <p className="text-blue-900 font-medium text-sm leading-relaxed">
+                <strong>미션:</strong> "모든 역사적 기록이 디지털 지식 자산으로" —
+                아날로그에 잠들어 있는 정보를 누구나 검색하고 활용할 수 있도록 합니다.
               </p>
             </div>
           </div>
 
-          {/* 정보 카드 그리드 */}
+          {/* 정보 카드 - 2번 구조, 1번 색감 */}
           <div className="grid grid-cols-2 gap-4">
             {highlights.map((item) => (
               <div
                 key={item.label}
-                className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-blue-50/50 transition-colors"
+                className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-xl bg-blue-700/10 flex items-center justify-center mb-3">
                   <item.icon size={20} className="text-blue-700" />
@@ -79,15 +69,23 @@ export default function About() {
               </div>
             ))}
 
-            {/* 강조 카드 */}
-            <div className="col-span-2 p-5 rounded-2xl bg-gradient-to-r from-blue-700 to-sky-600 text-white">
-              <div className="text-sm font-medium text-blue-100 mb-1">핵심 역량</div>
-              <div className="font-bold text-lg mb-2">
-                딥러닝 × 워크플로우 × KPO
-              </div>
-              <div className="text-blue-100 text-sm">
-                기술력과 전문 인력이 결합된 하이브리드 솔루션으로 최고의 정확도와 효율을
-                제공합니다.
+            {/* 검증된 실적 카드 - 1번 색감 */}
+            <div
+              className="col-span-2 p-6 rounded-2xl bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-lg"
+              style={{ boxShadow: "0 8px 25px rgba(29,78,216,0.3)" }}
+            >
+              <div className="text-sm font-medium text-blue-100 mb-4">검증된 실적</div>
+              <div className="grid grid-cols-3 gap-4 text-center">
+                {[
+                  { value: "5M+", label: "처리 페이지" },
+                  { value: "50+", label: "도입 기관" },
+                  { value: "98.7%", label: "인식 정확도" },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <div className="text-2xl font-bold text-white">{s.value}</div>
+                    <div className="text-blue-100 text-xs mt-1">{s.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

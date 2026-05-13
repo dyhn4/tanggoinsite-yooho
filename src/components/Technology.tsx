@@ -27,73 +27,47 @@ const techFeatures = [
   },
 ];
 
-const processSteps = [
-  { step: "01", title: "문서 수집", desc: "스캔, 사진, PDF 등 다양한 형태로 수집" },
-  { step: "02", title: "AI 인식", desc: "Data-Adaptive OCR 엔진으로 고정밀 인식" },
-  { step: "03", title: "데이터 정제", desc: "오류 검출 및 자동/수동 보정" },
-  { step: "04", title: "구조화 출력", desc: "고객사 시스템에 맞는 형식으로 전달" },
-];
-
 export default function Technology() {
   return (
-    <section id="technology" className="py-24 px-4 sm:px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="technology"
+      className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-white py-16"
+    >
+      <div className="max-w-6xl mx-auto w-full">
         {/* 헤더 */}
-        <div className="text-center mb-16">
-          <span className="inline-block text-blue-700 font-semibold text-sm tracking-widest uppercase mb-4">
-            Technology
+        <div className="text-center mb-12">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-sm mb-4">
+            Solution
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-            기술력
+            솔루션
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto">
+          <p className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
             최신 딥러닝 기술을 기반으로 지속적으로 진화하는 OCR 엔진.
             어떤 문서도 정확하게 처리합니다.
           </p>
         </div>
 
-        {/* 기술 특징 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+        {/* 기술 특징 카드 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {techFeatures.map((feature) => (
             <div
               key={feature.title}
-              className="flex gap-5 p-6 rounded-2xl bg-slate-50 hover:bg-blue-50/50 border border-transparent hover:border-blue-100 transition-all duration-300"
+              className="group flex gap-5 p-7 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-blue-50/40 hover:border-blue-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
             >
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-700 flex items-center justify-center">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-700 to-sky-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
                 <feature.icon size={22} className="text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 mb-2">{feature.title}</h3>
+                <h3 className="font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
+                  {feature.title}
+                </h3>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* 처리 프로세스 */}
-        <div className="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-3xl p-8 md:p-12">
-          <h3 className="text-white font-bold text-2xl text-center mb-12">
-            문서 처리 프로세스
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {processSteps.map((step, index) => (
-              <div key={step.step} className="relative">
-                {/* 연결선 (마지막 제외) */}
-                {index < processSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-full w-full h-px bg-blue-700/50 -translate-x-4 z-0" />
-                )}
-                <div className="relative z-10 text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-blue-600/30 border border-blue-500/40 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-sky-400 font-bold text-lg">{step.step}</span>
-                  </div>
-                  <div className="text-white font-semibold mb-1">{step.title}</div>
-                  <div className="text-slate-400 text-xs leading-relaxed">{step.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
