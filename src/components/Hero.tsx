@@ -1,221 +1,111 @@
 "use client";
 
-import { ArrowRight, BookOpen, Cpu, Sparkles, Users } from "lucide-react";
+import { ArrowRight, FileText, Cpu, TrendingUp } from "lucide-react";
 
 export default function Hero() {
   const scrollToContact = () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
   };
-
   const scrollToServices = () => {
     document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#f8fbff] via-[#f3f0ff] to-[#eaf5ff]">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-32 w-[680px] h-[680px] bg-violet-300/40 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 -left-32 w-[560px] h-[560px] bg-sky-300/40 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/3 left-1/2 w-[420px] h-[420px] bg-blue-300/30 rounded-full blur-3xl animate-[float_6s_ease-in-out_infinite]" />
-
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
+      {/* 배경 장식 */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-800/10 rounded-full blur-3xl" />
+        {/* 그리드 패턴 */}
         <div
-          className="absolute inset-0 opacity-[0.22]"
+          className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(99,102,241,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.12) 1px, transparent 1px)",
-            backgroundSize: "42px 42px",
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(148,163,184,0.4) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
           }}
         />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 pt-32 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-[fadeUp_0.9s_ease-out_both]">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 border border-violet-200 text-violet-700 text-sm font-semibold mb-6 shadow-sm backdrop-blur-md">
-              <Sparkles size={16} className="text-blue-500" />
-              AI Heritage Document Intelligence
-            </div>
-
-            <h1 className="text-4xl sm:text-6xl font-bold text-slate-950 leading-tight mb-6 tracking-tight">
-              고문헌을 읽는
-              <br />
-              <span className="bg-gradient-to-r from-violet-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
-                차세대 AI OCR
-              </span>
-              <br />
-              플랫폼
-            </h1>
-
-            <p className="text-lg text-slate-600 leading-relaxed mb-10 max-w-xl">
-              한자, 고문헌, 현대 문서를 AI가 정밀하게 인식하고 구조화합니다.
-              탱고인사이트는 역사적 자료를 검색 가능한 디지털 지식 자산으로
-              전환합니다.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={scrollToContact}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-500 hover:from-violet-500 hover:to-blue-400 text-white font-semibold transition-all duration-200 shadow-xl shadow-blue-500/25 hover:-translate-y-0.5"
-              >
-                도입 문의하기
-                <ArrowRight size={18} />
-              </button>
-
-              <button
-                onClick={scrollToServices}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/70 hover:bg-white border border-violet-200 text-slate-800 font-semibold transition-all duration-200 shadow-sm backdrop-blur-md"
-              >
-                서비스 자세히 보기
-              </button>
-            </div>
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 pt-32">
+        <div className="max-w-3xl">
+          {/* 배지 */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-sm font-medium mb-6">
+            <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+            AI 기반 문서 지능화 전문 기업
           </div>
 
-          <div className="hidden lg:block">
-            <div className="relative animate-[float_4s_ease-in-out_infinite]">
-              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-r from-violet-300/50 via-blue-300/40 to-cyan-300/50 blur-2xl animate-pulse" />
+          {/* 헤드라인 */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+            종이 문서를
+            <br />
+            <span className="text-gradient">디지털 자산</span>으로
+            <br />
+            변환합니다
+          </h1>
 
-              <div className="relative bg-white/65 backdrop-blur-xl border border-white/70 rounded-3xl p-6 shadow-2xl shadow-blue-500/15">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-3 h-3 rounded-full bg-violet-400" />
-                  <div className="w-3 h-3 rounded-full bg-blue-400" />
-                  <div className="w-3 h-3 rounded-full bg-cyan-400" />
-                  <span className="text-slate-400 text-xs ml-2 font-mono">
-                    heritage-ai.scan / live
-                  </span>
-                </div>
+          {/* 서브 텍스트 */}
+          <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-2xl">
+            딥러닝 기반의 Data-Adaptive OCR 기술로 어떤 형태의 문서도 정확하게
+            인식합니다. 문서 디지털화부터 데이터 가공, KPO 서비스까지 — 탱고인사이트가
+            기업의 업무 효율을 혁신합니다.
+          </p>
 
-                <div className="space-y-3 mb-5">
-                  {[
-                    ["w-16", "w-32", "w-20"],
-                    ["w-24", "w-28", "w-16"],
-                    ["w-20", "w-36", "w-12"],
-                    ["w-28", "w-20", "w-24"],
-                  ].map((row, index) => (
-                    <div key={index} className="flex gap-2 items-center">
-                      {row.map((width, i) => (
-                        <div
-                          key={i}
-                          className={`${width} h-3 rounded-full bg-gradient-to-r from-violet-200 to-blue-200 animate-pulse`}
-                          style={{
-                            animationDelay: `${index * 0.25 + i * 0.15}s`,
-                          }}
-                        />
-                      ))}
-                    </div>
-                  ))}
-                </div>
-
-                <div className="relative h-56 rounded-2xl overflow-hidden border border-violet-100 bg-gradient-to-br from-white via-violet-50 to-blue-50">
-                  <div className="absolute inset-0 p-5 font-serif-kr text-slate-700/75 leading-8 text-lg">
-                    訓民正音 國之語音 異乎中國
-                    <br />
-                    與文字不相流通 故愚民有所欲言
-                    <br />
-                    而終不得伸其情者多矣
-                    <br />
-                    予爲此憫然 新制二十八字
-                  </div>
-
-                  <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-blue-400/25 to-transparent animate-[scan_2.4s_ease-in-out_infinite]" />
-
-                  <div className="absolute bottom-4 left-4 right-4 bg-white/80 border border-white rounded-2xl p-4 shadow-lg backdrop-blur-md">
-                    <div className="text-violet-600 text-xs font-bold mb-1">
-                      AI OCR 변환 결과
-                    </div>
-                    <div className="text-slate-900 text-sm font-semibold">
-                      훈민정음 · 정확도 98.7% · 구조화 완료
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-violet-600 to-blue-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-blue-500/30">
-                실시간 분석
-              </div>
-
-              <div className="absolute -bottom-4 -left-4 bg-white/90 text-slate-800 text-xs font-bold px-4 py-2 rounded-full shadow-lg border border-violet-100">
-                고문헌 특화 AI
-              </div>
-            </div>
+          {/* CTA 버튼 */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={scrollToContact}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all duration-200 shadow-lg shadow-blue-900/40 hover:shadow-blue-800/50 hover:-translate-y-0.5"
+            >
+              무료 상담 문의
+              <ArrowRight size={18} />
+            </button>
+            <button
+              onClick={scrollToServices}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold transition-all duration-200"
+            >
+              서비스 알아보기
+            </button>
           </div>
         </div>
 
+        {/* 주요 지표 카드 */}
         <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
             {
-              icon: BookOpen,
-              value: "5M+",
-              label: "누적 처리 페이지",
-              desc: "고문헌부터 현대 문서까지",
-            },
-            {
-              icon: Users,
+              icon: FileText,
+              label: "처리 문서 유형",
               value: "50+",
-              label: "도입 기관",
-              desc: "국립도서관·대학·연구원",
+              desc: "다양한 문서 포맷 지원",
             },
             {
               icon: Cpu,
-              value: "98.7%",
-              label: "고문헌 인식 정확도",
-              desc: "일반 OCR 대비 3배 향상",
+              label: "OCR 인식 정확도",
+              value: "99%+",
+              desc: "딥러닝 기반 고정밀 인식",
+            },
+            {
+              icon: TrendingUp,
+              label: "업무 처리 속도",
+              value: "10x",
+              desc: "기존 수동 작업 대비",
             },
           ].map((stat) => (
             <div
               key={stat.label}
-              className="flex items-center gap-4 p-4 rounded-2xl bg-white/65 border border-white/70 backdrop-blur-xl shadow-lg shadow-blue-500/10"
+              className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm"
             >
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-                <stat.icon size={22} className="text-white" />
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                <stat.icon size={22} className="text-sky-400" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-slate-950">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-slate-700 font-medium">
-                  {stat.label}
-                </div>
-                <div className="text-xs text-slate-500">{stat.desc}</div>
+                <div className="text-2xl font-bold text-white">{stat.value}</div>
+                <div className="text-xs text-slate-400">{stat.desc}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-18px);
-          }
-        }
-
-        @keyframes scan {
-          0% {
-            transform: translateY(-80px);
-          }
-          50% {
-            transform: translateY(240px);
-          }
-          100% {
-            transform: translateY(-80px);
-          }
-        }
-
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(28px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 }

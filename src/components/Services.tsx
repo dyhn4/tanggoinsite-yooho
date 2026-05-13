@@ -1,111 +1,125 @@
-import { ScanLine, Edit3, Table, MessageSquare, Shield, Zap } from "lucide-react";
+import { ScanLine, Workflow, Brain, Database, FileSearch, Users } from "lucide-react";
 
 const services = [
   {
     icon: ScanLine,
-    title: "고문헌 특화 OCR",
+    title: "AI OCR 문서 인식",
     description:
-      "한자, 한사본까지 인식합니다. 딥러닝 기반 Data-Adaptive OCR로 일반 OCR 대비 정확도 3배 향상. 훈민정음·세로쓰기·인쇄체·필사체 모두 지원합니다.",
-    tags: ["한자 인식", "훈민정음", "필사체", "세로쓰기"],
-    gradient: "from-[#3730a3] to-[#4338ca]",
-    shadowColor: "rgba(55,48,163,0.2)",
+      "딥러닝 기반 Data-Adaptive OCR로 손글씨, 표, 인감 등 복잡한 문서도 고정밀 인식합니다. 학습을 통해 특정 문서 양식에 최적화됩니다.",
+    tags: ["고정밀 인식", "적응형 학습", "다양한 포맷"],
+    color: "blue",
   },
   {
-    icon: Edit3,
-    title: "인터랙티브 웹 편집",
+    icon: Workflow,
+    title: "워크플로우 기반 문서 처리",
     description:
-      "웹에서 바로 인식 결과를 수정하고, 원본 레이아웃을 유지한 PDF로 저장합니다. 별도 프로그램 설치 없이 브라우저에서 전문가 검수까지 완료할 수 있습니다.",
-    tags: ["웹 기반 편집", "PDF 저장", "레이아웃 보존"],
-    gradient: "from-[#d97706] to-[#c9a84c]",
-    shadowColor: "rgba(217,119,6,0.25)",
+      "체계적인 워크플로우 시스템으로 대용량 문서를 효율적으로 처리합니다. 접수-인식-검수-출력의 전 과정을 자동화합니다.",
+    tags: ["자동화", "대용량 처리", "품질 관리"],
+    color: "sky",
   },
   {
-    icon: Table,
-    title: "스마트 데이터 추출",
+    icon: Database,
+    title: "데이터 변환 및 가공",
     description:
-      "표와 이미지를 자동으로 분리하여 Excel·CSV로 변환합니다. 고문서 속 수치·통계 데이터를 즉시 연구에 활용 가능한 형태로 구조화합니다.",
-    tags: ["Excel/CSV 변환", "표 자동 분리", "데이터 구조화"],
-    gradient: "from-[#3730a3] to-[#6d28d9]",
-    shadowColor: "rgba(55,48,163,0.2)",
+      "인식된 문서 데이터를 Excel, JSON, XML 등 원하는 형식으로 변환하고, 고객사 시스템에 맞게 구조화합니다.",
+    tags: ["다양한 출력 형식", "데이터 정제", "API 연동"],
+    color: "indigo",
   },
   {
-    icon: MessageSquare,
-    title: "AI 문서 대화",
+    icon: Brain,
+    title: "지식 프로세스 아웃소싱(KPO)",
     description:
-      "인식된 문서에 질문하고, 번역하고, 요약하는 AI 어시스턴트. 방대한 고문헌 자료에서 필요한 정보를 대화하듯 찾아냅니다.",
-    tags: ["문서 QA", "자동 번역", "자동 요약"],
-    gradient: "from-[#d97706] to-[#b45309]",
-    shadowColor: "rgba(217,119,6,0.25)",
+      "단순 데이터 처리를 넘어, 전문 지식이 필요한 고부가가치 업무를 대행합니다. 법률, 의료, 금융 문서 등 특수 도메인 처리에 강점을 가집니다.",
+    tags: ["전문 도메인", "고부가가치", "BPO 이상"],
+    color: "blue",
   },
   {
-    icon: Shield,
-    title: "보안 배포",
+    icon: FileSearch,
+    title: "문서 디지털 아카이빙",
     description:
-      "On-Premise와 Cloud 모두 지원하는 유연한 배포 방식. 기밀성이 요구되는 기관 자료도 내부망에서 안전하게 처리합니다.",
-    tags: ["On-Premise", "Cloud", "내부망 지원"],
-    gradient: "from-[#3730a3] to-[#4338ca]",
-    shadowColor: "rgba(55,48,163,0.2)",
+      "레거시 문서의 체계적인 디지털 전환을 지원합니다. 메타데이터 관리, 검색 인덱싱, 문서 분류 체계 구축까지 통합 서비스를 제공합니다.",
+    tags: ["레거시 전환", "검색 최적화", "체계적 분류"],
+    color: "sky",
   },
   {
-    icon: Zap,
-    title: "고속 대량 처리",
+    icon: Users,
+    title: "맞춤형 솔루션 컨설팅",
     description:
-      "페이지당 평균 2초 이내의 고속 처리 속도. 클라우드 분산 처리로 수십만 페이지의 아카이빙 프로젝트도 빠르게 완수합니다.",
-    tags: ["페이지당 2초", "병렬 처리", "대용량 지원"],
-    gradient: "from-[#d97706] to-[#c9a84c]",
-    shadowColor: "rgba(217,119,6,0.25)",
+      "기업의 문서 처리 현황을 분석하고 최적의 디지털화 로드맵을 제안합니다. 파일럿 프로젝트를 통해 도입 효과를 사전 검증합니다.",
+    tags: ["현황 분석", "로드맵 설계", "파일럿 지원"],
+    color: "indigo",
   },
 ];
 
+const colorMap = {
+  blue: {
+    icon: "bg-blue-100 text-blue-700",
+    tag: "bg-blue-50 text-blue-700",
+    border: "hover:border-blue-200",
+  },
+  sky: {
+    icon: "bg-sky-100 text-sky-700",
+    tag: "bg-sky-50 text-sky-700",
+    border: "hover:border-sky-200",
+  },
+  indigo: {
+    icon: "bg-indigo-100 text-indigo-700",
+    tag: "bg-indigo-50 text-indigo-700",
+    border: "hover:border-indigo-200",
+  },
+};
+
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 bg-[#fefcf8]">
+    <section id="services" className="py-24 px-4 sm:px-6 bg-slate-50">
       <div className="max-w-6xl mx-auto">
+        {/* 헤더 */}
         <div className="text-center mb-16">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200 font-semibold text-sm mb-4">
-            핵심 기능
+          <span className="inline-block text-blue-700 font-semibold text-sm tracking-widest uppercase mb-4">
+            Services
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#1c0f06] mb-4 font-serif-kr">
-            고문헌 특화 AI 기술
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            주요 서비스
           </h2>
-          <p className="text-[#7a5e42] max-w-2xl mx-auto text-lg leading-relaxed">
-            한자, 훈민정음, 한사본까지 정확하게 인식하는 전문 OCR 기술.
-            인식부터 편집, 데이터 활용까지 하나의 플랫폼에서 해결합니다.
+          <p className="text-slate-600 max-w-2xl mx-auto">
+            문서 디지털화의 전 과정을 커버합니다. 기업 규모와 요구사항에 맞는
+            맞춤형 솔루션을 제공합니다.
           </p>
         </div>
 
+        {/* 서비스 그리드 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="group bg-[#fffdf5] rounded-3xl p-7 border border-[#dfd0b4] hover:-translate-y-2 hover:shadow-2xl hover:border-amber-300 transition-all duration-300 cursor-default"
-              style={{ boxShadow: "0 2px 12px rgba(201,168,76,0.1)" }}
-            >
+          {services.map((service) => {
+            const colors = colorMap[service.color as keyof typeof colorMap];
+            return (
               <div
-                className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 bg-gradient-to-br ${service.gradient} shadow-lg`}
-                style={{ boxShadow: `0 6px 18px ${service.shadowColor}` }}
+                key={service.title}
+                className={`group bg-white rounded-2xl p-6 border border-slate-100 ${colors.border} hover:shadow-lg transition-all duration-300`}
               >
-                <service.icon size={24} className="text-white" />
+                <div
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colors.icon}`}
+                >
+                  <service.icon size={24} />
+                </div>
+                <h3 className="font-bold text-slate-900 text-lg mb-3 group-hover:text-blue-700 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                  {service.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {service.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className={`px-2.5 py-1 rounded-full text-xs font-medium ${colors.tag}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-
-              <h3 className="font-bold text-[#1c0f06] text-lg mb-3 group-hover:text-[#3730a3] transition-colors font-serif-kr">
-                {service.title}
-              </h3>
-              <p className="text-[#7a5e42] text-sm leading-relaxed mb-4">
-                {service.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {service.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
