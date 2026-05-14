@@ -66,6 +66,10 @@ export default function Home() {
         </section>
 
         <section className="min-h-screen">
+          <Achievement />
+        </section>
+
+        <section className="min-h-screen">
           <About />
         </section>
 
@@ -79,10 +83,6 @@ export default function Home() {
 
         <section className="min-h-screen">
           <Process />
-        </section>
-
-        <section className="min-h-screen">
-          <Achievement />
         </section>
 
         <section className="min-h-screen">

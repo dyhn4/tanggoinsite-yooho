@@ -47,44 +47,47 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 bg-white snap-start">
-      <div className="max-w-6xl mx-auto">
-        {/* 헤더 - 2번 구조, 1번 색감 */}
-        <div className="text-center mb-16">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-sm mb-4">
+    <section
+      id="services"
+      className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-white py-12"
+    >
+      <div className="max-w-6xl mx-auto w-full">
+        {/* 헤더 */}
+        <div className="text-center mb-10">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-sm mb-3">
             핵심 기능
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
             고문헌 특화 AI 기술
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-slate-600 max-w-2xl mx-auto text-base leading-relaxed">
             한자, 훈민정음, 한사본까지 정확하게 인식하는 전문 OCR 기술.
             인식부터 편집, 데이터 활용까지 하나의 플랫폼에서 해결합니다.
           </p>
         </div>
 
-        {/* 카드 - 2번 구조, 1번 색감 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 카드 그리드 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service) => (
             <div
               key={service.title}
-              className="group bg-slate-50 rounded-3xl p-7 border border-slate-100 hover:-translate-y-2 hover:shadow-2xl hover:border-blue-200 hover:bg-blue-50/40 transition-all duration-300 cursor-default"
+              className="group bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:-translate-y-1 hover:shadow-xl hover:border-blue-200 hover:bg-blue-50/40 transition-all duration-300 cursor-default flex flex-col"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 bg-gradient-to-br from-blue-700 to-sky-500 shadow-lg shadow-blue-500/20">
-                <service.icon size={24} className="text-white" />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-blue-700 to-sky-500 shadow-md shadow-blue-500/20 flex-shrink-0">
+                <service.icon size={22} className="text-white" />
               </div>
 
-              <h3 className="font-bold text-slate-900 text-lg mb-3 group-hover:text-blue-700 transition-colors tracking-tight">
+              <h3 className="font-bold text-slate-900 text-base mb-2 group-hover:text-blue-700 transition-colors tracking-tight">
                 {service.title}
               </h3>
-              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+              <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1">
                 {service.description}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200"
+                    className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200 whitespace-nowrap"
                   >
                     {tag}
                   </span>

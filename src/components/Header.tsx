@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 const navItems = [
@@ -8,7 +9,7 @@ const navItems = [
     label: "회사소개",
     items: [
       { label: "회사개요", href: "#about" },
-      { label: "연혁", href: "#history" },
+      { label: "연혁", href: "/history" },
     ],
   },
   {
@@ -52,7 +53,7 @@ export default function Header() {
       const sectionIndex = Math.round(scrollTop / windowH);
 
       // 섹션 순서: 0=Hero, 1=About, 2=Services, 3=Technology, 4=Process, 5=Contact, 6=Footer
-      const darkIndexes = [0, 5]; // Hero, Process, Contact
+      const darkIndexes = [0, 1, 6]; // Hero, Process, Contact
       setIsDark(darkIndexes.includes(sectionIndex));
     };
 
@@ -60,9 +61,15 @@ export default function Header() {
     return () => main.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const router = useRouter();
+
   const handleNavClick = (href: string) => {
     setIsOpen(false);
     setOpenMobileMenu(null);
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
     const main = document.querySelector("main");
     const target = document.querySelector(href);
     if (main && target) {

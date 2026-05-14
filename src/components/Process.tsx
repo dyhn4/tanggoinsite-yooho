@@ -81,7 +81,7 @@ export default function Process() {
 
         {/* 하단: 문서 처리 프로세스 */}
         <div>
-          <div className="text-center mb-6">
+          <div className="text-center mb-8">
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 font-semibold text-xs mb-2">
               Process
             </span>
@@ -90,21 +90,33 @@ export default function Process() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {processSteps.map((step, index) => (
-              <div key={step.step} className="relative flex flex-col items-center text-center">
-                {index < processSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-6 left-[calc(50%+1.5rem)] right-[-50%] h-px bg-blue-700/50 z-0" />
-                )}
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-blue-600/30 border border-blue-500/40 flex items-center justify-center mx-auto mb-3 hover:bg-blue-600/50 transition-colors duration-300">
-                    <span className="text-sky-400 font-bold text-sm">{step.step}</span>
+          <div className="relative">
+            {/* 단일 연결선 — 첫 번째 노드 중심 ~ 마지막 노드 중심 */}
+            <div
+              className="hidden md:block absolute h-px top-6 z-0"
+              style={{
+                left: "calc(12.5% - 0px)",
+                right: "calc(12.5% - 0px)",
+                background: "linear-gradient(to right, rgba(96,165,250,0.15), rgba(56,189,248,0.6) 30%, rgba(56,189,248,0.6) 70%, rgba(96,165,250,0.15))",
+              }}
+            />
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {processSteps.map((step) => (
+                <div key={step.step} className="flex flex-col items-center text-center">
+                  {/* 노드 */}
+                  <div className="relative z-10 mb-4">
+                    {/* 글로우 링 */}
+                    <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-md scale-125" />
+                    <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-sky-400 flex items-center justify-center shadow-lg shadow-blue-500/40">
+                      <span className="text-white font-black text-sm tracking-tight">{step.step}</span>
+                    </div>
                   </div>
                   <h4 className="text-white font-bold text-sm mb-1">{step.title}</h4>
                   <p className="text-slate-400 text-xs leading-relaxed max-w-[140px] mx-auto">{step.desc}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
