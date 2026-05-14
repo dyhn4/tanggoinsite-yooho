@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { ArrowRight, BookOpen, Cpu, Sparkles, Users } from "lucide-react";
 
 export default function Hero() {
@@ -11,23 +12,97 @@ export default function Hero() {
     document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    // 파티클 생성 - 하단 집중
+    const COUNT = 120;
+    type Particle = {
+      x: number; y: number;
+      vx: number; vy: number;
+      r: number; opacity: number;
+    };
+
+    const particles: Particle[] = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * canvas.width,
+      y: canvas.height * 0.4 + Math.random() * canvas.height * 0.6,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.6 + 0.2,
+    }));
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 연결선
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            const alpha = (1 - dist / 130) * 0.35;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(99, 179, 237, ${alpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // 파티클 점
+      for (const p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(147, 210, 250, ${p.opacity})`;
+        ctx.fill();
+
+        // 이동
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // 경계 반사
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < canvas.height * 0.35 || p.y > canvas.height) p.vy *= -1;
+      }
+
+      animId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
-      {/* 배경 효과 - 1번 색감 유지 */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-32 w-[680px] h-[680px] bg-blue-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 -left-32 w-[560px] h-[560px] bg-sky-500/15 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/3 left-1/2 w-[420px] h-[420px] bg-blue-800/10 rounded-full blur-3xl animate-[float_6s_ease-in-out_infinite]" />
-
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(148,163,184,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.12) 1px, transparent 1px)",
-            backgroundSize: "42px 42px",
-          }}
-        />
-      </div>
+      {/* 파티클 네트워크 canvas 배경 */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      />
+      {/* 상단 페이드 — 캔버스가 텍스트 영역 침범 안 하도록 */}
+      <div className="absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-slate-900 via-slate-900/80 to-transparent pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 pt-32 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -143,43 +218,43 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 하단 통계 - 2번 구조, 1번 색감 */}
+        {/* 하단 카드 - OCR / DATA / AI */}
         <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
             {
               icon: BookOpen,
-              value: "5M+",
-              label: "누적 처리 페이지",
-              desc: "고문헌부터 현대 문서까지",
+              tag: "OCR",
+              label: "고문헌·한자 문서 인식",
+              desc: "스캔 이미지 기반 텍스트 추출",
             },
             {
               icon: Users,
-              value: "50+",
-              label: "도입 기관",
-              desc: "국립도서관·대학·연구원",
+              tag: "DATA",
+              label: "검색 가능한 데이터 변환",
+              desc: "문서 내용을 구조화하여 활용",
             },
             {
               icon: Cpu,
-              value: "98.7%",
-              label: "고문헌 인식 정확도",
-              desc: "일반 OCR 대비 3배 향상",
+              tag: "AI",
+              label: "문서 처리 자동화",
+              desc: "반복 입력 업무를 줄이는 AI 기술",
             },
-          ].map((stat) => (
+          ].map((item) => (
             <div
-              key={stat.label}
-              className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-lg"
+              key={item.tag}
+              className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-blue-400/30 transition-all duration-300"
             >
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                <stat.icon size={22} className="text-sky-400" />
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-600/30 border border-blue-500/30 flex items-center justify-center">
+                <item.icon size={22} className="text-sky-400" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-white">
-                  {stat.value}
+                <div className="text-lg font-black text-white tracking-tight">
+                  {item.tag}
                 </div>
-                <div className="text-sm text-slate-200 font-medium">
-                  {stat.label}
+                <div className="text-sm text-slate-200 font-semibold leading-snug">
+                  {item.label}
                 </div>
-                <div className="text-xs text-slate-400">{stat.desc}</div>
+                <div className="text-xs text-slate-400 mt-0.5">{item.desc}</div>
               </div>
             </div>
           ))}

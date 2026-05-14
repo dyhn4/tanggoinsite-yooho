@@ -2,7 +2,7 @@ import { Building2, Calendar, MapPin, Award } from "lucide-react";
 
 const highlights = [
   { icon: Calendar, label: "설립연도", value: "2022년 9월" },
-  { icon: MapPin, label: "위치", value: "서울 성동구 (왕십리)" },
+  { icon: MapPin, label: "위치", value: "서울 구로구 디지털로26길 43" },
   { icon: Building2, label: "기업 유형", value: "비상장 중소기업" },
   { icon: Award, label: "핵심 기술", value: "Data-Adaptive OCR" },
 ];

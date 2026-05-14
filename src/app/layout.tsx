@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Sora } from "next/font/google";
 import "./globals.css";
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-sora",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "탱고인사이트 | AI 기반 문서 데이터화 전문 기업",
@@ -31,8 +39,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="h-full">
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+    <html lang="ko" className={`h-full ${sora.variable}`}>
+      <body className={`min-h-full flex flex-col antialiased ${sora.className}`}>
+        {children}
+      </body>
     </html>
   );
 }

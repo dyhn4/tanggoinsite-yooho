@@ -52,7 +52,7 @@ export default function Header() {
       const sectionIndex = Math.round(scrollTop / windowH);
 
       // 섹션 순서: 0=Hero, 1=About, 2=Services, 3=Technology, 4=Process, 5=Contact, 6=Footer
-      const darkIndexes = [0]; // Hero, Process, Contact
+      const darkIndexes = [0, 5]; // Hero, Process, Contact
       setIsDark(darkIndexes.includes(sectionIndex));
     };
 
@@ -101,13 +101,22 @@ export default function Header() {
               const main = document.querySelector("main");
               main?.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center gap-2 group"
+            className="flex items-center group"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-700 to-sky-500 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">T</span>
-            </div>
-            <span className={`font-bold text-lg tracking-tight transition-colors ${logoColor}`}>
-              탱고인사이트
+            <span
+              className={`text-xl font-black tracking-tight transition-colors select-none ${logoColor}`}
+              style={{
+                fontFamily: "'Sora', 'Pretendard', sans-serif",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              <span className={`bg-gradient-to-r ${isDark ? "from-blue-400 to-sky-300" : "from-blue-600 to-sky-500"} bg-clip-text text-transparent`}>
+                Tango
+              </span>
+              {" "}
+              <span className={isDark ? "text-white" : "text-slate-900"}>
+                Insight
+              </span>
             </span>
           </a>
 
