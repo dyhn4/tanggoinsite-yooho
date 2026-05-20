@@ -77,7 +77,7 @@ export default function Contact() {
                   {
                     icon: MapPin,
                     label: "주소",
-                    value: "서울 성동구 왕십리",
+                    value: "서울 구로구 디지털로26길 43",
                   },
                   {
                     icon: Mail,

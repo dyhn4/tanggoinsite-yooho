@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import "./globals.css";
+import FloatingChat from "@/components/FloatingChat";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
     <html lang="ko" className={`h-full ${sora.variable}`}>
       <body className={`min-h-full flex flex-col antialiased ${sora.className}`}>
         {children}
+        <FloatingChat />
       </body>
     </html>
   );

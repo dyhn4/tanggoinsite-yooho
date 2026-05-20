@@ -1,0 +1,49 @@
+import { ImageResponse } from "next/og";
+
+export const size = { width: 180, height: 180 };
+export const contentType = "image/png";
+
+export default function AppleIcon() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          background: "linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 100%)",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: "40px",
+        }}
+      >
+        {/* 상단 광택 */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "50%",
+            background: "rgba(255,255,255,0.12)",
+            borderRadius: "40px 40px 0 0",
+          }}
+        />
+        {/* T 글자 */}
+        <div
+          style={{
+            color: "white",
+            fontSize: 110,
+            fontWeight: 900,
+            fontFamily: "Arial Black, sans-serif",
+            letterSpacing: "-4px",
+            lineHeight: 1,
+          }}
+        >
+          T
+        </div>
+      </div>
+    ),
+    { ...size }
+  );
+}

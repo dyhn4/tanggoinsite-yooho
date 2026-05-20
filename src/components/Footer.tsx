@@ -8,8 +8,12 @@ export default function Footer() {
           {/* 브랜드 */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-700 to-sky-500 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">T</span>
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center relative overflow-hidden"
+                style={{ background: "linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 100%)" }}
+              >
+                <div className="absolute inset-0 top-0 h-1/2 bg-white/[0.12] rounded-t-lg" />
+                <span className="relative text-white font-black text-sm">T</span>
               </div>
               <span className="text-white font-bold text-lg">탱고인사이트</span>
             </div>
@@ -46,7 +50,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>상호명: (주)탱고인사이트</li>
               <li>설립: 2022년 9월</li>
-              <li>위치: 서울 성동구 왕십리</li>
+              <li>위치: 서울 구로구 디지털로26길 43</li>
               <li>이메일: contact@tangoinsight.ai</li>
             </ul>
           </div>
