@@ -84,7 +84,7 @@ const solutions: AnySolution[] = [
     id: "tango-workflow", icon: GitBranch,
     title: "Tango Workflow", subtitle: "통합 공정 워크플로우 관리",
     badge: "Plug in Program",
-    description: "MooN Editor, AI OCR, Tango Batch를 자동 연계하는 통합 워크플로우 시스템. 사업관리부터 납품까지 전 공정을 일원화하여 품질과 효율을 동시에 잡습니다.",
+    description: "대량 이미지 기반 DB 구축을 위한 통합 공정관리 시스템. 상용 OCR(ABBYY) 및 Moon OCR을 모두 탑재하여 어떤 문서 유형도 처리 가능하며, 실시간 모니터링부터 작업자 성과 정산까지 전 공정을 일원화합니다.",
     bg: "linear-gradient(135deg, #0a1628 0%, #0f2d6b 35%, #1a56c4 65%, #0ea5e9 100%)",
     orbs: ["rgba(29,78,216,0.55)", "rgba(14,165,233,0.40)", "rgba(99,102,241,0.30)"],
     accent: "#38bdf8", tag: "blue",
@@ -123,23 +123,23 @@ const solutions: AnySolution[] = [
     id: "moon-ai-ocr", icon: ScanSearch,
     title: "MooN AI OCR", subtitle: "딥러닝 기반 고정밀 AI 문자 인식",
     badge: "Plug in Program",
-    description: "탱고인사이트가 자체 개발한 Data-Adaptive OCR 엔진. 국·漢文 혼용, 필기체, 고문헌 등 어떠한 문서도 스스로 학습하며 인식률을 높입니다.",
+    description: "탱고인사이트가 자체 개발한 딥러닝 기반 Data-Adaptive OCR 엔진. 고문서(한적)·국漢文 혼용·타자체·필기체 등 어떠한 문서도 스스로 학습하며 90% 이상의 인식률을 달성합니다.",
     bg: "linear-gradient(135deg, #061b2e 0%, #0c4a6e 35%, #0284c7 65%, #06b6d4 100%)",
     orbs: ["rgba(3,105,161,0.55)", "rgba(6,182,212,0.40)", "rgba(56,189,248,0.30)"],
     accent: "#38bdf8", tag: "sky",
-    f1Score: "0.964",
+    f1Score: "99.8%",
     features: [
-      "탱고인사이트 개발 MooN AI OCR 엔진 직접 적용",
-      "폴더 단위 배치 — Text PDF·XML 파일 일괄 생성",
-      "유형별 OCR 자동 인식 및 오류 패턴 자동 확인",
-      "오류문자 이미지 자동추출 + 머신러닝·딥러닝 기법으로 교정",
-      "데이터 자기학습으로 엔진 성능 지속 자동 업데이트",
-      "국·漢文 혼용·필기체·고문헌 등 학습 — 인식률 90% 이상",
+      "딥러닝 기반 데이터 적응형 문자인식(Data-Adaptive OCR) 엔진",
+      "고문서(한적)·국漢文 혼용·타자체·필기체 등 90% 이상 인식률 달성",
+      "글자 분할(Segmentation)·분류(Classification) 최적화 학습 에디터 제공",
+      "학습 데이터 누적 시 '스스로' OCR 엔진 성능 자동 업데이트",
+      "데이터셋(이미지, JSON, XML) 및 OCR PDF 자동 생성",
+      "ABBYY 14(95.7%) 대비 우위 — AI 자기학습 미들웨어 적용",
     ],
     accuracySteps: [
-      { label: "1차 학습", value: "85.14%", width: "85" },
-      { label: "2차 학습", value: "92.71%", width: "92" },
-      { label: "3차 학습", value: "95.83%", width: "95", highlight: true },
+      { label: "A.I. OCR (MooN)", value: "99.8%", width: "99", highlight: true },
+      { label: "ABBYY 14",        value: "95.7%", width: "95" },
+      { label: "Readiris",        value: "92.6%", width: "92" },
     ],
   },
   {
@@ -193,17 +193,17 @@ const solutions: AnySolution[] = [
   {
     kind: "explorer",
     id: "moon-ai-explorer", icon: BrainCircuit,
-    title: "Moon AI Explorer", subtitle: "AI 기반 지식 탐색·번역 플랫폼",
+    title: "Moon AI Explorer", subtitle: "Vision-Language Model 기반 멀티모달 AI",
     badge: "Plug in Program",
-    description: "구축된 디지털 아카이브 데이터를 AI로 탐색하고 번역합니다. 한국어·영어 번역부터 특정 주제 질의응답까지, 데이터의 가치를 극대화합니다.",
+    description: "Vision-Language Model(VLM) 기반의 멀티모달 AI 플랫폼. 텍스트(언어)와 이미지·동영상(시각) 정보를 동시에 이해·처리하여 구축된 디지털 아카이브의 가치를 극대화합니다.",
     bg: "linear-gradient(135deg, #0f0a2e 0%, #312e81 35%, #4338ca 65%, #818cf8 100%)",
     orbs: ["rgba(67,56,202,0.55)", "rgba(129,140,248,0.40)", "rgba(196,181,253,0.25)"],
     accent: "#818cf8", tag: "indigo",
     capabilities: [
+      { icon: "🧠",  name: "멀티모달 AI (VLM)",  desc: "텍스트·이미지·동영상을 동시에 이해하는 Vision-Language Model — 기존 LLM을 뛰어넘는 시각 AI" },
+      { icon: "🖼️", name: "이미지 내용 인식·설명", desc: "이미지를 보고 그 내용을 설명하거나 질문에 답변 — 고문서 이미지 분석에 최적화" },
       { icon: "🇰🇷", name: "현대 한국어 번역",   desc: "고문헌·근대문서의 내용을 현대 한국어로 자동 번역하여 접근성 극대화" },
       { icon: "🌐",  name: "영어 번역",           desc: "구축 데이터를 영어로 번역하여 국제 연구 및 글로벌 서비스 지원" },
-      { icon: "⚡",  name: "데이터 구조화(JSON)", desc: "번역·분석 결과를 JSON으로 구조화하여 즉시 API 활용 가능" },
-      { icon: "🗄️", name: "아카이브 관리·탐색",  desc: "대용량 구축 데이터를 체계적으로 관리하고 키워드·분류 기반 검색" },
       { icon: "🤖",  name: "특정 주제 질의응답",  desc: "RAG 기반 AI로 방대한 문서에서 원하는 정보를 자연어로 즉시 답변" },
     ],
   },
@@ -217,26 +217,26 @@ function SectionContent({ sol }: { sol: AnySolution }) {
 
   if (sol.kind === "workflow") {
     return (
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-8">
         <div>
           <SectionLabel accent={accent}>6대 공정 관리</SectionLabel>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
             {sol.processes.map((p) => {
               const PIcon = p.icon;
               return (
-                <div key={p.label} className="rounded-2xl p-5 border border-white/6 hover:border-white/12 transition-colors"
+                <div key={p.label} className="rounded-xl p-4 border border-white/6 hover:border-white/12 transition-colors"
                   style={{ background: "rgba(255,255,255,0.03)" }}>
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center"
+                  <div className="flex items-center gap-2.5 mb-2.5">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center"
                       style={{ background: `${accent}20` }}>
-                      <PIcon size={15} style={{ color: accent }} />
+                      <PIcon size={13} style={{ color: accent }} />
                     </div>
                     <h3 className="font-bold text-white text-sm">{p.label}</h3>
                   </div>
-                  <ul className="flex flex-col gap-1.5">
+                  <ul className="flex flex-col gap-1">
                     {p.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-xs text-white/50">
-                        <ChevronRight size={12} className="mt-0.5 flex-shrink-0" style={{ color: accent }} />
+                      <li key={item} className="flex items-start gap-1.5 text-xs text-white/50">
+                        <ChevronRight size={11} className="mt-0.5 flex-shrink-0" style={{ color: accent }} />
                         {item}
                       </li>
                     ))}
@@ -248,7 +248,7 @@ function SectionContent({ sol }: { sol: AnySolution }) {
         </div>
         <div>
           <SectionLabel accent={accent}>구축 자동화 시스템을 통한 스마트 공정 구현</SectionLabel>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-4">
             {sol.automation.map((item) => (
               <div key={item} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/6 text-sm text-white/70"
                 style={{ background: "rgba(255,255,255,0.03)" }}>
@@ -266,15 +266,15 @@ function SectionContent({ sol }: { sol: AnySolution }) {
     return (
       <div>
         <SectionLabel accent={accent}>주요 기능</SectionLabel>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           {sol.features.map((f) => (
-            <div key={f.name} className="rounded-2xl p-6 border border-white/6 hover:border-white/12 hover:-translate-y-0.5 transition-all group"
+            <div key={f.name} className="rounded-xl p-4 border border-white/6 hover:border-white/12 hover:-translate-y-0.5 transition-all group"
               style={{ background: "rgba(255,255,255,0.03)" }}>
-              <div className="flex items-start gap-4">
-                <span className="text-3xl flex-shrink-0">{f.icon}</span>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0">{f.icon}</span>
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="font-bold text-white text-base">{f.name}</h3>
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <h3 className="font-bold text-white text-sm">{f.name}</h3>
                     {f.stage && (
                       <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold"
                         style={{ background: `${accent}20`, color: accent }}>
@@ -282,7 +282,7 @@ function SectionContent({ sol }: { sol: AnySolution }) {
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-white/55 leading-relaxed">{f.desc}</p>
+                  <p className="text-xs text-white/55 leading-relaxed">{f.desc}</p>
                 </div>
               </div>
             </div>
@@ -293,47 +293,96 @@ function SectionContent({ sol }: { sol: AnySolution }) {
   }
 
   if (sol.kind === "ocr") {
+    const champStep = sol.accuracySteps.find(s => s.highlight);
+    const rivalSteps = sol.accuracySteps.filter(s => !s.highlight);
+    const champVal = champStep ? parseFloat(champStep.value) : 0;
+
     return (
-      <div className="flex flex-col gap-12">
-        <div className="flex flex-col sm:flex-row gap-8 items-start">
-          <div className="flex-shrink-0 flex flex-col items-center justify-center w-44 h-44 rounded-full border-4"
-            style={{ borderColor: `${accent}50`, background: `${accent}10`, boxShadow: `0 0 60px ${accent}30` }}>
-            <p className="text-xs font-bold text-white/40 uppercase tracking-widest mb-1">평균 F1 Score</p>
-            <p className="text-4xl font-black" style={{ color: accent }}>{sol.f1Score}</p>
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col sm:flex-row gap-6 items-start">
+          <div className="flex-shrink-0 flex flex-col items-center justify-center w-36 h-36 rounded-full border-4"
+            style={{ borderColor: `${accent}50`, background: `${accent}10`, boxShadow: `0 0 40px ${accent}30` }}>
+            <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1">평균 인식률</p>
+            <p className="text-3xl font-black" style={{ color: accent }}>{sol.f1Score}</p>
           </div>
           <div className="flex-1">
             <SectionLabel accent={accent}>주요 기능</SectionLabel>
-            <ul className="mt-4 flex flex-col gap-2.5">
+            <ul className="mt-3 flex flex-col gap-2">
               {sol.features.map((f) => (
-                <li key={f} className="flex items-start gap-2.5 text-sm text-white/60">
-                  <Check size={14} className="mt-0.5 flex-shrink-0" style={{ color: accent }} />
+                <li key={f} className="flex items-start gap-2 text-sm text-white/60">
+                  <Check size={13} className="mt-0.5 flex-shrink-0" style={{ color: accent }} />
                   {f}
                 </li>
               ))}
             </ul>
           </div>
         </div>
+
         <div>
-          <SectionLabel accent={accent}>3차 재학습을 통한 인식률 상승 (고문헌 기준)</SectionLabel>
-          <div className="mt-6 flex flex-col gap-4">
-            {sol.accuracySteps.map((step) => (
-              <div key={step.label} className="flex items-center gap-4">
-                <span className="text-sm text-white/50 w-20 flex-shrink-0">{step.label}</span>
-                <div className="flex-1 h-9 rounded-xl overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
-                  <div className="h-full rounded-xl flex items-center px-4"
-                    style={{ width: `${step.width}%`, background: step.highlight ? `linear-gradient(90deg,${accent}80,${accent})` : `${accent}40` }}>
-                    <span className={`text-sm font-black ${step.highlight ? "text-white" : "text-white/60"}`}>{step.value}</span>
+          <SectionLabel accent={accent}>경쟁사 대비 인식률 비교</SectionLabel>
+          <div className="mt-4 flex flex-col gap-3">
+
+            {/* ── MooN 챔피언 카드 ── */}
+            {champStep && (
+              <div className="relative overflow-hidden rounded-2xl p-5 flex items-center gap-5"
+                style={{ background: `linear-gradient(135deg, ${accent}22 0%, ${accent}0d 100%)`, border: `1.5px solid ${accent}60`, boxShadow: `0 0 40px ${accent}25, inset 0 0 40px ${accent}08` }}>
+                {/* 배경 글로우 오브 */}
+                <div className="absolute -right-10 -top-10 w-48 h-48 rounded-full blur-3xl pointer-events-none"
+                  style={{ background: `${accent}18` }} />
+
+                {/* 트로피 + 1위 */}
+                <div className="flex-shrink-0 flex flex-col items-center gap-1.5 z-10">
+                  <span className="text-4xl drop-shadow-lg">🏆</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full"
+                    style={{ background: `${accent}30`, color: accent, border: `1px solid ${accent}50` }}>
+                    1위
+                  </span>
+                </div>
+
+                {/* 바 + 수치 */}
+                <div className="flex-1 z-10">
+                  <div className="flex items-end justify-between mb-2.5">
+                    <span className="text-sm font-bold text-white/90">{champStep.label}</span>
+                    <span className="text-4xl font-black leading-none" style={{ color: accent }}>{champStep.value}</span>
+                  </div>
+                  <div className="h-4 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
+                    <div className="h-full rounded-full relative overflow-hidden"
+                      style={{ width: `${champStep.width}%`, background: `linear-gradient(90deg, ${accent}80, ${accent})`, boxShadow: `0 0 16px ${accent}90` }}>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-[shimmer_2s_ease-in-out_infinite]" />
+                    </div>
                   </div>
                 </div>
-                {step.highlight && (
-                  <span className="text-xs font-bold text-white bg-sky-500/20 px-2 py-1 rounded-lg border border-sky-400/30">
-                    최고 인식률
+
+                {/* 국내 최고 배지 */}
+                <div className="flex-shrink-0 z-10 hidden sm:flex flex-col items-center gap-1">
+                  <span className="text-xs font-black text-white whitespace-nowrap px-3 py-1.5 rounded-xl"
+                    style={{ background: `${accent}40`, border: `1px solid ${accent}60` }}>
+                    국내 최고 인식률
                   </span>
-                )}
+                </div>
               </div>
-            ))}
+            )}
+
+            {/* ── 경쟁사 항목 ── */}
+            {rivalSteps.map((step) => {
+              const gap = (champVal - parseFloat(step.value)).toFixed(1);
+              return (
+                <div key={step.label} className="flex items-center gap-3 rounded-xl px-4 py-3"
+                  style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                  <span className="text-xs font-semibold text-white/35 w-20 flex-shrink-0">{step.label}</span>
+                  <div className="flex-1 h-2.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                    <div className="h-full rounded-full" style={{ width: `${step.width}%`, background: "rgba(255,255,255,0.2)" }} />
+                  </div>
+                  <span className="text-sm font-bold text-white/40 w-12 text-right">{step.value}</span>
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-lg whitespace-nowrap"
+                    style={{ background: "rgba(239,68,68,0.12)", color: "rgba(252,165,165,0.75)", border: "1px solid rgba(239,68,68,0.2)" }}>
+                    -{gap}%p
+                  </span>
+                </div>
+              );
+            })}
           </div>
-          <p className="mt-3 text-xs text-white/30">* 2025년 고문헌(근대자료) 원문 텍스트 데이터 베이스 구축 사업 기준 (동일 데이터 셋, 동일 평가 기준)</p>
+          <p className="mt-3 text-xs text-white/30">* 동일 이미지 기준 인식률 비교 (글꼴·스캔품질 등에 따라 결과가 달라질 수 있음)</p>
         </div>
       </div>
     );
@@ -343,13 +392,13 @@ function SectionContent({ sol }: { sol: AnySolution }) {
     return (
       <div>
         <SectionLabel accent={accent}>핵심 기능</SectionLabel>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
           {sol.features.map((f) => (
-            <div key={f.name} className="rounded-2xl p-6 border border-white/6 hover:border-white/15 hover:-translate-y-1 transition-all group"
+            <div key={f.name} className="rounded-xl p-5 border border-white/6 hover:border-white/15 hover:-translate-y-0.5 transition-all group"
               style={{ background: "rgba(255,255,255,0.03)" }}>
-              <span className="text-4xl block mb-4">{f.icon}</span>
-              <h3 className="font-bold text-white mb-2">{f.name}</h3>
-              <p className="text-sm text-white/50 leading-relaxed">{f.desc}</p>
+              <span className="text-3xl block mb-3">{f.icon}</span>
+              <h3 className="font-bold text-white mb-1.5 text-sm">{f.name}</h3>
+              <p className="text-xs text-white/50 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -361,15 +410,15 @@ function SectionContent({ sol }: { sol: AnySolution }) {
     return (
       <div>
         <SectionLabel accent={accent}>출력물 유형</SectionLabel>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
           {sol.outputs.map((o, i) => (
-            <div key={o.name} className="relative rounded-2xl p-6 border border-white/6 hover:border-white/15 hover:-translate-y-1 transition-all group overflow-hidden"
+            <div key={o.name} className="relative rounded-xl p-5 border border-white/6 hover:border-white/15 hover:-translate-y-0.5 transition-all group overflow-hidden"
               style={{ background: "rgba(255,255,255,0.03)" }}>
-              <div className="absolute top-3 right-4 text-5xl opacity-10 group-hover:opacity-20 transition-opacity font-black text-white">
+              <div className="absolute top-3 right-4 text-4xl opacity-10 group-hover:opacity-20 transition-opacity font-black text-white">
                 {String(i + 1).padStart(2, "0")}
               </div>
-              <span className="text-3xl block mb-3">{o.icon}</span>
-              <h3 className="font-bold text-white text-sm mb-2">{o.name}</h3>
+              <span className="text-2xl block mb-2.5">{o.icon}</span>
+              <h3 className="font-bold text-white text-sm mb-1.5">{o.name}</h3>
               <p className="text-xs text-white/50 leading-relaxed">{o.desc}</p>
             </div>
           ))}
@@ -382,14 +431,14 @@ function SectionContent({ sol }: { sol: AnySolution }) {
     return (
       <div>
         <SectionLabel accent={accent}>주요 기능</SectionLabel>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           {sol.features.map((f) => (
-            <div key={f.name} className="flex gap-4 rounded-2xl p-6 border border-white/6 hover:border-white/12 hover:-translate-y-0.5 transition-all"
+            <div key={f.name} className="flex gap-3 rounded-xl p-4 border border-white/6 hover:border-white/12 hover:-translate-y-0.5 transition-all"
               style={{ background: "rgba(255,255,255,0.03)" }}>
-              <span className="text-3xl flex-shrink-0">{f.icon}</span>
+              <span className="text-2xl flex-shrink-0">{f.icon}</span>
               <div>
-                <h3 className="font-bold text-white mb-1.5">{f.name}</h3>
-                <p className="text-sm text-white/50 leading-relaxed">{f.desc}</p>
+                <h3 className="font-bold text-white mb-1 text-sm">{f.name}</h3>
+                <p className="text-xs text-white/50 leading-relaxed">{f.desc}</p>
               </div>
             </div>
           ))}
@@ -402,13 +451,13 @@ function SectionContent({ sol }: { sol: AnySolution }) {
     return (
       <div>
         <SectionLabel accent={accent}>AI 핵심 역량</SectionLabel>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
           {sol.capabilities.map((c) => (
-            <div key={c.name} className="rounded-2xl p-6 border border-white/6 hover:border-white/15 hover:-translate-y-1 transition-all group"
+            <div key={c.name} className="rounded-xl p-5 border border-white/6 hover:border-white/15 hover:-translate-y-0.5 transition-all group"
               style={{ background: "rgba(255,255,255,0.03)" }}>
-              <span className="text-4xl block mb-4">{c.icon}</span>
-              <h3 className="font-bold text-white mb-2">{c.name}</h3>
-              <p className="text-sm text-white/50 leading-relaxed">{c.desc}</p>
+              <span className="text-3xl block mb-3">{c.icon}</span>
+              <h3 className="font-bold text-white mb-1.5 text-sm">{c.name}</h3>
+              <p className="text-xs text-white/50 leading-relaxed">{c.desc}</p>
             </div>
           ))}
         </div>
@@ -495,42 +544,42 @@ export default function SolutionsPage() {
           <section key={sol.id} id={sol.id} className="relative overflow-hidden">
 
             {/* 히어로 */}
-            <div className="relative min-h-[520px] flex items-center" style={{ background: sol.bg }}>
+            <div className="relative min-h-[300px] flex items-center" style={{ background: sol.bg }}>
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="animate-orb-1 absolute w-[500px] h-[500px] rounded-full blur-[120px] -top-32 -left-32"
+                <div className="animate-orb-1 absolute w-[400px] h-[400px] rounded-full blur-[100px] -top-24 -left-24"
                   style={{ background: sol.orbs[0] }} />
-                <div className="animate-orb-2 absolute w-[400px] h-[400px] rounded-full blur-[100px] -bottom-20 -right-20"
+                <div className="animate-orb-2 absolute w-[320px] h-[320px] rounded-full blur-[80px] -bottom-16 -right-16"
                   style={{ background: sol.orbs[1] }} />
-                <div className="animate-orb-3 absolute w-[300px] h-[300px] rounded-full blur-[80px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                <div className="animate-orb-3 absolute w-[240px] h-[240px] rounded-full blur-[60px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   style={{ background: sol.orbs[2] }} />
                 <div className="absolute inset-0 opacity-[0.04]"
                   style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
               </div>
 
-              <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 py-20 w-full">
-                <div className="flex flex-col md:flex-row md:items-center gap-10">
+              <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 py-10 w-full">
+                <div className="flex flex-col md:flex-row md:items-center gap-8">
                   <div className="flex-1 animate-fade-up">
-                    <div className="flex items-center gap-3 mb-5">
+                    <div className="flex items-center gap-3 mb-3">
                       <span className="text-[10px] font-bold tracking-[0.25em] uppercase px-3 py-1 rounded-full border"
                         style={{ borderColor: `${sol.accent}40`, color: sol.accent, background: `${sol.accent}15` }}>
                         {sol.badge}
                       </span>
                       <span className="text-white/30 text-xs">#{String(idx + 1).padStart(2, "0")}</span>
                     </div>
-                    <h1 className="text-4xl sm:text-5xl font-black text-white mb-3 leading-tight">{sol.title}</h1>
-                    <p className="text-lg font-semibold mb-5" style={{ color: sol.accent }}>{sol.subtitle}</p>
-                    <p className="text-white/60 text-base leading-relaxed max-w-xl">{sol.description}</p>
+                    <h1 className="text-3xl sm:text-4xl font-black text-white mb-2 leading-tight">{sol.title}</h1>
+                    <p className="text-base font-semibold mb-3" style={{ color: sol.accent }}>{sol.subtitle}</p>
+                    <p className="text-white/60 text-sm leading-relaxed max-w-xl">{sol.description}</p>
                   </div>
 
                   <div className="flex-shrink-0 flex items-center justify-center">
                     <div className="relative">
-                      <div className="w-40 h-40 rounded-3xl flex items-center justify-center animate-glow"
-                        style={{ background: `linear-gradient(135deg,${sol.accent}30 0%,${sol.accent}15 100%)`, border: `1px solid ${sol.accent}30`, boxShadow: `0 0 60px ${sol.accent}30` }}>
-                        <Icon size={72} style={{ color: sol.accent }} strokeWidth={1.2} />
+                      <div className="w-28 h-28 rounded-2xl flex items-center justify-center animate-glow"
+                        style={{ background: `linear-gradient(135deg,${sol.accent}30 0%,${sol.accent}15 100%)`, border: `1px solid ${sol.accent}30`, boxShadow: `0 0 40px ${sol.accent}30` }}>
+                        <Icon size={52} style={{ color: sol.accent }} strokeWidth={1.2} />
                       </div>
-                      <div className="absolute inset-0 -m-4 rounded-[2.5rem] border opacity-20 animate-pulse"
+                      <div className="absolute inset-0 -m-3 rounded-[1.75rem] border opacity-20 animate-pulse"
                         style={{ borderColor: sol.accent }} />
-                      <div className="absolute inset-0 -m-8 rounded-[3rem] border opacity-10"
+                      <div className="absolute inset-0 -m-6 rounded-[2.25rem] border opacity-10"
                         style={{ borderColor: sol.accent }} />
                     </div>
                   </div>
@@ -540,11 +589,11 @@ export default function SolutionsPage() {
 
             {/* 콘텐츠 */}
             <div className="bg-slate-950" style={{ borderTop: `1px solid ${sol.accent}20` }}>
-              <div className="max-w-7xl mx-auto px-6 sm:px-10 py-16">
+              <div className="max-w-7xl mx-auto px-6 sm:px-10 py-10">
                 <SectionContent sol={sol} />
 
                 {/* CTA */}
-                <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl px-8 py-6 border border-white/8"
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl px-6 py-5 border border-white/8"
                   style={{ background: `linear-gradient(135deg,${sol.accent}10 0%,transparent 60%)` }}>
                   <div>
                     <p className="font-bold text-white text-base">{sol.title} 도입을 검토하시나요?</p>

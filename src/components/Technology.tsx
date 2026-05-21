@@ -10,10 +10,10 @@ import {
 } from "lucide-react";
 
 const workflowFeatures = [
-  "MooN Editor, AI OCR, Tango Batch 자동 연계",
-  "공정별 이력/데이터 관리",
-  "상용 OCR(ABBYY) 탑재",
-  "JSON, XML, TXT 추출",
+  "대량 이미지 기반 DB 구축 공정관리",
+  "상용 OCR(ABBYY) 및 Moon OCR 탑재",
+  "실시간 프로젝트 모니터링·리포팅",
+  "작업자 성과 및 정산 리포팅",
 ];
 
 const solutions = [
@@ -28,7 +28,7 @@ const solutions = [
     id: "moon-ai-ocr",
     icon: ScanSearch,
     title: "MooN AI OCR",
-    features: ["원본 파일 AI OCR 시행", "AI OCR 자동 학습", "오류 유형 분류 및 시스템 자동학습"],
+    features: ["딥러닝 기반 Data-Adaptive OCR 엔진", "고문서·타자체·필기체 90%+ 인식률", "자기학습으로 엔진 성능 자동 업데이트", "OCR PDF 및 데이터셋(JSON/XML) 생성"],
     color: "from-sky-600 to-cyan-400",
   },
   {
@@ -56,7 +56,7 @@ const solutions = [
     id: "moon-ai-explorer",
     icon: BrainCircuit,
     title: "Moon AI Explorer",
-    features: ["현대 한국어·영어 번역", "데이터 구조화(JSON)", "아카이브 관리 및 탐색", "특정 주제 질의응답"],
+    features: ["Vision-Language Model(VLM) 기반", "텍스트·이미지 멀티모달 AI 처리", "이미지 인식·설명·질의응답", "아카이브 관리 및 데이터 탐색"],
     color: "from-indigo-600 to-blue-400",
   },
 ];
