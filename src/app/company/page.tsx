@@ -129,7 +129,7 @@ const stats = [
 export default function CompanyPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  /* ── 코스모스 파티클 ── */
+  /* ── 오로라 + 별빛 파티클 ── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -138,93 +138,126 @@ export default function CompanyPage() {
     let animId: number;
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth;
+      canvas.width  = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
     };
     resize();
     window.addEventListener("resize", resize);
 
-    // 신비로운 컬러 팔레트
-    const COLORS = [
-      [167, 139, 250],   // violet
-      [103, 232, 249],   // cyan
-      [240, 171, 252],   // fuchsia/pink
-      [196, 181, 253],   // lavender
-      [255, 255, 255],   // white star
-      [94, 234, 212],    // teal
+    /* ── 오로라 리본 데이터 ── */
+    type Ribbon = {
+      baseY: number;   // 0~1 (화면 높이 비율)
+      amp:   number;   // 파동 진폭 (0~1)
+      freq:  number;   // 파동 주기 수
+      phase: number;   // 현재 위상
+      speed: number;   // 위상 증가 속도
+      R: number; G: number; B: number;
+      opacity: number;
+      thickness: number; // 0~1
+    };
+    const ribbons: Ribbon[] = [
+      { baseY:0.28, amp:0.13, freq:1.2, phase:0.0,  speed:0.007, R:139, G:92,  B:246, opacity:0.38, thickness:0.18 },
+      { baseY:0.50, amp:0.10, freq:0.8, phase:2.1,  speed:0.005, R:6,   G:182, B:212, opacity:0.32, thickness:0.14 },
+      { baseY:0.68, amp:0.14, freq:1.5, phase:4.3,  speed:0.009, R:168, G:85,  B:247, opacity:0.30, thickness:0.13 },
+      { baseY:0.15, amp:0.08, freq:0.6, phase:1.0,  speed:0.006, R:20,  G:184, B:166, opacity:0.22, thickness:0.09 },
+      { baseY:0.82, amp:0.09, freq:1.0, phase:3.5,  speed:0.008, R:99,  G:102, B:241, opacity:0.26, thickness:0.10 },
     ];
 
-    const COUNT = 75;
-    type P = {
-      x: number; y: number;
-      vx: number; vy: number;
-      r: number;
-      baseO: number;
-      ci: number;   // color index
-      phase: number;
-      freq: number;
-    };
-
-    const pts: P[] = Array.from({ length: COUNT }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.28,
-      vy: (Math.random() - 0.5) * 0.28,
-      r: Math.random() * 2.2 + 0.5,
-      baseO: Math.random() * 0.55 + 0.2,
-      ci: Math.floor(Math.random() * COLORS.length),
+    /* ── 별빛 파티클 데이터 ── */
+    const STAR_COLORS = [
+      [220, 200, 255],  // 연한 바이올렛
+      [180, 235, 255],  // 연한 시안
+      [255, 210, 255],  // 연한 핑크
+      [255, 255, 255],  // 흰별
+      [160, 250, 230],  // 연한 틸
+    ];
+    type Star = { x:number; y:number; vx:number; vy:number; r:number; phase:number; freq:number; ci:number };
+    const STAR_COUNT = 55;
+    const stars: Star[] = Array.from({ length: STAR_COUNT }, () => ({
+      x:     Math.random() * (canvas.width  || 1200),
+      y:     Math.random() * (canvas.height || 800),
+      vx:    (Math.random() - 0.5) * 0.22,
+      vy:    (Math.random() - 0.5) * 0.22,
+      r:     Math.random() * 2.0 + 0.6,
       phase: Math.random() * Math.PI * 2,
-      freq: Math.random() * 0.035 + 0.012,
+      freq:  Math.random() * 0.04 + 0.015,
+      ci:    Math.floor(Math.random() * STAR_COLORS.length),
     }));
 
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const SEGS = 100; // 리본 분할 수
 
-      // 연결선 — 보라/라벤더 톤
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const dx = pts[i].x - pts[j].x;
-          const dy = pts[i].y - pts[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 120) {
-            const a = (1 - d / 120) * 0.28;
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(167,139,250,${a})`;
-            ctx.lineWidth = 0.55;
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.stroke();
-          }
-        }
+    const drawRibbon = (rb: Ribbon, w: number, h: number) => {
+      const half = h * rb.thickness * 0.5;
+      const upper: [number,number][] = [];
+      const lower: [number,number][] = [];
+
+      for (let i = 0; i <= SEGS; i++) {
+        const x = (i / SEGS) * w;
+        const t = (i / SEGS) * Math.PI * 2 * rb.freq;
+        const cy = h * rb.baseY + Math.sin(t + rb.phase) * h * rb.amp;
+        upper.push([x, cy - half]);
+        lower.push([x, cy + half]);
       }
 
-      // 파티클
-      for (const p of pts) {
-        p.phase += p.freq;
-        const o = p.baseO + Math.sin(p.phase) * 0.28;
-        const r = p.r + Math.sin(p.phase * 0.8) * 0.6;
-        const [R, G, B] = COLORS[p.ci];
+      ctx.beginPath();
+      ctx.moveTo(upper[0][0], upper[0][1]);
+      for (let i = 1; i < upper.length; i++) {
+        const mx = (upper[i-1][0] + upper[i][0]) / 2;
+        const my = (upper[i-1][1] + upper[i][1]) / 2;
+        ctx.quadraticCurveTo(upper[i-1][0], upper[i-1][1], mx, my);
+      }
+      for (let i = lower.length - 1; i >= 0; i--) {
+        const mx = i > 0 ? (lower[i-1][0] + lower[i][0]) / 2 : lower[0][0];
+        const my = i > 0 ? (lower[i-1][1] + lower[i][1]) / 2 : lower[0][1];
+        if (i < lower.length - 1) ctx.quadraticCurveTo(lower[i+1][0], lower[i+1][1], mx, my);
+        else ctx.lineTo(lower[i][0], lower[i][1]);
+      }
+      ctx.closePath();
 
-        // 큰 파티클엔 글로우 후광
-        if (p.r > 1.5) {
-          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 5);
-          grad.addColorStop(0, `rgba(${R},${G},${B},${o * 0.6})`);
-          grad.addColorStop(1, `rgba(${R},${G},${B},0)`);
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, r * 5, 0, Math.PI * 2);
-          ctx.fillStyle = grad;
-          ctx.fill();
-        }
+      const grad = ctx.createLinearGradient(0, 0, w, 0);
+      grad.addColorStop(0,   `rgba(${rb.R},${rb.G},${rb.B},0)`);
+      grad.addColorStop(0.15,`rgba(${rb.R},${rb.G},${rb.B},${rb.opacity})`);
+      grad.addColorStop(0.85,`rgba(${rb.R},${rb.G},${rb.B},${rb.opacity})`);
+      grad.addColorStop(1,   `rgba(${rb.R},${rb.G},${rb.B},0)`);
+      ctx.fillStyle = grad;
+      ctx.fill();
 
-        // 파티클 본체
+      rb.phase += rb.speed;
+    };
+
+    const draw = () => {
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      /* 오로라 리본 그리기 */
+      for (const rb of ribbons) drawRibbon(rb, w, h);
+
+      /* 별빛 파티클 그리기 */
+      for (const s of stars) {
+        s.phase += s.freq;
+        const o = 0.5 + Math.sin(s.phase) * 0.45;          // 0.05 ~ 0.95 반짝임
+        const r = s.r + Math.sin(s.phase * 0.7) * 0.5;
+        const [R, G, B] = STAR_COLORS[s.ci];
+
+        /* 글로우 후광 */
+        const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, r * 6);
+        glow.addColorStop(0, `rgba(${R},${G},${B},${o * 0.5})`);
+        glow.addColorStop(1, `rgba(${R},${G},${B},0)`);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(r, 0.3), 0, Math.PI * 2);
+        ctx.arc(s.x, s.y, r * 6, 0, Math.PI * 2);
+        ctx.fillStyle = glow;
+        ctx.fill();
+
+        /* 별 본체 */
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, Math.max(r, 0.4), 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${R},${G},${B},${o})`;
         ctx.fill();
 
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        s.x += s.vx; s.y += s.vy;
+        if (s.x < 0 || s.x > w) s.vx *= -1;
+        if (s.y < 0 || s.y > h) s.vy *= -1;
       }
 
       animId = requestAnimationFrame(draw);
