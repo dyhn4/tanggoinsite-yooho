@@ -129,135 +129,79 @@ const stats = [
 export default function CompanyPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  /* ── 오로라 + 별빛 파티클 ── */
+  /* ── 플로우 필드 파티클 (빛 궤적) ── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let animId: number;
+    let t = 0;
 
     const resize = () => {
       canvas.width  = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
+      ctx.fillStyle = "#06080f";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
     resize();
     window.addEventListener("resize", resize);
 
-    /* ── 오로라 리본 데이터 ── */
-    type Ribbon = {
-      baseY: number;   // 0~1 (화면 높이 비율)
-      amp:   number;   // 파동 진폭 (0~1)
-      freq:  number;   // 파동 주기 수
-      phase: number;   // 현재 위상
-      speed: number;   // 위상 증가 속도
-      R: number; G: number; B: number;
-      opacity: number;
-      thickness: number; // 0~1
-    };
-    const ribbons: Ribbon[] = [
-      { baseY:0.28, amp:0.13, freq:1.2, phase:0.0,  speed:0.007, R:139, G:92,  B:246, opacity:0.38, thickness:0.18 },
-      { baseY:0.50, amp:0.10, freq:0.8, phase:2.1,  speed:0.005, R:6,   G:182, B:212, opacity:0.32, thickness:0.14 },
-      { baseY:0.68, amp:0.14, freq:1.5, phase:4.3,  speed:0.009, R:168, G:85,  B:247, opacity:0.30, thickness:0.13 },
-      { baseY:0.15, amp:0.08, freq:0.6, phase:1.0,  speed:0.006, R:20,  G:184, B:166, opacity:0.22, thickness:0.09 },
-      { baseY:0.82, amp:0.09, freq:1.0, phase:3.5,  speed:0.008, R:99,  G:102, B:241, opacity:0.26, thickness:0.10 },
+    /* 파티클 색상: 화이트·일렉트릭블루·시안 3종 */
+    const COLS: [number,number,number][] = [
+      [255, 255, 255],   // 흰빛
+      [147, 197, 253],   // blue-200
+      [103, 232, 249],   // cyan-300
+      [186, 230, 253],   // sky-200
     ];
 
-    /* ── 별빛 파티클 데이터 ── */
-    const STAR_COLORS = [
-      [220, 200, 255],  // 연한 바이올렛
-      [180, 235, 255],  // 연한 시안
-      [255, 210, 255],  // 연한 핑크
-      [255, 255, 255],  // 흰별
-      [160, 250, 230],  // 연한 틸
-    ];
-    type Star = { x:number; y:number; vx:number; vy:number; r:number; phase:number; freq:number; ci:number };
-    const STAR_COUNT = 55;
-    const stars: Star[] = Array.from({ length: STAR_COUNT }, () => ({
-      x:     Math.random() * (canvas.width  || 1200),
+    type FP = { x:number; y:number; speed:number; ci:number };
+    const COUNT = 200;
+
+    const spawn = (): FP => ({
+      x:     Math.random() * (canvas.width  || 1400),
       y:     Math.random() * (canvas.height || 800),
-      vx:    (Math.random() - 0.5) * 0.22,
-      vy:    (Math.random() - 0.5) * 0.22,
-      r:     Math.random() * 2.0 + 0.6,
-      phase: Math.random() * Math.PI * 2,
-      freq:  Math.random() * 0.04 + 0.015,
-      ci:    Math.floor(Math.random() * STAR_COLORS.length),
-    }));
+      speed: Math.random() * 0.9 + 0.5,
+      ci:    Math.floor(Math.random() * COLS.length),
+    });
 
-    const SEGS = 100; // 리본 분할 수
+    const pts: FP[] = Array.from({ length: COUNT }, spawn);
 
-    const drawRibbon = (rb: Ribbon, w: number, h: number) => {
-      const half = h * rb.thickness * 0.5;
-      const upper: [number,number][] = [];
-      const lower: [number,number][] = [];
-
-      for (let i = 0; i <= SEGS; i++) {
-        const x = (i / SEGS) * w;
-        const t = (i / SEGS) * Math.PI * 2 * rb.freq;
-        const cy = h * rb.baseY + Math.sin(t + rb.phase) * h * rb.amp;
-        upper.push([x, cy - half]);
-        lower.push([x, cy + half]);
-      }
-
-      ctx.beginPath();
-      ctx.moveTo(upper[0][0], upper[0][1]);
-      for (let i = 1; i < upper.length; i++) {
-        const mx = (upper[i-1][0] + upper[i][0]) / 2;
-        const my = (upper[i-1][1] + upper[i][1]) / 2;
-        ctx.quadraticCurveTo(upper[i-1][0], upper[i-1][1], mx, my);
-      }
-      for (let i = lower.length - 1; i >= 0; i--) {
-        const mx = i > 0 ? (lower[i-1][0] + lower[i][0]) / 2 : lower[0][0];
-        const my = i > 0 ? (lower[i-1][1] + lower[i][1]) / 2 : lower[0][1];
-        if (i < lower.length - 1) ctx.quadraticCurveTo(lower[i+1][0], lower[i+1][1], mx, my);
-        else ctx.lineTo(lower[i][0], lower[i][1]);
-      }
-      ctx.closePath();
-
-      const grad = ctx.createLinearGradient(0, 0, w, 0);
-      grad.addColorStop(0,   `rgba(${rb.R},${rb.G},${rb.B},0)`);
-      grad.addColorStop(0.15,`rgba(${rb.R},${rb.G},${rb.B},${rb.opacity})`);
-      grad.addColorStop(0.85,`rgba(${rb.R},${rb.G},${rb.B},${rb.opacity})`);
-      grad.addColorStop(1,   `rgba(${rb.R},${rb.G},${rb.B},0)`);
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      rb.phase += rb.speed;
-    };
+    const FREQ = 0.0022;   // 흐름장 공간 주파수
 
     const draw = () => {
       const w = canvas.width;
       const h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
 
-      /* 오로라 리본 그리기 */
-      for (const rb of ribbons) drawRibbon(rb, w, h);
+      /* 반투명 오버레이 → 궤적 잔상 */
+      ctx.fillStyle = "rgba(6,8,15,0.13)";
+      ctx.fillRect(0, 0, w, h);
 
-      /* 별빛 파티클 그리기 */
-      for (const s of stars) {
-        s.phase += s.freq;
-        const o = 0.5 + Math.sin(s.phase) * 0.45;          // 0.05 ~ 0.95 반짝임
-        const r = s.r + Math.sin(s.phase * 0.7) * 0.5;
-        const [R, G, B] = STAR_COLORS[s.ci];
+      t += 0.005;
 
-        /* 글로우 후광 */
-        const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, r * 6);
-        glow.addColorStop(0, `rgba(${R},${G},${B},${o * 0.5})`);
-        glow.addColorStop(1, `rgba(${R},${G},${B},0)`);
+      for (const p of pts) {
+        /* sin·cos 기반 흐름장 각도 */
+        const angle =
+          Math.sin(p.x * FREQ + t * 0.6) *
+          Math.cos(p.y * FREQ + t * 0.35) *
+          Math.PI * 2.8;
+
+        p.x += Math.cos(angle) * p.speed;
+        p.y += Math.sin(angle) * p.speed;
+
+        /* 화면 밖 나가면 랜덤 재스폰 */
+        if (p.x < -2 || p.x > w + 2 || p.y < -2 || p.y > h + 2) {
+          const r = spawn();
+          p.x = r.x; p.y = r.y; p.ci = r.ci;
+        }
+
+        const [R, G, B] = COLS[p.ci];
+        const alpha = 0.55 + Math.random() * 0.35;
+
         ctx.beginPath();
-        ctx.arc(s.x, s.y, r * 6, 0, Math.PI * 2);
-        ctx.fillStyle = glow;
+        ctx.arc(p.x, p.y, 0.85, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${R},${G},${B},${alpha})`;
         ctx.fill();
-
-        /* 별 본체 */
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, Math.max(r, 0.4), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${R},${G},${B},${o})`;
-        ctx.fill();
-
-        s.x += s.vx; s.y += s.vy;
-        if (s.x < 0 || s.x > w) s.vx *= -1;
-        if (s.y < 0 || s.y > h) s.vy *= -1;
       }
 
       animId = requestAnimationFrame(draw);
@@ -299,25 +243,23 @@ export default function CompanyPage() {
       {/* ── 1. 히어로 ── */}
       <section
         className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #06000f 0%, #0d0520 50%, #060011 100%)" }}
+        style={{ background: "#06080f" }}
       >
-        {/* 배경 성운 글로우 (정적) */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-5%] w-[55%] h-[70%] rounded-full opacity-30"
-            style={{ background: "radial-gradient(circle, #4c1d95 0%, transparent 65%)", filter: "blur(90px)" }} />
-          <div className="absolute bottom-[-15%] right-[-5%] w-[50%] h-[65%] rounded-full opacity-25"
-            style={{ background: "radial-gradient(circle, #0e7490 0%, transparent 65%)", filter: "blur(90px)" }} />
-          <div className="absolute top-[30%] right-[25%] w-[35%] h-[50%] rounded-full opacity-20"
-            style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 65%)", filter: "blur(80px)" }} />
-        </div>
+        {/* 깊이감용 미세 글로우 (중앙 블루 틴트) */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(29,78,216,0.10) 0%, transparent 70%)",
+          }}
+        />
 
-        {/* 코스모스 캔버스 */}
+        {/* 플로우 필드 캔버스 */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
           <div className="max-w-3xl">
             {/* 배지 */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/15 border border-violet-400/25 text-violet-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/12 border border-blue-400/25 text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
               <Building2 size={13} />
               Company Overview
             </div>
@@ -325,11 +267,11 @@ export default function CompanyPage() {
             {/* 타이틀 */}
             <h1 className="text-5xl sm:text-7xl font-black text-white mb-4 leading-none tracking-tight"
               style={{ fontFamily: "'Sora', sans-serif" }}>
-              <span className="bg-gradient-to-r from-violet-200 via-white to-cyan-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-sky-100 to-blue-300 bg-clip-text text-transparent">
                 탱고인사이트
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-violet-300 font-semibold mb-6 tracking-tight">
+            <p className="text-lg sm:text-xl text-sky-300 font-semibold mb-6 tracking-tight">
               Tango Insight Co., Ltd.
             </p>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-10 max-w-2xl">
@@ -342,7 +284,7 @@ export default function CompanyPage() {
             <div className="flex flex-wrap gap-3">
               <Link href="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm transition-all hover:-translate-y-0.5 shadow-xl shadow-violet-900/50"
-                style={{ background: "linear-gradient(135deg, #6d28d9, #0891b2)" }}>
+                style={{ background: "linear-gradient(135deg, #1d4ed8, #0ea5e9)" }}>
                 도입 문의 <ArrowRight size={16} />
               </Link>
               <Link href="/solutions"
@@ -361,10 +303,10 @@ export default function CompanyPage() {
               { icon: BarChart3, value: "1,000+",  unit: "만 건",     label: "누적 처리 실적" },
             ].map((s) => (
               <div key={s.label}
-                className="flex flex-col gap-1 p-5 rounded-2xl bg-white/[0.05] border border-violet-400/15 hover:border-violet-400/40 hover:bg-violet-500/10 transition-all duration-300">
-                <s.icon size={16} className="text-violet-300 mb-1" />
+                className="flex flex-col gap-1 p-5 rounded-2xl bg-white/[0.05] border border-blue-400/15 hover:border-blue-400/35 hover:bg-blue-500/10 transition-all duration-300">
+                <s.icon size={16} className="text-sky-400 mb-1" />
                 <div className="text-2xl font-black text-white leading-none">
-                  {s.value}<span className="text-cyan-300 text-sm ml-1">{s.unit}</span>
+                  {s.value}<span className="text-sky-400 text-sm ml-1">{s.unit}</span>
                 </div>
                 <div className="text-slate-400 text-xs">{s.label}</div>
               </div>
