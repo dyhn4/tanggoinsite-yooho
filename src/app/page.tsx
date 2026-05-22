@@ -8,7 +8,7 @@ import Services from "@/components/Services";
 import Technology from "@/components/Technology";
 import Process from "@/components/Process";
 import Achievement from "@/components/Achievement";
-import Contact from "@/components/Contact";
+import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -86,7 +86,7 @@ export default function Home() {
         </section>
 
         <section className="min-h-screen">
-          <Contact />
+          <Testimonials />
         </section>
 
         <section>

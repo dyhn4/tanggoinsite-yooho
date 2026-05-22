@@ -113,7 +113,7 @@ const solutions: AnySolution[] = [
     accent: "#c084fc", tag: "violet",
     features: [
       { icon: "🔍", name: "AI OCR",    stage: "AI OCR 입력",          desc: "학습 데이터를 토대로 이미지상의 글자를 자동으로 인식하여 입력" },
-      { icon: "🎯", name: "군집검수",  stage: "Full Text 교정/교열",   desc: "같은 모양으로 인식한 글자들을 모아 한번에 수정. 에디터 상에서 '딜일이미지'로 표현" },
+      { icon: "🎯", name: "군집검수",  stage: "Full Text 교정/교열",   desc: "같은 모양으로 인식한 글자들을 모아 한번에 수정. 에디터 상에서 '단일이미지'로 표현" },
       { icon: "✏️", name: "날자정정",  stage: "Full Text 교정/교열",   desc: "개별 글자의 텍스트를 선택·수정. 날자별 교정으로 학습된 인식 오류를 정밀 처리" },
       { icon: "📝", name: "문단정제",  stage: "문단 정제",              desc: "가로쓰기·세로쓰기 혼용 및 1~4단 고문헌에 최적화된 문단 구축·정제" },
     ],
