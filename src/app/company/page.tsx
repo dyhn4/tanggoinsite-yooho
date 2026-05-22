@@ -127,58 +127,6 @@ const stats = [
 
 /* ─── 메인 페이지 ─── */
 export default function CompanyPage() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  /* 히어로 파티클 */
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    let animId: number;
-    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
-    resize();
-    window.addEventListener("resize", resize);
-    const COUNT = 80;
-    type P = { x: number; y: number; vx: number; vy: number; r: number; o: number };
-    const pts: P[] = Array.from({ length: COUNT }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      r: Math.random() * 1.8 + 0.8,
-      o: Math.random() * 0.5 + 0.15,
-    }));
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 110) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(99,179,237,${(1 - d / 110) * 0.25})`;
-            ctx.lineWidth = 0.7;
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      for (const p of pts) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(147,210,250,${p.o})`;
-        ctx.fill();
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-      }
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
-  }, []);
 
   return (
     <div className={`min-h-screen bg-white ${notoSansKR.className}`}>
@@ -211,13 +159,60 @@ export default function CompanyPage() {
       </nav>
 
       {/* ── 1. 히어로 ── */}
-      <section className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #0f172a 0%, #0c1a35 50%, #0e1f45 80%, #0f172a 100%)" }}
+      <style>{`
+        @keyframes gradMove {
+          0%   { background-position: 0% 60%; }
+          50%  { background-position: 100% 40%; }
+          100% { background-position: 0% 60%; }
+        }
+        @keyframes orbFloat1 {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          35%       { transform: translate(40px, -30px) scale(1.08); }
+          70%       { transform: translate(-25px, 20px) scale(0.95); }
+        }
+        @keyframes orbFloat2 {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          40%       { transform: translate(-35px, 25px) scale(1.06); }
+          75%       { transform: translate(30px, -20px) scale(0.94); }
+        }
+        @keyframes orbFloat3 {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          45%       { transform: translate(20px, 35px) scale(1.05); }
+          80%       { transform: translate(-30px, -15px) scale(0.97); }
+        }
+      `}</style>
+      <section
+        className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
+        style={{
+          background: "linear-gradient(-45deg, #0f172a, #071a3e, #1e1b4b, #0c2a5c, #0b2d4a, #0f172a)",
+          backgroundSize: "400% 400%",
+          animation: "gradMove 20s ease infinite",
+        }}
       >
-        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
-        {/* 오브 */}
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-900/20 rounded-full blur-3xl pointer-events-none" />
+        {/* 오브 1 — 블루 */}
+        <div
+          className="absolute top-1/4 left-[15%] w-[580px] h-[580px] rounded-full blur-3xl pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(29,78,216,0.28) 0%, transparent 68%)",
+            animation: "orbFloat1 14s ease-in-out infinite",
+          }}
+        />
+        {/* 오브 2 — 인디고 */}
+        <div
+          className="absolute bottom-[15%] right-[10%] w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(99,60,220,0.22) 0%, transparent 68%)",
+            animation: "orbFloat2 17s ease-in-out infinite",
+          }}
+        />
+        {/* 오브 3 — 시안 */}
+        <div
+          className="absolute top-[55%] left-[45%] w-[420px] h-[420px] rounded-full blur-3xl pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 68%)",
+            animation: "orbFloat3 22s ease-in-out infinite",
+          }}
+        />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
           <div className="max-w-3xl">
