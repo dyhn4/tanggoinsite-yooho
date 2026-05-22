@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft, ArrowRight, Target, RefreshCw, BarChart3,
-  BookOpen, Shield, Zap, Users, Award, Calendar, MapPin,
+  ArrowLeft, ArrowRight, Target, BarChart3,
+  BookOpen, Shield, Zap, Users, Award, Calendar,
   Building2, ChevronRight, Sparkles, Globe, Lock,
 } from "lucide-react";
 import { Noto_Sans_KR } from "next/font/google";
@@ -119,10 +119,10 @@ const clients = [
 ];
 
 const stats = [
-  { value: 1032912,   suffix: "",  label: "누적 처리 건수", unit: "건" },
-  { value: 168050125, suffix: "",  label: "누적 처리 면수", unit: "면" },
-  { value: 50,        suffix: "+", label: "도입 기관",      unit: "곳" },
-  { value: 6,         suffix: "년",label: "운영 연수",      unit: ""  },
+  { value: 1032912,   suffix: "",   label: "누적 처리 건수", unit: "건", numSize: "text-4xl xl:text-5xl" },
+  { value: 168050125, suffix: "",   label: "누적 처리 면수", unit: "면", numSize: "text-3xl xl:text-4xl" },
+  { value: 50,        suffix: "+",  label: "도입 기관",      unit: "곳", numSize: "text-5xl xl:text-6xl" },
+  { value: 6,         suffix: "년", label: "운영 연수",      unit: "",   numSize: "text-5xl xl:text-6xl" },
 ];
 
 /* ─── 메인 페이지 ─── */
@@ -425,18 +425,18 @@ export default function CompanyPage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest border border-blue-400/25 bg-blue-500/10 text-blue-400 mb-3">TRACK RECORD</span>
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">누적 수행 실적</h2>
             <p className="text-slate-400 text-sm">2020년부터 현재까지 꾸준히 쌓아온 성과입니다</p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {stats.map((s) => (
               <div key={s.label}
-                className="p-7 rounded-2xl bg-white/[0.04] border border-white/10 text-center hover:border-blue-400/30 hover:bg-blue-500/8 transition-all duration-300">
-                <div className="text-4xl sm:text-5xl font-black text-white tabular-nums mb-1">
+                className="p-6 xl:p-8 rounded-2xl bg-white/[0.04] border border-white/10 text-center hover:border-blue-400/30 hover:bg-blue-500/[0.08] transition-all duration-300 flex flex-col items-center justify-center min-h-[9rem]">
+                <div className={`${s.numSize} font-black text-white tabular-nums leading-none mb-1`}>
                   <CountUp target={s.value} suffix={s.suffix} />
                 </div>
                 <div className="text-sky-400 text-sm font-bold mb-2">{s.unit}</div>
