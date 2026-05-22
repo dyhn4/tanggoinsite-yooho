@@ -1,4 +1,4 @@
-import { Building2, Calendar, MapPin, Award } from "lucide-react";
+import { Building2, Calendar, MapPin, Award, Target, RefreshCw, BarChart3 } from "lucide-react";
 
 const highlights = [
   { icon: Calendar, label: "설립연도", value: "2022년 9월" },
@@ -7,9 +7,33 @@ const highlights = [
   { icon: Award, label: "핵심 기술", value: "Data-Adaptive OCR" },
 ];
 
+const differentiators = [
+  {
+    icon: Target,
+    title: "고문헌 특화 AI",
+    desc: "일반 OCR이 포기하는 한자·훈민정음·필사체를 98.7% 정확도로 인식. 딥러닝이 자료 특성에 스스로 적응합니다.",
+    color: "text-blue-600",
+    bg: "bg-blue-50 border-blue-100",
+  },
+  {
+    icon: RefreshCw,
+    title: "엔드투엔드 서비스",
+    desc: "스캔 입력 → AI OCR → 전문가 검수 → 납품까지 단일 플랫폼에서 완결. 별도 솔루션 없이 바로 활용 가능합니다.",
+    color: "text-sky-600",
+    bg: "bg-sky-50 border-sky-100",
+  },
+  {
+    icon: BarChart3,
+    title: "자기학습 엔진",
+    desc: "처리할수록 더 정확해지는 Data-Adaptive OCR. 기관별 자료 특성에 맞춰 지속적으로 성능이 향상됩니다.",
+    color: "text-indigo-600",
+    bg: "bg-indigo-50 border-indigo-100",
+  },
+];
+
 export default function About() {
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 bg-white">
+    <section id="about" className="py-14 px-4 sm:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* 텍스트 영역 - 2번 구조/문구, 1번 색감 */}
@@ -89,6 +113,24 @@ export default function About() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* 차별점 3개 카드 */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+          {differentiators.map((d) => (
+            <div
+              key={d.title}
+              className={`flex items-start gap-4 p-5 rounded-2xl border ${d.bg} transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md`}
+            >
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white shadow-sm`}>
+                <d.icon size={20} className={d.color} />
+              </div>
+              <div>
+                <p className="font-bold text-slate-900 text-sm mb-1">{d.title}</p>
+                <p className="text-slate-500 text-xs leading-relaxed">{d.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

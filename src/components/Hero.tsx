@@ -1,15 +1,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { ArrowRight, BookOpen, Cpu, Sparkles, Users } from "lucide-react";
 
 export default function Hero() {
-  const scrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const scrollToServices = () => {
-    document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
+    const mainEl = document.querySelector("main");
+    const target = document.querySelector("#services");
+    if (!mainEl || !target) return;
+    const sections = Array.from(mainEl.querySelectorAll(":scope > section"));
+    const idx = sections.findIndex((s) => s.contains(target));
+    if (idx !== -1) {
+      mainEl.scrollTo({ top: idx * mainEl.clientHeight, behavior: "smooth" });
+    }
   };
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -130,13 +134,13 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={scrollToContact}
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all duration-200 shadow-xl shadow-blue-900/40 hover:-translate-y-0.5"
               >
                 도입 문의하기
                 <ArrowRight size={18} />
-              </button>
+              </Link>
 
               <button
                 onClick={scrollToServices}

@@ -3,6 +3,30 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
+/** 로고 이미지 로드 실패 시 이니셜 뱃지로 대체 */
+function ClientLogo({ client }: { client: { name: string; eng: string; logo: string } }) {
+  const [imgError, setImgError] = useState(false);
+  const abbr = client.name.replace(/[()주가나]/g, "").slice(0, 2);
+  return (
+    <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+      {imgError ? (
+        <span className="text-blue-700 text-[11px] font-black text-center leading-tight px-0.5 break-keep">
+          {abbr}
+        </span>
+      ) : (
+        <Image
+          src={client.logo}
+          alt={client.name}
+          width={36}
+          height={36}
+          className="object-contain"
+          onError={() => setImgError(true)}
+        />
+      )}
+    </div>
+  );
+}
+
 const projects = [
   { year: 2025, items: [
     "고문헌(근대자료) 원문 텍스트 데이터베이스 구축사업",
@@ -214,16 +238,7 @@ export default function Achievement() {
                     key={client.name}
                     className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-blue-400/40 hover:bg-blue-500/10 transition-all duration-200"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      <Image
-                        src={client.logo}
-                        alt={client.name}
-                        width={36}
-                        height={36}
-                        className="object-contain"
-                        onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                      />
-                    </div>
+                    <ClientLogo client={client} />
                     <div className="min-w-0">
                       <div className="text-slate-200 text-xs font-semibold leading-tight truncate">{client.name}</div>
                       <div className="text-slate-500 text-[10px] leading-tight truncate">{client.eng}</div>

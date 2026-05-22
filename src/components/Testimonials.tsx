@@ -15,7 +15,7 @@ const testimonials = [
       "세로쓰기 신문 자료를 검색 가능한 텍스트로 변환하는 프로젝트에서 96% 이상의 정확도를 달성했습니다. 연구 효율이 3배 향상되었어요.",
     name: "이서연 교수",
     role: "역사학과",
-    org: "OO대학교",
+    org: "국내 주요 대학",
     initial: "이",
     gradient: "from-indigo-600 to-blue-400",
   },
