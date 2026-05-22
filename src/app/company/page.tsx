@@ -160,57 +160,83 @@ export default function CompanyPage() {
 
       {/* ── 1. 히어로 ── */}
       <style>{`
-        @keyframes gradMove {
-          0%   { background-position: 0% 60%; }
-          50%  { background-position: 100% 40%; }
-          100% { background-position: 0% 60%; }
+        @keyframes blob1 {
+          0%   { transform: translate(0px,   0px)   scale(1);    }
+          25%  { transform: translate(260px, 80px)  scale(1.12); }
+          50%  { transform: translate(180px, 320px) scale(0.9);  }
+          75%  { transform: translate(-80px, 200px) scale(1.05); }
+          100% { transform: translate(0px,   0px)   scale(1);    }
         }
-        @keyframes orbFloat1 {
-          0%, 100% { transform: translate(0px, 0px) scale(1); }
-          35%       { transform: translate(40px, -30px) scale(1.08); }
-          70%       { transform: translate(-25px, 20px) scale(0.95); }
+        @keyframes blob2 {
+          0%   { transform: translate(0px,    0px)    scale(1);    }
+          30%  { transform: translate(-220px, -100px) scale(1.08); }
+          60%  { transform: translate(-80px,  -280px) scale(0.92); }
+          85%  { transform: translate(120px,  -160px) scale(1.06); }
+          100% { transform: translate(0px,    0px)    scale(1);    }
         }
-        @keyframes orbFloat2 {
-          0%, 100% { transform: translate(0px, 0px) scale(1); }
-          40%       { transform: translate(-35px, 25px) scale(1.06); }
-          75%       { transform: translate(30px, -20px) scale(0.94); }
+        @keyframes blob3 {
+          0%   { transform: translate(0px,   0px)    scale(1);    }
+          35%  { transform: translate(140px, -240px) scale(1.1);  }
+          65%  { transform: translate(-160px,-120px) scale(0.88); }
+          100% { transform: translate(0px,   0px)    scale(1);    }
         }
-        @keyframes orbFloat3 {
-          0%, 100% { transform: translate(0px, 0px) scale(1); }
-          45%       { transform: translate(20px, 35px) scale(1.05); }
-          80%       { transform: translate(-30px, -15px) scale(0.97); }
+        @keyframes blob4 {
+          0%   { transform: translate(0px,  0px)   scale(1);    }
+          40%  { transform: translate(-100px,180px) scale(1.14); }
+          70%  { transform: translate(200px, 60px) scale(0.93); }
+          100% { transform: translate(0px,  0px)   scale(1);    }
         }
       `}</style>
       <section
         className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{
-          background: "linear-gradient(-45deg, #0f172a, #071a3e, #1e1b4b, #0c2a5c, #0b2d4a, #0f172a)",
-          backgroundSize: "400% 400%",
-          animation: "gradMove 20s ease infinite",
-        }}
+        style={{ background: "#04091a" }}
       >
-        {/* 오브 1 — 블루 */}
+        {/* 블롭 1 — 블루 (좌상단 시작) */}
         <div
-          className="absolute top-1/4 left-[15%] w-[580px] h-[580px] rounded-full blur-3xl pointer-events-none"
+          className="absolute pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(29,78,216,0.28) 0%, transparent 68%)",
-            animation: "orbFloat1 14s ease-in-out infinite",
+            width: "750px", height: "750px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle at center, rgba(37,99,235,0.55) 0%, rgba(37,99,235,0.1) 50%, transparent 70%)",
+            filter: "blur(70px)",
+            top: "-180px", left: "-120px",
+            animation: "blob1 16s ease-in-out infinite",
           }}
         />
-        {/* 오브 2 — 인디고 */}
+        {/* 블롭 2 — 퍼플/인디고 (우하단 시작) */}
         <div
-          className="absolute bottom-[15%] right-[10%] w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none"
+          className="absolute pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(99,60,220,0.22) 0%, transparent 68%)",
-            animation: "orbFloat2 17s ease-in-out infinite",
+            width: "680px", height: "680px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle at center, rgba(109,40,217,0.50) 0%, rgba(109,40,217,0.08) 55%, transparent 70%)",
+            filter: "blur(75px)",
+            bottom: "-160px", right: "-80px",
+            animation: "blob2 20s ease-in-out infinite",
           }}
         />
-        {/* 오브 3 — 시안 */}
+        {/* 블롭 3 — 시안 (우상단 시작) */}
         <div
-          className="absolute top-[55%] left-[45%] w-[420px] h-[420px] rounded-full blur-3xl pointer-events-none"
+          className="absolute pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 68%)",
-            animation: "orbFloat3 22s ease-in-out infinite",
+            width: "550px", height: "550px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle at center, rgba(6,182,212,0.40) 0%, rgba(6,182,212,0.06) 55%, transparent 70%)",
+            filter: "blur(65px)",
+            top: "-100px", right: "-80px",
+            animation: "blob3 24s ease-in-out infinite",
+          }}
+        />
+        {/* 블롭 4 — 스카이블루 (좌하단 시작) */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            width: "500px", height: "500px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle at center, rgba(56,189,248,0.30) 0%, transparent 65%)",
+            filter: "blur(60px)",
+            bottom: "-80px", left: "20%",
+            animation: "blob4 18s ease-in-out infinite",
           }}
         />
 
