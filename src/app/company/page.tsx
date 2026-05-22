@@ -127,6 +127,111 @@ const stats = [
 
 /* ─── 메인 페이지 ─── */
 export default function CompanyPage() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  /* ── 코스모스 파티클 ── */
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    let animId: number;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    // 신비로운 컬러 팔레트
+    const COLORS = [
+      [167, 139, 250],   // violet
+      [103, 232, 249],   // cyan
+      [240, 171, 252],   // fuchsia/pink
+      [196, 181, 253],   // lavender
+      [255, 255, 255],   // white star
+      [94, 234, 212],    // teal
+    ];
+
+    const COUNT = 75;
+    type P = {
+      x: number; y: number;
+      vx: number; vy: number;
+      r: number;
+      baseO: number;
+      ci: number;   // color index
+      phase: number;
+      freq: number;
+    };
+
+    const pts: P[] = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: (Math.random() - 0.5) * 0.28,
+      r: Math.random() * 2.2 + 0.5,
+      baseO: Math.random() * 0.55 + 0.2,
+      ci: Math.floor(Math.random() * COLORS.length),
+      phase: Math.random() * Math.PI * 2,
+      freq: Math.random() * 0.035 + 0.012,
+    }));
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 연결선 — 보라/라벤더 톤
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x;
+          const dy = pts[i].y - pts[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 120) {
+            const a = (1 - d / 120) * 0.28;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(167,139,250,${a})`;
+            ctx.lineWidth = 0.55;
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // 파티클
+      for (const p of pts) {
+        p.phase += p.freq;
+        const o = p.baseO + Math.sin(p.phase) * 0.28;
+        const r = p.r + Math.sin(p.phase * 0.8) * 0.6;
+        const [R, G, B] = COLORS[p.ci];
+
+        // 큰 파티클엔 글로우 후광
+        if (p.r > 1.5) {
+          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 5);
+          grad.addColorStop(0, `rgba(${R},${G},${B},${o * 0.6})`);
+          grad.addColorStop(1, `rgba(${R},${G},${B},0)`);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r * 5, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+
+        // 파티클 본체
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, Math.max(r, 0.3), 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${R},${G},${B},${o})`;
+        ctx.fill();
+
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      }
+
+      animId = requestAnimationFrame(draw);
+    };
+    draw();
+    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
+  }, []);
 
   return (
     <div className={`min-h-screen bg-white ${notoSansKR.className}`}>
@@ -159,91 +264,27 @@ export default function CompanyPage() {
       </nav>
 
       {/* ── 1. 히어로 ── */}
-      <style>{`
-        @keyframes blob1 {
-          0%   { transform: translate(0px,   0px)   scale(1);    }
-          25%  { transform: translate(260px, 80px)  scale(1.12); }
-          50%  { transform: translate(180px, 320px) scale(0.9);  }
-          75%  { transform: translate(-80px, 200px) scale(1.05); }
-          100% { transform: translate(0px,   0px)   scale(1);    }
-        }
-        @keyframes blob2 {
-          0%   { transform: translate(0px,    0px)    scale(1);    }
-          30%  { transform: translate(-220px, -100px) scale(1.08); }
-          60%  { transform: translate(-80px,  -280px) scale(0.92); }
-          85%  { transform: translate(120px,  -160px) scale(1.06); }
-          100% { transform: translate(0px,    0px)    scale(1);    }
-        }
-        @keyframes blob3 {
-          0%   { transform: translate(0px,   0px)    scale(1);    }
-          35%  { transform: translate(140px, -240px) scale(1.1);  }
-          65%  { transform: translate(-160px,-120px) scale(0.88); }
-          100% { transform: translate(0px,   0px)    scale(1);    }
-        }
-        @keyframes blob4 {
-          0%   { transform: translate(0px,  0px)   scale(1);    }
-          40%  { transform: translate(-100px,180px) scale(1.14); }
-          70%  { transform: translate(200px, 60px) scale(0.93); }
-          100% { transform: translate(0px,  0px)   scale(1);    }
-        }
-      `}</style>
       <section
         className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{ background: "#04091a" }}
+        style={{ background: "linear-gradient(135deg, #06000f 0%, #0d0520 50%, #060011 100%)" }}
       >
-        {/* 블롭 1 — 블루 (좌상단 시작) */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            width: "750px", height: "750px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle at center, rgba(37,99,235,0.55) 0%, rgba(37,99,235,0.1) 50%, transparent 70%)",
-            filter: "blur(70px)",
-            top: "-180px", left: "-120px",
-            animation: "blob1 16s ease-in-out infinite",
-          }}
-        />
-        {/* 블롭 2 — 퍼플/인디고 (우하단 시작) */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            width: "680px", height: "680px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle at center, rgba(109,40,217,0.50) 0%, rgba(109,40,217,0.08) 55%, transparent 70%)",
-            filter: "blur(75px)",
-            bottom: "-160px", right: "-80px",
-            animation: "blob2 20s ease-in-out infinite",
-          }}
-        />
-        {/* 블롭 3 — 시안 (우상단 시작) */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            width: "550px", height: "550px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle at center, rgba(6,182,212,0.40) 0%, rgba(6,182,212,0.06) 55%, transparent 70%)",
-            filter: "blur(65px)",
-            top: "-100px", right: "-80px",
-            animation: "blob3 24s ease-in-out infinite",
-          }}
-        />
-        {/* 블롭 4 — 스카이블루 (좌하단 시작) */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            width: "500px", height: "500px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle at center, rgba(56,189,248,0.30) 0%, transparent 65%)",
-            filter: "blur(60px)",
-            bottom: "-80px", left: "20%",
-            animation: "blob4 18s ease-in-out infinite",
-          }}
-        />
+        {/* 배경 성운 글로우 (정적) */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-5%] w-[55%] h-[70%] rounded-full opacity-30"
+            style={{ background: "radial-gradient(circle, #4c1d95 0%, transparent 65%)", filter: "blur(90px)" }} />
+          <div className="absolute bottom-[-15%] right-[-5%] w-[50%] h-[65%] rounded-full opacity-25"
+            style={{ background: "radial-gradient(circle, #0e7490 0%, transparent 65%)", filter: "blur(90px)" }} />
+          <div className="absolute top-[30%] right-[25%] w-[35%] h-[50%] rounded-full opacity-20"
+            style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 65%)", filter: "blur(80px)" }} />
+        </div>
+
+        {/* 코스모스 캔버스 */}
+        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
           <div className="max-w-3xl">
             {/* 배지 */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/25 text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/15 border border-violet-400/25 text-violet-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
               <Building2 size={13} />
               Company Overview
             </div>
@@ -251,11 +292,11 @@ export default function CompanyPage() {
             {/* 타이틀 */}
             <h1 className="text-5xl sm:text-7xl font-black text-white mb-4 leading-none tracking-tight"
               style={{ fontFamily: "'Sora', sans-serif" }}>
-              <span className="bg-gradient-to-r from-white via-blue-100 to-sky-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-violet-200 via-white to-cyan-300 bg-clip-text text-transparent">
                 탱고인사이트
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-blue-300 font-semibold mb-6 tracking-tight">
+            <p className="text-lg sm:text-xl text-violet-300 font-semibold mb-6 tracking-tight">
               Tango Insight Co., Ltd.
             </p>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-10 max-w-2xl">
@@ -267,8 +308,8 @@ export default function CompanyPage() {
             {/* CTA */}
             <div className="flex flex-wrap gap-3">
               <Link href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm transition-all hover:-translate-y-0.5 shadow-xl shadow-blue-900/40"
-                style={{ background: "linear-gradient(135deg, #1d4ed8, #0ea5e9)" }}>
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm transition-all hover:-translate-y-0.5 shadow-xl shadow-violet-900/50"
+                style={{ background: "linear-gradient(135deg, #6d28d9, #0891b2)" }}>
                 도입 문의 <ArrowRight size={16} />
               </Link>
               <Link href="/solutions"
@@ -287,10 +328,10 @@ export default function CompanyPage() {
               { icon: BarChart3, value: "1,000+",  unit: "만 건",     label: "누적 처리 실적" },
             ].map((s) => (
               <div key={s.label}
-                className="flex flex-col gap-1 p-5 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-blue-400/30 hover:bg-blue-500/10 transition-all duration-300">
-                <s.icon size={16} className="text-sky-400 mb-1" />
+                className="flex flex-col gap-1 p-5 rounded-2xl bg-white/[0.05] border border-violet-400/15 hover:border-violet-400/40 hover:bg-violet-500/10 transition-all duration-300">
+                <s.icon size={16} className="text-violet-300 mb-1" />
                 <div className="text-2xl font-black text-white leading-none">
-                  {s.value}<span className="text-sky-400 text-sm ml-1">{s.unit}</span>
+                  {s.value}<span className="text-cyan-300 text-sm ml-1">{s.unit}</span>
                 </div>
                 <div className="text-slate-400 text-xs">{s.label}</div>
               </div>
