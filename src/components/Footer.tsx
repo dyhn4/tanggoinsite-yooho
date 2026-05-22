@@ -13,6 +13,7 @@ const solutions = [
 
 const pages = [
   { label: "홈",      href: "/"        },
+  { label: "회사개요",href: "/company" },
   { label: "회사 연혁",href: "/history" },
   { label: "솔루션",  href: "/solutions"},
   { label: "문의하기",href: "/contact" },

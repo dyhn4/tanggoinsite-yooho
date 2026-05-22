@@ -26,7 +26,7 @@ const navItems: NavItem[] = [
   {
     label: "회사소개",
     items: [
-      { label: "회사개요",  href: "#about",    sub: "탱고인사이트 소개",    icon: Building2,      color: "from-blue-600 to-sky-400" },
+      { label: "회사개요",  href: "/company",  sub: "탱고인사이트 소개",    icon: Building2,      color: "from-blue-600 to-sky-400" },
       { label: "연혁",      href: "/history",  sub: "주요 사업 실적 타임라인", icon: Clock,        color: "from-indigo-600 to-blue-400" },
     ],
   },
