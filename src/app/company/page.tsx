@@ -129,78 +129,188 @@ const stats = [
 export default function CompanyPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  /* ── 플로우 필드 파티클 (빛 궤적) ── */
+  /* ── 도시 야경 ── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let animId: number;
-    let t = 0;
+
+    const rnd = (a: number, b: number) => Math.random() * (b - a) + a;
+
+    /* 창문 */
+    type Win = {
+      rx: number; ry: number; rw: number; rh: number;
+      opacity: number; target: number;
+      timer: number; interval: number;
+      warm: boolean;
+    };
+    /* 빌딩 */
+    type Bld = { x:number; y:number; w:number; h:number; layer:number; wins:Win[]; };
+    /* 차량 */
+    type Car = { x:number; laneY:number; speed:number; dir:1|-1; head:boolean; };
+
+    let buildings: Bld[] = [];
+    let cars:      Car[] = [];
+
+    const makeWindows = (bw:number, bh:number, layer:number): Win[] => {
+      const wins: Win[] = [];
+      const gapX = 7, gapY = 9, ww = 5, wh = 7;
+      const cols = Math.max(1, Math.floor((bw - 8) / (ww + gapX)));
+      const rows = Math.max(1, Math.floor((bh - 20) / (wh + gapY)));
+      const offX = (bw - cols * ww - (cols - 1) * gapX) / 2;
+      const offY = 18;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const rx = (offX + c * (ww + gapX)) / bw;
+          const ry = (offY + r * (wh + gapY)) / bh;
+          if (rx * bw + ww > bw - offX + 2) continue;
+          const lit = Math.random() > (layer === 0 ? 0.65 : 0.38);
+          wins.push({
+            rx, ry, rw: ww / bw, rh: wh / bh,
+            opacity:  lit ? rnd(0.5, 1.0) : 0,
+            target:   lit ? rnd(0.5, 1.0) : 0,
+            timer:    Math.floor(rnd(80, 700)),
+            interval: Math.floor(rnd(120, 900)),
+            warm:     Math.random() > 0.28,
+          });
+        }
+      }
+      return wins;
+    };
+
+    const initScene = () => {
+      const W = canvas.width, H = canvas.height;
+      buildings = [];
+
+      // [xPct, wPct, hPct, layer]
+      const defs: [number,number,number,number][] = [
+        // 뒷줄 (layer 0)
+        [0,7,38,0],[6,5,45,0],[11,8,33,0],[18,6,50,0],[23,9,36,0],
+        [31,5,43,0],[35,7,52,0],[41,8,40,0],[48,6,47,0],[53,9,36,0],
+        [61,6,44,0],[66,8,38,0],[73,7,51,0],[79,9,35,0],[87,6,46,0],
+        [92,8,41,0],[97,6,38,0],
+        // 중간줄 (layer 1)
+        [2,10,60,1],[11,12,67,1],[22,9,57,1],[30,13,72,1],[42,11,62,1],
+        [52,12,70,1],[63,10,59,1],[72,11,74,1],[82,10,64,1],[92,10,61,1],
+        // 앞줄 (layer 2)
+        [0,15,78,2],[14,17,83,2],[30,13,72,2],[42,19,88,2],
+        [60,15,80,2],[74,16,85,2],[89,14,79,2],
+      ];
+
+      for (const [xp,wp,hp,layer] of defs) {
+        const x = xp/100*W, w = wp/100*W, h = hp/100*H;
+        buildings.push({ x, y: H-h, w, h, layer, wins: makeWindows(w,h,layer) });
+      }
+
+      cars = Array.from({ length: 14 }, () => ({
+        x:     rnd(0, W),
+        laneY: rnd(H * 0.905, H * 0.945),
+        speed: rnd(1.2, 3.8),
+        dir:   Math.random() > 0.5 ? 1 : -1,
+        head:  Math.random() > 0.45,
+      }));
+    };
 
     const resize = () => {
       canvas.width  = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
-      ctx.fillStyle = "#06080f";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      initScene();
     };
     resize();
     window.addEventListener("resize", resize);
 
-    /* 파티클 색상: 화이트·일렉트릭블루·시안 3종 */
-    const COLS: [number,number,number][] = [
-      [255, 255, 255],   // 흰빛
-      [147, 197, 253],   // blue-200
-      [103, 232, 249],   // cyan-300
-      [186, 230, 253],   // sky-200
-    ];
-
-    type FP = { x:number; y:number; speed:number; ci:number };
-    const COUNT = 200;
-
-    const spawn = (): FP => ({
-      x:     Math.random() * (canvas.width  || 1400),
-      y:     Math.random() * (canvas.height || 800),
-      speed: Math.random() * 0.9 + 0.5,
-      ci:    Math.floor(Math.random() * COLS.length),
-    });
-
-    const pts: FP[] = Array.from({ length: COUNT }, spawn);
-
-    const FREQ = 0.0022;   // 흐름장 공간 주파수
-
     const draw = () => {
-      const w = canvas.width;
-      const h = canvas.height;
+      const W = canvas.width, H = canvas.height;
 
-      /* 반투명 오버레이 → 궤적 잔상 */
-      ctx.fillStyle = "rgba(6,8,15,0.13)";
-      ctx.fillRect(0, 0, w, h);
+      /* 하늘 그라디언트 */
+      const sky = ctx.createLinearGradient(0,0,0,H);
+      sky.addColorStop(0,   "#02040b");
+      sky.addColorStop(0.55,"#070c1a");
+      sky.addColorStop(1,   "#0d1426");
+      ctx.fillStyle = sky;
+      ctx.fillRect(0,0,W,H);
 
-      t += 0.005;
+      /* 지평선 도시 글로우 */
+      const hg = ctx.createRadialGradient(W*.5,H*.95,0,W*.5,H*.95,W*.65);
+      hg.addColorStop(0,"rgba(255,150,50,0.09)");
+      hg.addColorStop(0.5,"rgba(255,100,20,0.04)");
+      hg.addColorStop(1,"rgba(0,0,0,0)");
+      ctx.fillStyle = hg;
+      ctx.fillRect(0,0,W,H);
 
-      for (const p of pts) {
-        /* sin·cos 기반 흐름장 각도 */
-        const angle =
-          Math.sin(p.x * FREQ + t * 0.6) *
-          Math.cos(p.y * FREQ + t * 0.35) *
-          Math.PI * 2.8;
+      /* 빌딩 + 창문 (레이어 순서) */
+      for (const layer of [0,1,2] as const) {
+        const darkCol = layer===0?"#04060a":layer===1?"#05070e":"#060912";
+        for (const b of buildings.filter(bl=>bl.layer===layer)) {
+          ctx.globalAlpha = layer===0?0.72:layer===1?0.88:1;
+          ctx.fillStyle = darkCol;
+          ctx.fillRect(b.x, b.y, b.w, b.h);
+          ctx.globalAlpha = 1;
 
-        p.x += Math.cos(angle) * p.speed;
-        p.y += Math.sin(angle) * p.speed;
+          for (const w of b.wins) {
+            /* 창문 깜빡임 타이머 */
+            if (--w.timer <= 0) {
+              w.target   = Math.random() > 0.42 ? rnd(0.45,1.0) : 0;
+              w.timer    = w.interval + Math.floor(rnd(-40,120));
+            }
+            w.opacity += (w.target - w.opacity) * 0.05;
+            if (w.opacity < 0.025) continue;
 
-        /* 화면 밖 나가면 랜덤 재스폰 */
-        if (p.x < -2 || p.x > w + 2 || p.y < -2 || p.y > h + 2) {
-          const r = spawn();
-          p.x = r.x; p.y = r.y; p.ci = r.ci;
+            const wx = b.x + w.rx*b.w, wy = b.y + w.ry*b.h;
+            const ww2 = w.rw*b.w,      wh2 = w.rh*b.h;
+            const [R,G,B] = w.warm ? [255,218,105] : [155,208,255];
+
+            /* 창문 외부 글로우 */
+            ctx.save();
+            ctx.filter = "blur(4px)";
+            ctx.fillStyle = `rgba(${R},${G},${B},${w.opacity*0.25})`;
+            ctx.fillRect(wx-3, wy-3, ww2+6, wh2+6);
+            ctx.restore();
+
+            /* 창문 본체 */
+            ctx.fillStyle = `rgba(${R},${G},${B},${w.opacity*0.88})`;
+            ctx.fillRect(wx, wy, ww2, wh2);
+          }
         }
+      }
 
-        const [R, G, B] = COLS[p.ci];
-        const alpha = 0.55 + Math.random() * 0.35;
+      /* 도로 */
+      ctx.fillStyle = "#020304";
+      ctx.fillRect(0, H*0.9, W, H*0.1);
+      const roadGlow = ctx.createLinearGradient(0,H*0.88,0,H);
+      roadGlow.addColorStop(0,"rgba(255,150,50,0.06)");
+      roadGlow.addColorStop(1,"rgba(0,0,0,0)");
+      ctx.fillStyle = roadGlow;
+      ctx.fillRect(0,H*0.88,W,H*0.12);
 
+      /* 차량 */
+      for (const car of cars) {
+        car.x += car.speed * car.dir;
+        if (car.x >  W+30) car.x = -30;
+        if (car.x < -30)   car.x =  W+30;
+
+        const [R,G,B] = car.head ? [255,248,190] : [220,38,38];
+        const len = car.head ? 55 : 28;
+        const x0  = car.dir > 0 ? car.x - len : car.x;
+
+        /* 빛 궤적 */
+        const lg = ctx.createLinearGradient(x0,0,x0+len,0);
+        if (car.dir > 0) {
+          lg.addColorStop(0,`rgba(${R},${G},${B},0)`);
+          lg.addColorStop(1,`rgba(${R},${G},${B},0.28)`);
+        } else {
+          lg.addColorStop(0,`rgba(${R},${G},${B},0.28)`);
+          lg.addColorStop(1,`rgba(${R},${G},${B},0)`);
+        }
+        ctx.fillStyle = lg;
+        ctx.fillRect(x0, car.laneY-1.5, len, 3);
+
+        /* 전구 점 */
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 0.85, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${R},${G},${B},${alpha})`;
+        ctx.arc(car.x, car.laneY, 2.2, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${R},${G},${B},0.95)`;
         ctx.fill();
       }
 
@@ -243,17 +353,9 @@ export default function CompanyPage() {
       {/* ── 1. 히어로 ── */}
       <section
         className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{ background: "#06080f" }}
+        style={{ background: "#02040b" }}
       >
-        {/* 깊이감용 미세 글로우 (중앙 블루 틴트) */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(29,78,216,0.10) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* 플로우 필드 캔버스 */}
+        {/* 도시 야경 캔버스 */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
