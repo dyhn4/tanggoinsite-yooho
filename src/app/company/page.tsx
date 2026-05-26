@@ -129,192 +129,63 @@ const stats = [
 export default function CompanyPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  /* ── 도시 야경 (최적화) ── */
+  /* ── 파티클 네트워크 ── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let animId: number;
-    let frameCount = 0;
-
-    const rnd = (a: number, b: number) => Math.random() * (b - a) + a;
-
-    type Win = {
-      rx:number; ry:number; rw:number; rh:number;
-      opacity:number; target:number;
-      timer:number; interval:number; warm:boolean;
-    };
-    type Bld = { x:number; y:number; w:number; h:number; layer:number; wins:Win[]; };
-    type Car = { x:number; laneY:number; speed:number; dir:1|-1; head:boolean; };
-
-    let buildings: Bld[] = [];
-    let cars:      Car[] = [];
-
-    /* ── 오프스크린 캔버스 (정적 배경 1회 렌더) ── */
-    const bg = document.createElement("canvas");
-    const bgCtx = bg.getContext("2d")!;
-
-    const makeWindows = (bw:number, bh:number, layer:number): Win[] => {
-      const wins: Win[] = [];
-      const gapX=8, gapY=10, ww=5, wh=6;
-      const cols = Math.max(1, Math.floor((bw - 10) / (ww + gapX)));
-      const rows = Math.max(1, Math.floor((bh - 22) / (wh + gapY)));
-      /* 앞줄은 창문 행 수 제한해 총 창문 수 억제 */
-      const maxRows = layer === 0 ? Math.min(rows, 12) : layer === 1 ? Math.min(rows, 16) : Math.min(rows, 20);
-      const offX = (bw - cols * ww - (cols - 1) * gapX) / 2;
-      const offY = 20;
-      for (let r = 0; r < maxRows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const rx = (offX + c * (ww + gapX)) / bw;
-          const ry = (offY + r * (wh + gapY)) / bh;
-          if (rx * bw + ww > bw - offX + 2) continue;
-          const lit = Math.random() > (layer === 0 ? 0.65 : 0.40);
-          wins.push({
-            rx, ry, rw: ww/bw, rh: wh/bh,
-            opacity:  lit ? rnd(0.45, 0.95) : 0,
-            target:   lit ? rnd(0.45, 0.95) : 0,
-            timer:    Math.floor(rnd(100, 800)),
-            interval: Math.floor(rnd(150, 1000)),
-            warm:     Math.random() > 0.3,
-          });
-        }
-      }
-      return wins;
-    };
-
-    const drawBg = () => {
-      const W = bg.width, H = bg.height;
-      /* 하늘 */
-      const sky = bgCtx.createLinearGradient(0,0,0,H);
-      sky.addColorStop(0,   "#02040b");
-      sky.addColorStop(0.55,"#070c1a");
-      sky.addColorStop(1,   "#0d1426");
-      bgCtx.fillStyle = sky;
-      bgCtx.fillRect(0,0,W,H);
-      /* 지평선 글로우 */
-      const hg = bgCtx.createRadialGradient(W*.5,H,0,W*.5,H,W*.6);
-      hg.addColorStop(0,"rgba(255,140,40,0.10)");
-      hg.addColorStop(0.5,"rgba(255,100,20,0.04)");
-      hg.addColorStop(1,"rgba(0,0,0,0)");
-      bgCtx.fillStyle = hg;
-      bgCtx.fillRect(0,0,W,H);
-      /* 빌딩 실루엣만 (창문 없이) */
-      for (const layer of [0,1,2] as const) {
-        const col = layer===0?"#04060a":layer===1?"#05070e":"#060a14";
-        bgCtx.globalAlpha = layer===0?0.72:layer===1?0.88:1;
-        bgCtx.fillStyle = col;
-        for (const b of buildings.filter(bl=>bl.layer===layer))
-          bgCtx.fillRect(b.x, b.y, b.w, b.h);
-        bgCtx.globalAlpha = 1;
-      }
-      /* 도로 */
-      bgCtx.fillStyle = "#020304";
-      bgCtx.fillRect(0, H*0.9, W, H*0.1);
-      const rg = bgCtx.createLinearGradient(0,H*0.87,0,H);
-      rg.addColorStop(0,"rgba(255,140,40,0.06)");
-      rg.addColorStop(1,"rgba(0,0,0,0)");
-      bgCtx.fillStyle = rg;
-      bgCtx.fillRect(0,H*0.87,W,H*0.13);
-    };
-
-    const initScene = () => {
-      const W = canvas.width, H = canvas.height;
-      bg.width = W; bg.height = H;
-      buildings = [];
-
-      const defs: [number,number,number,number][] = [
-        [0,7,38,0],[6,5,45,0],[11,8,33,0],[18,6,50,0],[23,9,36,0],
-        [31,5,43,0],[35,7,52,0],[41,8,40,0],[48,6,47,0],[53,9,36,0],
-        [61,6,44,0],[66,8,38,0],[73,7,51,0],[79,9,35,0],[87,6,46,0],
-        [92,8,41,0],[97,6,38,0],
-        [2,10,60,1],[11,12,67,1],[22,9,57,1],[30,13,72,1],[42,11,62,1],
-        [52,12,70,1],[63,10,59,1],[72,11,74,1],[82,10,64,1],[92,10,61,1],
-        [0,15,78,2],[14,17,83,2],[30,13,72,2],[42,19,88,2],
-        [60,15,80,2],[74,16,85,2],[89,14,79,2],
-      ];
-      for (const [xp,wp,hp,layer] of defs) {
-        const x=xp/100*W, w=wp/100*W, h=hp/100*H;
-        buildings.push({ x, y:H-h, w, h, layer, wins:makeWindows(w,h,layer) });
-      }
-      drawBg(); /* 정적 배경 1회 렌더 */
-
-      cars = Array.from({ length: 10 }, () => ({
-        x:     rnd(0, W),
-        laneY: rnd(H*0.905, H*0.945),
-        speed: rnd(1.0, 3.2),
-        dir:   Math.random() > 0.5 ? 1 : -1,
-        head:  Math.random() > 0.45,
-      }));
-    };
 
     const resize = () => {
       canvas.width  = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
-      initScene();
     };
     resize();
     window.addEventListener("resize", resize);
 
+    const COUNT = 80;
+    type P = { x:number; y:number; vx:number; vy:number; r:number; o:number };
+    const pts: P[] = Array.from({ length: COUNT }, () => ({
+      x:  Math.random() * canvas.width,
+      y:  Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r:  Math.random() * 1.8 + 0.8,
+      o:  Math.random() * 0.5 + 0.15,
+    }));
+
     const draw = () => {
-      animId = requestAnimationFrame(draw);
-      frameCount++;
-      /* ▶ 30fps 스로틀: 홀수 프레임 건너뜀 */
-      if (frameCount % 2 !== 0) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const W = canvas.width;
-
-      /* 1) 정적 배경 blit (가장 빠름) */
-      ctx.drawImage(bg, 0, 0);
-
-      /* 2) 창문만 그리기 (ctx.filter 없음) */
-      for (const b of buildings) {
-        for (const w of b.wins) {
-          if (--w.timer <= 0) {
-            w.target   = Math.random() > 0.42 ? rnd(0.40, 0.95) : 0;
-            w.timer    = w.interval + Math.floor(rnd(-50, 150));
+      /* 연결선 */
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+          const d  = Math.sqrt(dx * dx + dy * dy);
+          if (d < 110) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(99,179,237,${(1 - d / 110) * 0.25})`;
+            ctx.lineWidth = 0.7;
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.stroke();
           }
-          w.opacity += (w.target - w.opacity) * 0.06;
-          if (w.opacity < 0.03) continue;
-
-          const wx  = b.x + w.rx*b.w,  wy  = b.y + w.ry*b.h;
-          const ww2 = w.rw*b.w,         wh2 = w.rh*b.h;
-          const [R,G,B] = w.warm ? [255,218,105] : [155,208,255];
-
-          /* 글로우 대신 단순 확장 rect (filter 없음, 4배 빠름) */
-          ctx.fillStyle = `rgba(${R},${G},${B},${w.opacity*0.18})`;
-          ctx.fillRect(wx-4, wy-4, ww2+8, wh2+8);
-          ctx.fillStyle = `rgba(${R},${G},${B},${w.opacity*0.85})`;
-          ctx.fillRect(wx, wy, ww2, wh2);
         }
       }
 
-      /* 3) 차량 */
-      for (const car of cars) {
-        car.x += car.speed * car.dir;
-        if (car.x >  W+30) car.x = -30;
-        if (car.x < -30)   car.x =  W+30;
-
-        const [R,G,B] = car.head ? [255,248,190] : [220,38,38];
-        const len = car.head ? 50 : 25;
-        const x0  = car.dir > 0 ? car.x - len : car.x;
-
-        const lg = ctx.createLinearGradient(x0,0,x0+len,0);
-        if (car.dir > 0) {
-          lg.addColorStop(0,`rgba(${R},${G},${B},0)`);
-          lg.addColorStop(1,`rgba(${R},${G},${B},0.3)`);
-        } else {
-          lg.addColorStop(0,`rgba(${R},${G},${B},0.3)`);
-          lg.addColorStop(1,`rgba(${R},${G},${B},0)`);
-        }
-        ctx.fillStyle = lg;
-        ctx.fillRect(x0, car.laneY-1.5, len, 3);
-
+      /* 파티클 */
+      for (const p of pts) {
         ctx.beginPath();
-        ctx.arc(car.x, car.laneY, 2, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(${R},${G},${B},0.95)`;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(147,210,250,${p.o})`;
         ctx.fill();
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
       }
+
+      animId = requestAnimationFrame(draw);
     };
     draw();
     return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
@@ -353,9 +224,12 @@ export default function CompanyPage() {
       {/* ── 1. 히어로 ── */}
       <section
         className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{ background: "#02040b" }}
+        style={{ background: "linear-gradient(135deg, #0f172a 0%, #0c1a35 50%, #0e1f45 80%, #0f172a 100%)" }}
       >
-        {/* 도시 야경 캔버스 */}
+        {/* 오브 */}
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-900/20 rounded-full blur-3xl pointer-events-none" />
+        {/* 파티클 캔버스 */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
@@ -390,7 +264,7 @@ export default function CompanyPage() {
                 도입 문의 <ArrowRight size={16} />
               </Link>
               <Link href="/solutions"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm border border-white/20 bg-white/8 hover:bg-white/14 transition-all backdrop-blur-sm">
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm border border-white/20 bg-white/[0.08] hover:bg-white/[0.14] transition-all backdrop-blur-sm">
                 솔루션 보기 <ChevronRight size={16} />
               </Link>
             </div>
