@@ -129,85 +129,120 @@ const stats = [
 export default function CompanyPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  /* ── 도시 야경 ── */
+  /* ── 도시 야경 (최적화) ── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let animId: number;
+    let frameCount = 0;
 
     const rnd = (a: number, b: number) => Math.random() * (b - a) + a;
 
-    /* 창문 */
     type Win = {
-      rx: number; ry: number; rw: number; rh: number;
-      opacity: number; target: number;
-      timer: number; interval: number;
-      warm: boolean;
+      rx:number; ry:number; rw:number; rh:number;
+      opacity:number; target:number;
+      timer:number; interval:number; warm:boolean;
     };
-    /* 빌딩 */
     type Bld = { x:number; y:number; w:number; h:number; layer:number; wins:Win[]; };
-    /* 차량 */
     type Car = { x:number; laneY:number; speed:number; dir:1|-1; head:boolean; };
 
     let buildings: Bld[] = [];
     let cars:      Car[] = [];
 
+    /* ── 오프스크린 캔버스 (정적 배경 1회 렌더) ── */
+    const bg = document.createElement("canvas");
+    const bgCtx = bg.getContext("2d")!;
+
     const makeWindows = (bw:number, bh:number, layer:number): Win[] => {
       const wins: Win[] = [];
-      const gapX = 7, gapY = 9, ww = 5, wh = 7;
-      const cols = Math.max(1, Math.floor((bw - 8) / (ww + gapX)));
-      const rows = Math.max(1, Math.floor((bh - 20) / (wh + gapY)));
+      const gapX=8, gapY=10, ww=5, wh=6;
+      const cols = Math.max(1, Math.floor((bw - 10) / (ww + gapX)));
+      const rows = Math.max(1, Math.floor((bh - 22) / (wh + gapY)));
+      /* 앞줄은 창문 행 수 제한해 총 창문 수 억제 */
+      const maxRows = layer === 0 ? Math.min(rows, 12) : layer === 1 ? Math.min(rows, 16) : Math.min(rows, 20);
       const offX = (bw - cols * ww - (cols - 1) * gapX) / 2;
-      const offY = 18;
-      for (let r = 0; r < rows; r++) {
+      const offY = 20;
+      for (let r = 0; r < maxRows; r++) {
         for (let c = 0; c < cols; c++) {
           const rx = (offX + c * (ww + gapX)) / bw;
           const ry = (offY + r * (wh + gapY)) / bh;
           if (rx * bw + ww > bw - offX + 2) continue;
-          const lit = Math.random() > (layer === 0 ? 0.65 : 0.38);
+          const lit = Math.random() > (layer === 0 ? 0.65 : 0.40);
           wins.push({
-            rx, ry, rw: ww / bw, rh: wh / bh,
-            opacity:  lit ? rnd(0.5, 1.0) : 0,
-            target:   lit ? rnd(0.5, 1.0) : 0,
-            timer:    Math.floor(rnd(80, 700)),
-            interval: Math.floor(rnd(120, 900)),
-            warm:     Math.random() > 0.28,
+            rx, ry, rw: ww/bw, rh: wh/bh,
+            opacity:  lit ? rnd(0.45, 0.95) : 0,
+            target:   lit ? rnd(0.45, 0.95) : 0,
+            timer:    Math.floor(rnd(100, 800)),
+            interval: Math.floor(rnd(150, 1000)),
+            warm:     Math.random() > 0.3,
           });
         }
       }
       return wins;
     };
 
+    const drawBg = () => {
+      const W = bg.width, H = bg.height;
+      /* 하늘 */
+      const sky = bgCtx.createLinearGradient(0,0,0,H);
+      sky.addColorStop(0,   "#02040b");
+      sky.addColorStop(0.55,"#070c1a");
+      sky.addColorStop(1,   "#0d1426");
+      bgCtx.fillStyle = sky;
+      bgCtx.fillRect(0,0,W,H);
+      /* 지평선 글로우 */
+      const hg = bgCtx.createRadialGradient(W*.5,H,0,W*.5,H,W*.6);
+      hg.addColorStop(0,"rgba(255,140,40,0.10)");
+      hg.addColorStop(0.5,"rgba(255,100,20,0.04)");
+      hg.addColorStop(1,"rgba(0,0,0,0)");
+      bgCtx.fillStyle = hg;
+      bgCtx.fillRect(0,0,W,H);
+      /* 빌딩 실루엣만 (창문 없이) */
+      for (const layer of [0,1,2] as const) {
+        const col = layer===0?"#04060a":layer===1?"#05070e":"#060a14";
+        bgCtx.globalAlpha = layer===0?0.72:layer===1?0.88:1;
+        bgCtx.fillStyle = col;
+        for (const b of buildings.filter(bl=>bl.layer===layer))
+          bgCtx.fillRect(b.x, b.y, b.w, b.h);
+        bgCtx.globalAlpha = 1;
+      }
+      /* 도로 */
+      bgCtx.fillStyle = "#020304";
+      bgCtx.fillRect(0, H*0.9, W, H*0.1);
+      const rg = bgCtx.createLinearGradient(0,H*0.87,0,H);
+      rg.addColorStop(0,"rgba(255,140,40,0.06)");
+      rg.addColorStop(1,"rgba(0,0,0,0)");
+      bgCtx.fillStyle = rg;
+      bgCtx.fillRect(0,H*0.87,W,H*0.13);
+    };
+
     const initScene = () => {
       const W = canvas.width, H = canvas.height;
+      bg.width = W; bg.height = H;
       buildings = [];
 
-      // [xPct, wPct, hPct, layer]
       const defs: [number,number,number,number][] = [
-        // 뒷줄 (layer 0)
         [0,7,38,0],[6,5,45,0],[11,8,33,0],[18,6,50,0],[23,9,36,0],
         [31,5,43,0],[35,7,52,0],[41,8,40,0],[48,6,47,0],[53,9,36,0],
         [61,6,44,0],[66,8,38,0],[73,7,51,0],[79,9,35,0],[87,6,46,0],
         [92,8,41,0],[97,6,38,0],
-        // 중간줄 (layer 1)
         [2,10,60,1],[11,12,67,1],[22,9,57,1],[30,13,72,1],[42,11,62,1],
         [52,12,70,1],[63,10,59,1],[72,11,74,1],[82,10,64,1],[92,10,61,1],
-        // 앞줄 (layer 2)
         [0,15,78,2],[14,17,83,2],[30,13,72,2],[42,19,88,2],
         [60,15,80,2],[74,16,85,2],[89,14,79,2],
       ];
-
       for (const [xp,wp,hp,layer] of defs) {
-        const x = xp/100*W, w = wp/100*W, h = hp/100*H;
-        buildings.push({ x, y: H-h, w, h, layer, wins: makeWindows(w,h,layer) });
+        const x=xp/100*W, w=wp/100*W, h=hp/100*H;
+        buildings.push({ x, y:H-h, w, h, layer, wins:makeWindows(w,h,layer) });
       }
+      drawBg(); /* 정적 배경 1회 렌더 */
 
-      cars = Array.from({ length: 14 }, () => ({
+      cars = Array.from({ length: 10 }, () => ({
         x:     rnd(0, W),
-        laneY: rnd(H * 0.905, H * 0.945),
-        speed: rnd(1.2, 3.8),
+        laneY: rnd(H*0.905, H*0.945),
+        speed: rnd(1.0, 3.2),
         dir:   Math.random() > 0.5 ? 1 : -1,
         head:  Math.random() > 0.45,
       }));
@@ -222,99 +257,64 @@ export default function CompanyPage() {
     window.addEventListener("resize", resize);
 
     const draw = () => {
-      const W = canvas.width, H = canvas.height;
+      animId = requestAnimationFrame(draw);
+      frameCount++;
+      /* ▶ 30fps 스로틀: 홀수 프레임 건너뜀 */
+      if (frameCount % 2 !== 0) return;
 
-      /* 하늘 그라디언트 */
-      const sky = ctx.createLinearGradient(0,0,0,H);
-      sky.addColorStop(0,   "#02040b");
-      sky.addColorStop(0.55,"#070c1a");
-      sky.addColorStop(1,   "#0d1426");
-      ctx.fillStyle = sky;
-      ctx.fillRect(0,0,W,H);
+      const W = canvas.width;
 
-      /* 지평선 도시 글로우 */
-      const hg = ctx.createRadialGradient(W*.5,H*.95,0,W*.5,H*.95,W*.65);
-      hg.addColorStop(0,"rgba(255,150,50,0.09)");
-      hg.addColorStop(0.5,"rgba(255,100,20,0.04)");
-      hg.addColorStop(1,"rgba(0,0,0,0)");
-      ctx.fillStyle = hg;
-      ctx.fillRect(0,0,W,H);
+      /* 1) 정적 배경 blit (가장 빠름) */
+      ctx.drawImage(bg, 0, 0);
 
-      /* 빌딩 + 창문 (레이어 순서) */
-      for (const layer of [0,1,2] as const) {
-        const darkCol = layer===0?"#04060a":layer===1?"#05070e":"#060912";
-        for (const b of buildings.filter(bl=>bl.layer===layer)) {
-          ctx.globalAlpha = layer===0?0.72:layer===1?0.88:1;
-          ctx.fillStyle = darkCol;
-          ctx.fillRect(b.x, b.y, b.w, b.h);
-          ctx.globalAlpha = 1;
-
-          for (const w of b.wins) {
-            /* 창문 깜빡임 타이머 */
-            if (--w.timer <= 0) {
-              w.target   = Math.random() > 0.42 ? rnd(0.45,1.0) : 0;
-              w.timer    = w.interval + Math.floor(rnd(-40,120));
-            }
-            w.opacity += (w.target - w.opacity) * 0.05;
-            if (w.opacity < 0.025) continue;
-
-            const wx = b.x + w.rx*b.w, wy = b.y + w.ry*b.h;
-            const ww2 = w.rw*b.w,      wh2 = w.rh*b.h;
-            const [R,G,B] = w.warm ? [255,218,105] : [155,208,255];
-
-            /* 창문 외부 글로우 */
-            ctx.save();
-            ctx.filter = "blur(4px)";
-            ctx.fillStyle = `rgba(${R},${G},${B},${w.opacity*0.25})`;
-            ctx.fillRect(wx-3, wy-3, ww2+6, wh2+6);
-            ctx.restore();
-
-            /* 창문 본체 */
-            ctx.fillStyle = `rgba(${R},${G},${B},${w.opacity*0.88})`;
-            ctx.fillRect(wx, wy, ww2, wh2);
+      /* 2) 창문만 그리기 (ctx.filter 없음) */
+      for (const b of buildings) {
+        for (const w of b.wins) {
+          if (--w.timer <= 0) {
+            w.target   = Math.random() > 0.42 ? rnd(0.40, 0.95) : 0;
+            w.timer    = w.interval + Math.floor(rnd(-50, 150));
           }
+          w.opacity += (w.target - w.opacity) * 0.06;
+          if (w.opacity < 0.03) continue;
+
+          const wx  = b.x + w.rx*b.w,  wy  = b.y + w.ry*b.h;
+          const ww2 = w.rw*b.w,         wh2 = w.rh*b.h;
+          const [R,G,B] = w.warm ? [255,218,105] : [155,208,255];
+
+          /* 글로우 대신 단순 확장 rect (filter 없음, 4배 빠름) */
+          ctx.fillStyle = `rgba(${R},${G},${B},${w.opacity*0.18})`;
+          ctx.fillRect(wx-4, wy-4, ww2+8, wh2+8);
+          ctx.fillStyle = `rgba(${R},${G},${B},${w.opacity*0.85})`;
+          ctx.fillRect(wx, wy, ww2, wh2);
         }
       }
 
-      /* 도로 */
-      ctx.fillStyle = "#020304";
-      ctx.fillRect(0, H*0.9, W, H*0.1);
-      const roadGlow = ctx.createLinearGradient(0,H*0.88,0,H);
-      roadGlow.addColorStop(0,"rgba(255,150,50,0.06)");
-      roadGlow.addColorStop(1,"rgba(0,0,0,0)");
-      ctx.fillStyle = roadGlow;
-      ctx.fillRect(0,H*0.88,W,H*0.12);
-
-      /* 차량 */
+      /* 3) 차량 */
       for (const car of cars) {
         car.x += car.speed * car.dir;
         if (car.x >  W+30) car.x = -30;
         if (car.x < -30)   car.x =  W+30;
 
         const [R,G,B] = car.head ? [255,248,190] : [220,38,38];
-        const len = car.head ? 55 : 28;
+        const len = car.head ? 50 : 25;
         const x0  = car.dir > 0 ? car.x - len : car.x;
 
-        /* 빛 궤적 */
         const lg = ctx.createLinearGradient(x0,0,x0+len,0);
         if (car.dir > 0) {
           lg.addColorStop(0,`rgba(${R},${G},${B},0)`);
-          lg.addColorStop(1,`rgba(${R},${G},${B},0.28)`);
+          lg.addColorStop(1,`rgba(${R},${G},${B},0.3)`);
         } else {
-          lg.addColorStop(0,`rgba(${R},${G},${B},0.28)`);
+          lg.addColorStop(0,`rgba(${R},${G},${B},0.3)`);
           lg.addColorStop(1,`rgba(${R},${G},${B},0)`);
         }
         ctx.fillStyle = lg;
         ctx.fillRect(x0, car.laneY-1.5, len, 3);
 
-        /* 전구 점 */
         ctx.beginPath();
-        ctx.arc(car.x, car.laneY, 2.2, 0, Math.PI*2);
+        ctx.arc(car.x, car.laneY, 2, 0, Math.PI*2);
         ctx.fillStyle = `rgba(${R},${G},${B},0.95)`;
         ctx.fill();
       }
-
-      animId = requestAnimationFrame(draw);
     };
     draw();
     return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
