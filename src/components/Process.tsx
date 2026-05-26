@@ -11,7 +11,7 @@ const accuracyBars = [
   { label: "처리 속도", sub: "페이지당 평균", value: 95, display: "≤ 2초", color: "from-sky-500 to-cyan-400" },
 ];
 
-const tags = ["한자 인식", "훈민정음", "세로쓰기", "필사체", "On-Premise"];
+const tags = ["한자 인식", "옛한글", "세로쓰기", "필사체", "On-Premise"];
 
 export default function Process() {
   return (
@@ -33,7 +33,7 @@ export default function Process() {
                 딥러닝이 만든<br />압도적인 정확도
               </h2>
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                한자·훈민정음·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 사용할수록 특정 문서에 최적화되는 Data-Adaptive 학습 엔진이 핵심입니다.
+                한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 사용할수록 특정 문서에 최적화되는 Data-Adaptive 학습 엔진이 핵심입니다.
               </p>
               <div className="flex flex-wrap gap-2">
                 {tags.map((tag) => (

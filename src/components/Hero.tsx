@@ -205,7 +205,7 @@ export default function Hero() {
                       AI OCR 변환 결과
                     </div>
                     <div className="text-slate-900 text-sm font-semibold">
-                      훈민정음 · 정확도 98.7% · 구조화 완료
+                      옛한글 · 정확도 98.7% · 구조화 완료
                     </div>
                   </div>
                 </div>

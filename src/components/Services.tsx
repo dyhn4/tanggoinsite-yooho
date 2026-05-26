@@ -5,8 +5,8 @@ const services = [
     icon: ScanLine,
     title: "고문헌 특화 OCR",
     description:
-      "한자, 한사본까지 인식합니다. 딥러닝 기반 Data-Adaptive OCR로 일반 OCR 대비 정확도 3배 향상. 훈민정음·세로쓰기·인쇄체·필사체 모두 지원합니다.",
-    tags: ["한자 인식", "훈민정음", "필사체", "세로쓰기"],
+      "한자, 한사본까지 인식합니다. 딥러닝 기반 Data-Adaptive OCR로 일반 OCR 대비 정확도 3배 향상. 옛한글·세로쓰기·인쇄체·필사체 모두 지원합니다.",
+    tags: ["한자 인식", "옛한글", "필사체", "세로쓰기"],
   },
   {
     icon: Edit3,
@@ -61,7 +61,7 @@ export default function Services() {
             고문헌 특화 AI 기술
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-base leading-relaxed">
-            한자, 훈민정음, 한사본까지 정확하게 인식하는 전문 OCR 기술.
+            한자, 옛한글, 한사본까지 정확하게 인식하는 전문 OCR 기술.
             인식부터 편집, 데이터 활용까지 하나의 플랫폼에서 해결합니다.
           </p>
         </div>

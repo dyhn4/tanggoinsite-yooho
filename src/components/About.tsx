@@ -11,7 +11,7 @@ const differentiators = [
   {
     icon: Target,
     title: "고문헌 특화 AI",
-    desc: "일반 OCR이 포기하는 한자·훈민정음·필사체를 98.7% 정확도로 인식. 딥러닝이 자료 특성에 스스로 적응합니다.",
+    desc: "일반 OCR이 포기하는 한자·옛한글·필사체를 98.7% 정확도로 인식. 딥러닝이 자료 특성에 스스로 적응합니다.",
     color: "text-blue-600",
     bg: "bg-blue-50 border-blue-100",
   },
@@ -58,7 +58,7 @@ export default function About() {
               <p>
                 딥러닝 기반의{" "}
                 <strong className="text-slate-900">Data-Adaptive OCR</strong>을 핵심 기술로,
-                한자·훈민정음·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의
+                한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의
                 인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등
                 50개 이상의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.
               </p>
