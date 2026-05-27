@@ -208,8 +208,7 @@ export default function CompanyPage() {
             홈으로
           </Link>
           <span className="text-base font-black tracking-tight" style={{ fontFamily: "'Sora', sans-serif" }}>
-            <span className="bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">Tango</span>
-            {" "}<span className="text-white">Insight</span>
+            <span className="bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">Tango</span><span className="text-white">Insight</span>
           </span>
           <Link
             href="/contact"

@@ -530,9 +530,7 @@ export default function SolutionsPage() {
           </div>
 
           <span className="text-sm font-black tracking-tight whitespace-nowrap" style={{ fontFamily: "'Sora', sans-serif" }}>
-            <span className="bg-gradient-to-r from-blue-400 to-sky-300 bg-clip-text text-transparent">Tango</span>
-            {" "}
-            <span className="text-white/70">Insight</span>
+            <span className="bg-gradient-to-r from-blue-400 to-sky-300 bg-clip-text text-transparent">Tango</span><span className="text-white/70">Insight</span>
           </span>
         </div>
       </div>

@@ -161,9 +161,7 @@ export default function FaqPage() {
             className="text-base font-black tracking-tight"
             style={{ fontFamily: "'Sora', 'Pretendard', sans-serif" }}
           >
-            <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Tango</span>
-            {" "}
-            <span className="text-slate-900">Insight</span>
+            <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Tango</span><span className="text-slate-900">Insight</span>
           </span>
         </div>
       </div>

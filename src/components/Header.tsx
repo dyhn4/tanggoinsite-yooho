@@ -139,9 +139,7 @@ export default function Header() {
             >
               <span className={`bg-gradient-to-r ${isDark ? "from-blue-400 to-sky-300" : "from-blue-600 to-sky-500"} bg-clip-text text-transparent`}>
                 Tango
-              </span>
-              {" "}
-              <span className={isDark ? "text-white" : "text-slate-900"}>Insight</span>
+              </span><span className={isDark ? "text-white" : "text-slate-900"}>Insight</span>
             </span>
           </a>
 
