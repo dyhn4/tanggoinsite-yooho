@@ -248,7 +248,7 @@ export default function CompanyPage() {
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-sky-300 font-semibold mb-6 tracking-tight">
-              Tango Insight Co., Ltd.
+              Tangoinsight Co., Ltd.
             </p>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-10 max-w-2xl">
               2022년 설립된 <strong className="text-white">AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱(KPO) 전문 기업</strong>입니다.
@@ -515,7 +515,7 @@ export default function CompanyPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { label: "상호명",       value: "(주)탱고인사이트 / Tango Insight Co., Ltd." },
+              { label: "상호명",       value: "(주)탱고인사이트 / Tangoinsight Co., Ltd." },
               { label: "설립일",       value: "2022년 9월" },
               { label: "기업 유형",    value: "비상장 중소기업" },
               { label: "핵심 사업",    value: "AI OCR / 문서 데이터화 / 지식 프로세스 아웃소싱(KPO)" },

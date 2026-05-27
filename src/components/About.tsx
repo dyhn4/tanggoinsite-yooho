@@ -52,7 +52,7 @@ export default function About() {
 
             <div className="space-y-4 text-slate-600 leading-relaxed text-[1.05rem]">
               <p>
-                탱고인사이트(Tango Insight)는 2022년 설립된 AI 기반 문서 데이터화 및
+                탱고인사이트(Tangoinsight)는 2022년 설립된 AI 기반 문서 데이터화 및
                 지식 프로세스 아웃소싱(KPO) 전문 기업입니다.
               </p>
               <p>

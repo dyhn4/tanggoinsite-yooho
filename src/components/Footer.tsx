@@ -116,7 +116,7 @@ export default function Footer() {
 
         {/* 구분선 + 하단 바 */}
         <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-          <p>© {currentYear} 탱고인사이트(Tango Insight). All rights reserved.</p>
+          <p>© {currentYear} 탱고인사이트(Tangoinsight). All rights reserved.</p>
           <div className="flex items-center gap-4">
             <span>AI 기반 문서 데이터화 전문 기업</span>
             <a
