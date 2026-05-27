@@ -8,7 +8,7 @@ const solutions = [
   { label: "Tango XML(JSON)", href: "/solutions#tango-xml"     },
   { label: "Tango Batch",     href: "/solutions#tango-batch"   },
   { label: "Tango Articlo",   href: "/solutions#tango-articlo" },
-  { label: "Moon AI Explorer",href: "/solutions#moon-ai-explorer" },
+  { label: "MooN AI Explorer",href: "/solutions#moon-ai-explorer" },
 ];
 
 const pages = [

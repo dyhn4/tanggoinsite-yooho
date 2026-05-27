@@ -46,7 +46,7 @@ const navItems: NavItem[] = [
       { label: "Tango XML(JSON)",  href: "/solutions#tango-xml",        sub: "구조화 변환",        icon: Braces,       color: "from-emerald-600 to-teal-400" },
       { label: "Tango Batch",      href: "/solutions#tango-batch",      sub: "대량 일괄 처리",     icon: Layers,       color: "from-orange-500 to-amber-400" },
       { label: "Tango Articlo",    href: "/solutions#tango-articlo",    sub: "기사 데이터 분리",   icon: Newspaper,    color: "from-rose-600 to-pink-400" },
-      { label: "Moon AI Explorer", href: "/solutions#moon-ai-explorer", sub: "AI 탐색·번역",       icon: BrainCircuit, color: "from-indigo-600 to-blue-400" },
+      { label: "MooN AI Explorer", href: "/solutions#moon-ai-explorer", sub: "AI 탐색·번역",       icon: BrainCircuit, color: "from-indigo-600 to-blue-400" },
     ],
   },
   {

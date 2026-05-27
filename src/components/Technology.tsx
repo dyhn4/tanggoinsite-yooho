@@ -11,7 +11,7 @@ import {
 
 const workflowFeatures = [
   "대량 이미지 기반 DB 구축 공정관리",
-  "상용 OCR(ABBYY) 및 Moon OCR 탑재",
+  "상용 OCR(ABBYY) 및 MooN OCR 탑재",
   "실시간 프로젝트 모니터링·리포팅",
   "작업자 성과 및 정산 리포팅",
 ];
@@ -42,20 +42,20 @@ const solutions = [
     id: "tango-batch",
     icon: Layers,
     title: "Tango Batch",
-    features: ["결과물 XML/JSON/TXT 생성", "표·이미지, 글자 Image 추출", "Hidden Text PDF 생성", "서지 정보 목록 추출 및 통계"],
+    features: ["결과물 XML·JSON·TXT 생성", "표·이미지, 글자 이미지 추출", "Hidden Text PDF 생성", "서지 정보 목록 추출 및 통계"],
     color: "from-orange-500 to-amber-400",
   },
   {
     id: "tango-articlo",
     icon: Newspaper,
     title: "Tango Articlo",
-    features: ["기사 단위 데이터 분리", "글자 Image/표·이미지 추출", "JPG/TXT/JSON/XML/PDF 분리", "면 단위 저작권 상태별 분리"],
+    features: ["기사 단위 데이터 분리", "글자 이미지·표·이미지 추출", "JPG/TXT/JSON/XML/PDF 분리", "면 단위 저작권 상태별 분리"],
     color: "from-rose-600 to-pink-400",
   },
   {
     id: "moon-ai-explorer",
     icon: BrainCircuit,
-    title: "Moon AI Explorer",
+    title: "MooN AI Explorer",
     features: ["Vision-Language Model(VLM) 기반", "텍스트·이미지 멀티모달 AI 처리", "이미지 인식·설명·질의응답", "아카이브 관리 및 데이터 탐색"],
     color: "from-indigo-600 to-blue-400",
   },

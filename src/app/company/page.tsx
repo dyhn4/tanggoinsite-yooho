@@ -84,7 +84,7 @@ const technologies = [
     points: [
       "별도 설치 없는 브라우저 기반 검수",
       "원본 레이아웃 보존 PDF 저장",
-      "군집검수·날자정정·이미지 연동",
+      "군집 검수·낱자 정정·이미지 연동",
       "다중 작업자 협업 환경 지원",
     ],
     accent: "#818cf8",
@@ -518,7 +518,7 @@ export default function CompanyPage() {
               { label: "상호명",       value: "(주)탱고인사이트 / Tango Insight Co., Ltd." },
               { label: "설립일",       value: "2022년 9월" },
               { label: "기업 유형",    value: "비상장 중소기업" },
-              { label: "핵심 사업",    value: "AI OCR / 문서 데이터화 / KPO 아웃소싱" },
+              { label: "핵심 사업",    value: "AI OCR / 문서 데이터화 / 지식 프로세스 아웃소싱(KPO)" },
               { label: "소재지",       value: "서울특별시 구로구 디지털로26길 43" },
               { label: "이메일",       value: "contact@tangoinsight.ai" },
             ].map((item) => (

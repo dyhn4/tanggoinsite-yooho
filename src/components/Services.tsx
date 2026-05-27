@@ -5,7 +5,7 @@ const services = [
     icon: ScanLine,
     title: "고문헌 특화 OCR",
     description:
-      "한자, 한사본까지 인식합니다. 딥러닝 기반 Data-Adaptive OCR로 일반 OCR 대비 정확도 3배 향상. 옛한글·세로쓰기·인쇄체·필사체 모두 지원합니다.",
+      "한자, 활자본까지 인식합니다. 딥러닝 기반 Data-Adaptive OCR로 일반 OCR 대비 정확도 3배 향상. 옛한글·세로쓰기·인쇄체·필사체 모두 지원합니다.",
     tags: ["한자 인식", "옛한글", "필사체", "세로쓰기"],
   },
   {
@@ -19,7 +19,7 @@ const services = [
     icon: Table,
     title: "스마트 데이터 추출",
     description:
-      "표와 이미지를 자동으로 분리하여 Excel·CSV로 변환합니다. 고문서 속 수치·통계 데이터를 즉시 연구에 활용 가능한 형태로 구조화합니다.",
+      "표와 이미지를 자동으로 분리하여 Excel·CSV로 변환합니다. 고문헌 속 수치·통계 데이터를 즉시 연구에 활용 가능한 형태로 구조화합니다.",
     tags: ["Excel/CSV 변환", "표 자동 분리", "데이터 구조화"],
   },
   {
@@ -61,7 +61,7 @@ export default function Services() {
             고문헌 특화 AI 기술
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-base leading-relaxed">
-            한자, 옛한글, 한사본까지 정확하게 인식하는 전문 OCR 기술.
+            한자, 옛한글, 활자본까지 정확하게 인식하는 전문 OCR 기술.
             인식부터 편집, 데이터 활용까지 하나의 플랫폼에서 해결합니다.
           </p>
         </div>
