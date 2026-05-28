@@ -33,8 +33,8 @@ const navItems: NavItem[] = [
   {
     label: "서비스",
     items: [
-      { label: "서비스 안내", href: "#services", sub: "KPO·OCR 서비스 소개",   icon: FileText,  color: "from-sky-600 to-cyan-400" },
-      { label: "서비스 신청", href: "#apply",    sub: "맞춤형 서비스 견적 요청", icon: Wrench,   color: "from-blue-600 to-violet-500" },
+      { label: "서비스 안내", href: "/services", sub: "KPO·OCR 서비스 소개",   icon: FileText,  color: "from-sky-600 to-cyan-400" },
+      { label: "서비스 신청", href: "/apply",    sub: "맞춤형 서비스 견적 요청", icon: Wrench,   color: "from-blue-600 to-violet-500" },
     ],
   },
   {
