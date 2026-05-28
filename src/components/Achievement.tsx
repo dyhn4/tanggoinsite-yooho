@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
-/** 로고 이미지 로드 실패 시 이니셜 뱃지로 대체 */
 function ClientLogo({ client }: { client: { name: string; eng: string; logo: string } }) {
   const [imgError, setImgError] = useState(false);
   const abbr = client.name.replace(/[()주가나]/g, "").slice(0, 2);
@@ -100,6 +101,9 @@ function CountUp({ target }: { target: number }) {
 }
 
 export default function Achievement() {
+  const { lang } = useLanguage();
+  const t = translations[lang].achievement;
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [activeYear, setActiveYear] = useState(2025);
   const activeProject = projects.find((p) => p.year === activeYear)!;
@@ -134,7 +138,6 @@ export default function Achievement() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 수평선 (책장 느낌)
       for (let i = 1; i <= 4; i++) {
         const y = (canvas.height / 5) * i;
         ctx.beginPath();
@@ -177,7 +180,6 @@ export default function Achievement() {
     >
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
-      {/* 글로우 & 엣지 페이드 */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#0f172a] to-transparent" />
         <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#0f172a] to-transparent" />
@@ -186,52 +188,46 @@ export default function Achievement() {
       </div>
 
       <div className="relative max-w-7xl mx-auto w-full">
-        {/* 헤더 */}
         <div className="mb-8">
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/25 text-blue-300 font-semibold text-sm mb-3">
-            실적
+            {t.badge}
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1">
-            MooN AI OCR 기반 디지털 원문 구축 수행 실적
+            {t.title}
           </h2>
           <p className="text-slate-400 text-sm">
-            다양한 기록물 형태에 대한 구축 경험을 기반으로 자료 특성에 최적화된 AI OCR 구축 수행
+            {t.subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {/* 왼쪽 */}
           <div className="flex flex-col gap-4">
-            {/* 숫자 카드 - 세로 배치 */}
             <div className="rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm p-6">
-              {/* 책/건 */}
               <div className="mb-5 pb-5 border-b border-white/10">
-                <div className="text-slate-400 text-xs tracking-widest uppercase mb-2">누적 처리 건수</div>
+                <div className="text-slate-400 text-xs tracking-widest uppercase mb-2">{t.processedCount}</div>
                 <div className="flex items-baseline gap-2 flex-wrap">
                   <span className="text-slate-400 text-base">약</span>
                   <span className="text-4xl sm:text-5xl font-black text-white tabular-nums tracking-tight">
                     <CountUp target={1032912} />
                   </span>
-                  <span className="text-xl font-bold text-sky-400">책/건</span>
+                  <span className="text-xl font-bold text-sky-400">{t.countUnit}</span>
                 </div>
               </div>
-              {/* 면 */}
               <div>
-                <div className="text-slate-400 text-xs tracking-widest uppercase mb-2">누적 처리 면수</div>
+                <div className="text-slate-400 text-xs tracking-widest uppercase mb-2">{t.processedPages}</div>
                 <div className="flex items-baseline gap-2 flex-wrap">
                   <span className="text-slate-400 text-base">약</span>
                   <span className="text-4xl sm:text-5xl font-black text-white tabular-nums tracking-tight">
                     <CountUp target={168050125} />
                   </span>
-                  <span className="text-xl font-bold text-sky-400">면</span>
+                  <span className="text-xl font-bold text-sky-400">{t.pageUnit}</span>
                 </div>
               </div>
-              <p className="text-slate-600 text-xs mt-4">※ 발행연도 1934~2025년까지 연도별 다양한 자료 구축</p>
+              <p className="text-slate-600 text-xs mt-4">{t.footnote}</p>
             </div>
 
-            {/* 주요 고객사 */}
             <div className="rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm p-5">
-              <div className="text-slate-400 text-xs font-semibold mb-3 tracking-widest uppercase">주요 고객사</div>
+              <div className="text-slate-400 text-xs font-semibold mb-3 tracking-widest uppercase">{t.clientsLabel}</div>
               <div className="grid grid-cols-2 gap-2">
                 {clients.map((client) => (
                   <div
@@ -249,7 +245,6 @@ export default function Achievement() {
             </div>
           </div>
 
-          {/* 오른쪽: 연도별 사업 */}
           <div className="rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm p-5 flex flex-col">
             <div className="flex gap-2 flex-wrap mb-4">
               {projects.map((p) => (

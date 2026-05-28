@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   GitBranch,
@@ -8,83 +10,48 @@ import {
   Newspaper,
   BrainCircuit,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
-const workflowFeatures = [
-  "대량 이미지 기반 DB 구축 공정관리",
-  "상용 OCR(ABBYY) 및 MooN OCR 탑재",
-  "실시간 프로젝트 모니터링·리포팅",
-  "작업자 성과 및 정산 리포팅",
-];
-
-const solutions = [
-  {
-    id: "moon-editor",
-    icon: PenLine,
-    title: "MooN Editor",
-    features: ["텍스트 자동 교정·교열", "자동 문단 정제", "표·그림·메타데이터 구축/점검", "MooN파일 추출"],
-    color: "from-violet-600 to-blue-500",
-  },
-  {
-    id: "moon-ai-ocr",
-    icon: ScanSearch,
-    title: "MooN AI OCR",
-    features: ["딥러닝 기반 Data-Adaptive OCR 엔진", "고문서·타자체·필기체 90%+ 인식률", "자기학습으로 엔진 성능 자동 업데이트", "OCR PDF 및 데이터셋(JSON/XML) 생성"],
-    color: "from-sky-600 to-cyan-400",
-  },
-  {
-    id: "tango-xml",
-    icon: Braces,
-    title: "Tango XML(JSON)",
-    features: ["XML 구조화 파일 변환", "자동 XML Tagging 지원", "의미기반 JSON 파일 변환"],
-    color: "from-emerald-600 to-teal-400",
-  },
-  {
-    id: "tango-batch",
-    icon: Layers,
-    title: "Tango Batch",
-    features: ["결과물 XML·JSON·TXT 생성", "표·이미지, 글자 이미지 추출", "Hidden Text PDF 생성", "서지 정보 목록 추출 및 통계"],
-    color: "from-orange-500 to-amber-400",
-  },
-  {
-    id: "tango-articlo",
-    icon: Newspaper,
-    title: "Tango Articlo",
-    features: ["기사 단위 데이터 분리", "글자 이미지·표·이미지 추출", "JPG/TXT/JSON/XML/PDF 분리", "면 단위 저작권 상태별 분리"],
-    color: "from-rose-600 to-pink-400",
-  },
-  {
-    id: "moon-ai-explorer",
-    icon: BrainCircuit,
-    title: "MooN AI Explorer",
-    features: ["Vision-Language Model(VLM) 기반", "텍스트·이미지 멀티모달 AI 처리", "이미지 인식·설명·질의응답", "아카이브 관리 및 데이터 탐색"],
-    color: "from-indigo-600 to-blue-400",
-  },
+const solutionMeta = [
+  { id: "moon-editor",      icon: PenLine,      title: "MooN Editor",      color: "from-violet-600 to-blue-500" },
+  { id: "moon-ai-ocr",      icon: ScanSearch,   title: "MooN AI OCR",      color: "from-sky-600 to-cyan-400" },
+  { id: "tango-xml",        icon: Braces,       title: "Tango XML(JSON)",  color: "from-emerald-600 to-teal-400" },
+  { id: "tango-batch",      icon: Layers,       title: "Tango Batch",      color: "from-orange-500 to-amber-400" },
+  { id: "tango-articlo",    icon: Newspaper,    title: "Tango Articlo",    color: "from-rose-600 to-pink-400" },
+  { id: "moon-ai-explorer", icon: BrainCircuit, title: "MooN AI Explorer", color: "from-indigo-600 to-blue-400" },
 ];
 
 export default function Technology() {
+  const { lang } = useLanguage();
+  const t = translations[lang].technology;
+
+  const solutions = solutionMeta.map((meta, i) => ({
+    ...meta,
+    features: t.solutions[i].features,
+  }));
+
   return (
     <section
       id="technology"
       className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-white py-10"
     >
       <div className="max-w-6xl mx-auto w-full flex flex-col gap-7">
-        {/* 헤더 */}
         <div className="text-center">
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-sm mb-3">
-            Solution
+            {t.badge}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-2">
-            솔루션
+            {t.title}
           </h2>
           <p className="text-slate-500 text-sm">
-            문서 디지털화 전 과정을 커버하는 7가지 전문 솔루션
+            {t.subtitle}
           </p>
         </div>
 
-        {/* 카드 레이아웃 */}
         <div className="flex gap-5 items-stretch">
 
-          {/* 왼쪽: Tango Workflow (세로 피처 카드) */}
+          {/* Tango Workflow */}
           <Link
             href="/solutions#tango-workflow"
             className="w-56 flex-shrink-0 flex flex-col rounded-2xl p-6 text-white relative overflow-hidden hover:brightness-110 transition-all duration-300"
@@ -94,7 +61,7 @@ export default function Technology() {
             <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-white/5" />
 
             <span className="relative z-10 self-start text-[10px] font-bold tracking-widest uppercase border border-white/30 rounded-full px-2.5 py-0.5 text-white/80 mb-5">
-              Plug in Program
+              {t.workflowBadge}
             </span>
 
             <div className="relative z-10 w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center mb-5 backdrop-blur-sm">
@@ -109,11 +76,11 @@ export default function Technology() {
             </h3>
 
             <p className="relative z-10 text-xs text-white/70 mb-5 leading-relaxed">
-              모든 솔루션을 연결하는 통합 워크플로우 관리 시스템
+              {t.workflowDesc}
             </p>
 
             <ul className="relative z-10 flex flex-col gap-2.5 mt-auto">
-              {workflowFeatures.map((f) => (
+              {t.workflowFeatures.map((f) => (
                 <li key={f} className="flex items-start gap-2 text-xs text-white/85 leading-snug">
                   <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sky-300" />
                   {f}
@@ -122,7 +89,7 @@ export default function Technology() {
             </ul>
           </Link>
 
-          {/* 오른쪽: 나머지 6개 솔루션 (3×2 그리드) */}
+          {/* 6개 솔루션 (3×2 그리드) */}
           <div className="flex-1 grid grid-cols-3 grid-rows-2 gap-4">
             {solutions.map((sol) => (
               <Link
@@ -135,7 +102,7 @@ export default function Technology() {
                     <sol.icon size={16} className="text-white" />
                   </div>
                   <span className="text-[9px] font-bold tracking-widest uppercase text-slate-400 border border-slate-200 rounded-full px-2 py-0.5">
-                    Plug in
+                    {t.pluginBadge}
                   </span>
                 </div>
 

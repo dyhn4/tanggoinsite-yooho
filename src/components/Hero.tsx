@@ -3,8 +3,15 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Cpu, Sparkles, Users } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
+
+const featureIcons = [BookOpen, Users, Cpu];
 
 export default function Hero() {
+  const { lang } = useLanguage();
+  const t = translations[lang].hero;
+
   const scrollToServices = () => {
     const mainEl = document.querySelector("main");
     const target = document.querySelector("#services");
@@ -33,7 +40,6 @@ export default function Hero() {
     resize();
     window.addEventListener("resize", resize);
 
-    // 파티클 생성 - 하단 집중
     const COUNT = 120;
     type Particle = {
       x: number; y: number;
@@ -53,7 +59,6 @@ export default function Hero() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 연결선
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -71,18 +76,15 @@ export default function Hero() {
         }
       }
 
-      // 파티클 점
       for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(147, 210, 250, ${p.opacity})`;
         ctx.fill();
 
-        // 이동
         p.x += p.vx;
         p.y += p.vy;
 
-        // 경계 반사
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < canvas.height * 0.35 || p.y > canvas.height) p.vy *= -1;
       }
@@ -100,37 +102,32 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
-      {/* 파티클 네트워크 canvas 배경 */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
       />
-      {/* 상단 페이드 — 캔버스가 텍스트 영역 침범 안 하도록 */}
       <div className="absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-slate-900 via-slate-900/80 to-transparent pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 pt-32 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* 왼쪽 텍스트 - 2번 구조/문구, 1번 색감 */}
           <div className="animate-[fadeUp_0.9s_ease-out_both]">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-sm font-semibold mb-6 backdrop-blur-sm">
               <Sparkles size={16} className="text-sky-400" />
-              AI Heritage Document Intelligence
+              {t.badge}
             </div>
 
             <h1 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-6 tracking-tight">
-              고문헌을 읽는
+              {t.title[0]}
               <br />
               <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">
-                차세대 AI OCR
+                {t.title[1]}
               </span>
               <br />
-              플랫폼
+              {t.title[2]}
             </h1>
 
             <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-xl">
-              한자, 고문헌, 현대 문서를 AI가 정밀하게 인식하고 구조화합니다.
-              탱고인사이트는 역사적 자료를 검색 가능한 디지털 지식 자산으로
-              전환합니다.
+              {t.desc}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -138,7 +135,7 @@ export default function Hero() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all duration-200 shadow-xl shadow-blue-900/40 hover:-translate-y-0.5"
               >
-                도입 문의하기
+                {t.cta1}
                 <ArrowRight size={18} />
               </Link>
 
@@ -146,12 +143,11 @@ export default function Hero() {
                 onClick={scrollToServices}
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold transition-all duration-200 backdrop-blur-md"
               >
-                서비스 자세히 보기
+                {t.cta2}
               </button>
             </div>
           </div>
 
-          {/* 오른쪽 카드 - 2번 구조, 1번 색감 */}
           <div className="hidden lg:block">
             <div className="relative animate-[float_4s_ease-in-out_infinite]">
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-r from-blue-500/25 via-sky-400/20 to-cyan-400/20 blur-2xl animate-pulse" />
@@ -178,9 +174,7 @@ export default function Hero() {
                         <div
                           key={i}
                           className={`${width} h-3 rounded-full bg-blue-300/25 animate-pulse`}
-                          style={{
-                            animationDelay: `${index * 0.25 + i * 0.15}s`,
-                          }}
+                          style={{ animationDelay: `${index * 0.25 + i * 0.15}s` }}
                         />
                       ))}
                     </div>
@@ -202,66 +196,49 @@ export default function Hero() {
 
                   <div className="absolute bottom-4 left-4 right-4 bg-white/90 border border-white rounded-2xl p-4 shadow-lg backdrop-blur-md">
                     <div className="text-blue-700 text-xs font-bold mb-1">
-                      AI OCR 변환 결과
+                      {t.ocrLabel}
                     </div>
                     <div className="text-slate-900 text-sm font-semibold">
-                      옛한글 · 정확도 98.7% · 구조화 완료
+                      {t.ocrResult}
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="absolute -top-4 -right-4 bg-blue-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-blue-900/40">
-                실시간 분석
+                {t.liveTag}
               </div>
 
               <div className="absolute -bottom-4 -left-4 bg-white/95 text-slate-800 text-xs font-bold px-4 py-2 rounded-full shadow-lg">
-                고문헌 특화 AI
+                {t.heritageTag}
               </div>
             </div>
           </div>
         </div>
 
-        {/* 하단 카드 - OCR / DATA / AI */}
         <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {[
-            {
-              icon: BookOpen,
-              tag: "OCR",
-              label: "고문헌·한자 문서 인식",
-              desc: "스캔 이미지 기반 텍스트 추출",
-            },
-            {
-              icon: Users,
-              tag: "DATA",
-              label: "검색 가능한 데이터 변환",
-              desc: "문서 내용을 구조화하여 활용",
-            },
-            {
-              icon: Cpu,
-              tag: "AI",
-              label: "문서 처리 자동화",
-              desc: "반복 입력 업무를 줄이는 AI 기술",
-            },
-          ].map((item) => (
-            <div
-              key={item.tag}
-              className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-blue-400/30 transition-all duration-300"
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-600/30 border border-blue-500/30 flex items-center justify-center">
-                <item.icon size={22} className="text-sky-400" />
-              </div>
-              <div>
-                <div className="text-lg font-black text-white tracking-tight">
-                  {item.tag}
+          {t.features.map((item, i) => {
+            const Icon = featureIcons[i];
+            return (
+              <div
+                key={item.tag}
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-blue-400/30 transition-all duration-300"
+              >
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-600/30 border border-blue-500/30 flex items-center justify-center">
+                  <Icon size={22} className="text-sky-400" />
                 </div>
-                <div className="text-sm text-slate-200 font-semibold leading-snug">
-                  {item.label}
+                <div>
+                  <div className="text-lg font-black text-white tracking-tight">
+                    {item.tag}
+                  </div>
+                  <div className="text-sm text-slate-200 font-semibold leading-snug">
+                    {item.label}
+                  </div>
+                  <div className="text-xs text-slate-400 mt-0.5">{item.desc}</div>
                 </div>
-                <div className="text-xs text-slate-400 mt-0.5">{item.desc}</div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

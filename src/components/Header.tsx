@@ -8,6 +8,8 @@ import {
   GitBranch, PenLine, ScanSearch, Braces, Layers, Newspaper, BrainCircuit,
   Building2, Clock, Wrench, FileText, MessageCircle, HelpCircle,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 type NavSubItem = {
   label: string;
@@ -22,45 +24,48 @@ type NavItem = {
   items: NavSubItem[];
 };
 
-const navItems: NavItem[] = [
-  {
-    label: "회사소개",
-    items: [
-      { label: "회사개요",  href: "/company",  sub: "탱고인사이트 소개",    icon: Building2,      color: "from-blue-600 to-sky-400" },
-      { label: "연혁",      href: "/history",  sub: "주요 사업 실적 타임라인", icon: Clock,        color: "from-indigo-600 to-blue-400" },
-    ],
-  },
-  {
-    label: "서비스",
-    items: [
-      { label: "서비스 안내", href: "/services", sub: "KPO·OCR 서비스 소개",   icon: FileText,  color: "from-sky-600 to-cyan-400" },
-      { label: "서비스 신청", href: "/apply",    sub: "맞춤형 서비스 견적 요청", icon: Wrench,   color: "from-blue-600 to-violet-500" },
-    ],
-  },
-  {
-    label: "솔루션",
-    items: [
-      { label: "Tango Workflow",   href: "/solutions#tango-workflow",   sub: "통합 워크플로우",    icon: GitBranch,    color: "from-blue-700 to-sky-400" },
-      { label: "MooN Editor",      href: "/solutions#moon-editor",      sub: "문서 교정·편집",     icon: PenLine,      color: "from-violet-600 to-blue-500" },
-      { label: "MooN AI OCR",      href: "/solutions#moon-ai-ocr",      sub: "AI 문자 인식",       icon: ScanSearch,   color: "from-sky-600 to-cyan-400" },
-      { label: "Tango XML(JSON)",  href: "/solutions#tango-xml",        sub: "구조화 변환",        icon: Braces,       color: "from-emerald-600 to-teal-400" },
-      { label: "Tango Batch",      href: "/solutions#tango-batch",      sub: "대량 일괄 처리",     icon: Layers,       color: "from-orange-500 to-amber-400" },
-      { label: "Tango Articlo",    href: "/solutions#tango-articlo",    sub: "기사 데이터 분리",   icon: Newspaper,    color: "from-rose-600 to-pink-400" },
-      { label: "MooN AI Explorer", href: "/solutions#moon-ai-explorer", sub: "AI 탐색·번역",       icon: BrainCircuit, color: "from-indigo-600 to-blue-400" },
-    ],
-  },
-  {
-    label: "고객지원",
-    items: [
-      { label: "문의하기", href: "/contact", sub: "전문 컨설턴트 1:1 상담", icon: MessageCircle, color: "from-blue-600 to-sky-400" },
-      { label: "FAQ",      href: "/faq",     sub: "자주 묻는 질문",          icon: HelpCircle,    color: "from-violet-600 to-blue-500" },
-    ],
-  },
-];
-
 const darkIndexes = [0, 1, 5, 7];
 
 export default function Header() {
+  const { lang, setLang } = useLanguage();
+  const t = translations[lang].nav;
+
+  const navItems: NavItem[] = [
+    {
+      label: t.companyLabel,
+      items: [
+        { label: t.companyOverview, href: "/company",  sub: t.companyOverviewSub, icon: Building2, color: "from-blue-600 to-sky-400" },
+        { label: t.companyHistory,  href: "/history",  sub: t.companyHistorySub,  icon: Clock,      color: "from-indigo-600 to-blue-400" },
+      ],
+    },
+    {
+      label: t.servicesLabel,
+      items: [
+        { label: t.servicesGuide,  href: "/services", sub: t.servicesGuideSub,  icon: FileText, color: "from-sky-600 to-cyan-400" },
+        { label: t.servicesApply,  href: "/apply",    sub: t.servicesApplySub,  icon: Wrench,   color: "from-blue-600 to-violet-500" },
+      ],
+    },
+    {
+      label: t.solutionsLabel,
+      items: [
+        { label: "Tango Workflow",   href: "/solutions#tango-workflow",   sub: lang === "ko" ? "통합 워크플로우"    : "Integrated Workflow",    icon: GitBranch,    color: "from-blue-700 to-sky-400" },
+        { label: "MooN Editor",      href: "/solutions#moon-editor",      sub: lang === "ko" ? "문서 교정·편집"     : "Document Editing",       icon: PenLine,      color: "from-violet-600 to-blue-500" },
+        { label: "MooN AI OCR",      href: "/solutions#moon-ai-ocr",      sub: lang === "ko" ? "AI 문자 인식"       : "AI Text Recognition",    icon: ScanSearch,   color: "from-sky-600 to-cyan-400" },
+        { label: "Tango XML(JSON)",  href: "/solutions#tango-xml",        sub: lang === "ko" ? "구조화 변환"        : "Structured Conversion",  icon: Braces,       color: "from-emerald-600 to-teal-400" },
+        { label: "Tango Batch",      href: "/solutions#tango-batch",      sub: lang === "ko" ? "대량 일괄 처리"     : "Bulk Processing",        icon: Layers,       color: "from-orange-500 to-amber-400" },
+        { label: "Tango Articlo",    href: "/solutions#tango-articlo",    sub: lang === "ko" ? "기사 데이터 분리"   : "Article Data Split",     icon: Newspaper,    color: "from-rose-600 to-pink-400" },
+        { label: "MooN AI Explorer", href: "/solutions#moon-ai-explorer", sub: lang === "ko" ? "AI 탐색·번역"       : "AI Exploration",         icon: BrainCircuit, color: "from-indigo-600 to-blue-400" },
+      ],
+    },
+    {
+      label: t.supportLabel,
+      items: [
+        { label: t.contactUs, href: "/contact", sub: t.contactUsSub, icon: MessageCircle, color: "from-blue-600 to-sky-400" },
+        { label: t.faq,       href: "/faq",     sub: t.faqSub,       icon: HelpCircle,    color: "from-violet-600 to-blue-500" },
+      ],
+    },
+  ];
+
   const [isOpen, setIsOpen] = useState(false);
   const [openMobileMenu, setOpenMobileMenu] = useState<string | null>(null);
   const [isDark, setIsDark] = useState(true);
@@ -139,7 +144,8 @@ export default function Header() {
             >
               <span className={`bg-gradient-to-r ${isDark ? "from-blue-400 to-sky-300" : "from-blue-600 to-sky-500"} bg-clip-text text-transparent`}>
                 Tango
-              </span><span className={isDark ? "text-white" : "text-slate-900"}>Insight</span>
+              </span>
+              <span className={isDark ? "text-white" : "text-slate-900"}>Insight</span>
             </span>
           </a>
 
@@ -163,11 +169,35 @@ export default function Header() {
               </div>
             ))}
 
+            {/* KO / EN 토글 */}
+            <div className={`flex items-center rounded-full border text-xs font-bold overflow-hidden ${isDark ? "border-white/20" : "border-slate-200"}`}>
+              <button
+                onClick={() => setLang("ko")}
+                className={`px-3 py-1.5 transition-colors ${
+                  lang === "ko"
+                    ? "bg-blue-600 text-white"
+                    : isDark ? "text-white/50 hover:text-white/80" : "text-slate-400 hover:text-slate-600"
+                }`}
+              >
+                KO
+              </button>
+              <button
+                onClick={() => setLang("en")}
+                className={`px-3 py-1.5 transition-colors ${
+                  lang === "en"
+                    ? "bg-blue-600 text-white"
+                    : isDark ? "text-white/50 hover:text-white/80" : "text-slate-400 hover:text-slate-600"
+                }`}
+              >
+                EN
+              </button>
+            </div>
+
             <Link
               href="/contact"
               className="px-4 py-2 rounded-lg bg-blue-700 hover:bg-blue-800 text-white text-sm font-medium transition-colors"
             >
-              무료 상담
+              {t.freeConsult}
             </Link>
           </nav>
 
@@ -196,12 +226,9 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-6 py-5">
           {activeItem && (
             <>
-              {/* 카테고리 레이블 */}
               <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 mb-4">
                 {activeItem.label}
               </p>
-
-              {/* 아이템 행 — 솔루션(7개)은 2행, 나머지는 1행 */}
               <div className={`flex flex-wrap gap-x-2 gap-y-2 justify-start ${activeItem.items.length >= 5 ? "max-w-5xl" : ""}`}>
                 {activeItem.items.map((sub) => {
                   const Icon = sub.icon;
@@ -302,12 +329,27 @@ export default function Header() {
               </div>
             ))}
 
+            {/* 모바일 언어 토글 */}
+            <div className="flex items-center gap-2 px-3 py-2">
+              <span className="text-xs text-slate-400 font-medium">Language:</span>
+              <div className="flex items-center rounded-full border border-slate-200 text-xs font-bold overflow-hidden">
+                <button
+                  onClick={() => setLang("ko")}
+                  className={`px-3 py-1.5 transition-colors ${lang === "ko" ? "bg-blue-600 text-white" : "text-slate-400"}`}
+                >KO</button>
+                <button
+                  onClick={() => setLang("en")}
+                  className={`px-3 py-1.5 transition-colors ${lang === "en" ? "bg-blue-600 text-white" : "text-slate-400"}`}
+                >EN</button>
+              </div>
+            </div>
+
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
               className="mt-2 px-4 py-3 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-medium transition-colors text-center block"
             >
-              무료 상담 문의
+              {t.freeConsult}
             </Link>
           </nav>
         </div>

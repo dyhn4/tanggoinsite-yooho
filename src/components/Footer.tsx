@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { MapPin, Mail, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const solutions = [
   { label: "Tango Workflow",  href: "/solutions#tango-workflow" },
@@ -11,25 +15,15 @@ const solutions = [
   { label: "MooN AI Explorer",href: "/solutions#moon-ai-explorer" },
 ];
 
-const pages = [
-  { label: "홈",       href: "/"         },
-  { label: "회사개요", href: "/company"  },
-  { label: "회사 연혁",href: "/history"  },
-  { label: "서비스 안내", href: "/services" },
-  { label: "서비스 신청", href: "/apply"    },
-  { label: "솔루션",   href: "/solutions" },
-  { label: "문의하기", href: "/contact"  },
-  { label: "FAQ",      href: "/faq"      },
-];
-
 export default function Footer() {
+  const { lang } = useLanguage();
+  const t = translations[lang].footer;
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-slate-900 text-slate-400">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-8">
 
-        {/* 상단 그리드 */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
 
           {/* 브랜드 */}
@@ -44,9 +38,8 @@ export default function Footer() {
               </div>
               <span className="text-white font-bold text-lg">탱고인사이트</span>
             </div>
-            <p className="text-sm leading-relaxed mb-4">
-              AI 기반 문서 데이터화 및<br />
-              지식 프로세스 아웃소싱 전문 기업
+            <p className="text-sm leading-relaxed mb-4 whitespace-pre-line">
+              {t.tagline}
             </p>
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
@@ -67,7 +60,7 @@ export default function Footer() {
 
           {/* 솔루션 */}
           <div>
-            <h4 className="text-white text-sm font-semibold mb-4">솔루션</h4>
+            <h4 className="text-white text-sm font-semibold mb-4">{t.solutionsTitle}</h4>
             <ul className="space-y-2 text-sm">
               {solutions.map((s) => (
                 <li key={s.href}>
@@ -84,9 +77,9 @@ export default function Footer() {
 
           {/* 바로가기 */}
           <div>
-            <h4 className="text-white text-sm font-semibold mb-4">바로가기</h4>
+            <h4 className="text-white text-sm font-semibold mb-4">{t.pagesTitle}</h4>
             <ul className="space-y-2 text-sm">
-              {pages.map((p) => (
+              {t.pages.map((p) => (
                 <li key={p.href}>
                   <Link
                     href={p.href}
@@ -101,12 +94,12 @@ export default function Footer() {
 
           {/* 회사 정보 */}
           <div>
-            <h4 className="text-white text-sm font-semibold mb-4">회사 정보</h4>
+            <h4 className="text-white text-sm font-semibold mb-4">{t.companyTitle}</h4>
             <ul className="space-y-2 text-sm">
-              <li>상호: <span className="text-slate-300">(주)탱고인사이트</span></li>
-              <li>설립: <span className="text-slate-300">2022년 9월</span></li>
+              <li>{t.nameLabel}: <span className="text-slate-300">{t.nameValue}</span></li>
+              <li>{t.foundedLabel}: <span className="text-slate-300">{t.foundedValue}</span></li>
               <li className="leading-snug">
-                사업자등록번호:
+                {t.bizLabel}:
                 <span className="text-slate-300 block mt-0.5">
                   603-87-02754
                 </span>
@@ -115,11 +108,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 구분선 + 하단 바 */}
         <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-          <p>© {currentYear} 탱고인사이트(Tangoinsight). All rights reserved.</p>
+          <p>© {currentYear} {t.copyright}</p>
           <div className="flex items-center gap-4">
-            <span>AI 기반 문서 데이터화 전문 기업</span>
+            <span>AI-powered document digitization</span>
             <a
               href="https://github.com/dyhn4/tanggoinsite-yooho"
               target="_blank"
