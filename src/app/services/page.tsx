@@ -66,7 +66,7 @@ const processSteps = [
   },
   {
     step: "04",
-    title: "최종 납품",
+    title: "서비스 제공",
     desc: "요청 포맷으로 데이터를 가공하여 납품하고 사후 지원을 제공합니다",
     icon: Award,
   },
