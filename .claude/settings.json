@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$status = git status --porcelain 2>&1; if ($status) { git add -A; git commit -m 'auto: claude code changes'; git push origin master }",
+            "shell": "powershell",
+            "timeout": 60,
+            "statusMessage": "GitHub에 변경사항 푸시 중..."
+          }
+        ]
+      }
+    ]
+  }
+}

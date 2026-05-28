@@ -202,7 +202,7 @@ export default function Header() {
               </p>
 
               {/* 아이템 행 — 솔루션(7개)은 2행, 나머지는 1행 */}
-              <div className={`flex flex-wrap gap-x-2 gap-y-2 ${activeItem.items.length >= 5 ? "max-w-5xl" : ""}`}>
+              <div className={`flex flex-wrap gap-x-2 gap-y-2 justify-start ${activeItem.items.length >= 5 ? "max-w-5xl" : ""}`}>
                 {activeItem.items.map((sub) => {
                   const Icon = sub.icon;
                   const inner = (
@@ -230,7 +230,7 @@ export default function Header() {
                       {inner}
                     </Link>
                   ) : (
-                    <button key={sub.label} onClick={() => handleNavClick(sub.href)}>
+                    <button key={sub.label} onClick={() => handleNavClick(sub.href)} className="block text-left">
                       {inner}
                     </button>
                   );

@@ -49,7 +49,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin size={14} className="mt-0.5 shrink-0 text-slate-500" />
-                서울 구로구 디지털로26길 43
+                서울 구로구 디지털로 26길 43 L-1211호
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={14} className="shrink-0 text-slate-500" />
@@ -106,8 +106,7 @@ export default function Footer() {
               <li className="leading-snug">
                 사업자등록번호:
                 <span className="text-slate-300 block mt-0.5">
-                  {/* TODO: 실제 사업자등록번호로 교체 */}
-                  000-00-00000
+                  603-87-02754
                 </span>
               </li>
             </ul>
