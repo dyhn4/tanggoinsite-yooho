@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft, ArrowRight, Target,
   BookOpen, Shield, Zap, Users, Award, Calendar,
@@ -144,7 +145,7 @@ const clients = [
   {
     name: "국립중앙도서관",
     eng: "National Library of Korea",
-    abbr: "국중도",
+    logo: "/logos/nl.png",
     stat: "108,594,914면",
     times: 15,
     desc: "AI OCR 및 디지털화",
@@ -153,7 +154,7 @@ const clients = [
   {
     name: "국회도서관",
     eng: "National Assembly Library",
-    abbr: "국회도",
+    logo: "/logos/nanet.png",
     stat: "78,141,238면",
     times: 11,
     desc: "AI OCR 및 디지털화",
@@ -162,7 +163,7 @@ const clients = [
   {
     name: "행정안전부 대통령기록관",
     eng: "Ministry of Interior and Safety",
-    abbr: "행안부",
+    logo: "/logos/mois.png",
     stat: "1,468,278면",
     times: null,
     desc: "AI OCR 및 디지털화",
@@ -171,7 +172,7 @@ const clients = [
   {
     name: "국립장애인도서관",
     eng: "National Library for the Disabled",
-    abbr: "장도관",
+    logo: "/logos/nld.png",
     stat: "14,624면",
     times: 2,
     desc: "AI OCR 및 디지털화",
@@ -756,9 +757,8 @@ export default function CompanyPage() {
               <div key={c.name}
                 className="group flex flex-col gap-3 p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:border-blue-200 hover:bg-blue-50/60 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-md shrink-0"
-                    style={{ background: "linear-gradient(135deg, #1d4ed8, #0ea5e9)" }}>
-                    {c.abbr}
+                  <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-sm shrink-0 overflow-hidden">
+                    <Image src={c.logo} alt={c.name} width={40} height={40} className="object-contain" />
                   </div>
                   <div>
                     <p className="font-bold text-slate-900 text-sm group-hover:text-blue-700 transition-colors leading-snug">{c.name}</p>
