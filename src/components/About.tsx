@@ -33,16 +33,20 @@ const differentiators = [
 
 export default function About() {
   return (
-    <section id="about" className="py-14 px-4 sm:px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* 텍스트 영역 - 2번 구조/문구, 1번 색감 */}
+    <section
+      id="about"
+      className="min-h-screen flex flex-col justify-center px-4 sm:px-6 bg-white py-8"
+    >
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+
+          {/* 텍스트 영역 */}
           <div>
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-sm mb-4">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-xs mb-3">
               About Us
             </span>
 
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 leading-tight tracking-tight">
               고문헌부터 현대 문서까지,
               <br />
               인식에서 활용까지
@@ -50,7 +54,7 @@ export default function About() {
               하나의 플랫폼에서
             </h2>
 
-            <div className="space-y-4 text-slate-600 leading-relaxed text-[1.05rem]">
+            <div className="space-y-2.5 text-slate-600 leading-relaxed text-sm">
               <p>
                 탱고인사이트(Tangoinsight)는 2022년 설립된 AI 기반 문서 데이터화 및
                 지식 프로세스 아웃소싱(KPO) 전문 기업입니다.
@@ -62,43 +66,38 @@ export default function About() {
                 인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등
                 50개 이상의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.
               </p>
-              <p>
-                단순 텍스트 인식을 넘어, 인터랙티브 웹 편집·AI 문서 대화·데이터
-                추출까지 하나의 플랫폼에서 제공합니다. 기업과 연구기관이 핵심 역량에
-                집중할 수 있도록 복잡한 문서 디지털화 업무 전체를 대행합니다.
-              </p>
             </div>
 
-            {/* 미션 박스 - 1번 색감 */}
-            <div className="mt-8 p-5 rounded-2xl bg-blue-50 border border-blue-100">
-              <p className="text-blue-900 font-medium text-sm leading-relaxed">
+            {/* 미션 박스 */}
+            <div className="mt-4 p-4 rounded-xl bg-blue-50 border border-blue-100">
+              <p className="text-blue-900 font-medium text-xs leading-relaxed">
                 <strong>미션:</strong> "모든 역사적 기록이 디지털 지식 자산으로" —
                 아날로그에 잠들어 있는 정보를 누구나 검색하고 활용할 수 있도록 합니다.
               </p>
             </div>
           </div>
 
-          {/* 정보 카드 - 2번 구조, 1번 색감 */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* 정보 카드 */}
+          <div className="grid grid-cols-2 gap-3">
             {highlights.map((item) => (
               <div
                 key={item.label}
-                className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+                className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-xl bg-blue-700/10 flex items-center justify-center mb-3">
-                  <item.icon size={20} className="text-blue-700" />
+                <div className="w-8 h-8 rounded-lg bg-blue-700/10 flex items-center justify-center mb-2">
+                  <item.icon size={16} className="text-blue-700" />
                 </div>
-                <div className="text-xs text-slate-500 mb-1">{item.label}</div>
-                <div className="font-semibold text-slate-900">{item.value}</div>
+                <div className="text-xs text-slate-500 mb-0.5">{item.label}</div>
+                <div className="font-semibold text-slate-900 text-sm">{item.value}</div>
               </div>
             ))}
 
-            {/* 검증된 실적 카드 - 1번 색감 */}
+            {/* 검증된 실적 카드 */}
             <div
-              className="col-span-2 p-6 rounded-2xl bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-lg"
-              style={{ boxShadow: "0 8px 25px rgba(29,78,216,0.3)" }}
+              className="col-span-2 p-5 rounded-2xl bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-lg"
+              style={{ boxShadow: "0 6px 20px rgba(29,78,216,0.3)" }}
             >
-              <div className="text-sm font-medium text-blue-100 mb-4">검증된 실적</div>
+              <div className="text-xs font-medium text-blue-100 mb-3">검증된 실적</div>
               <div className="grid grid-cols-3 gap-4 text-center">
                 {[
                   { value: "5M+", label: "처리 페이지" },
@@ -106,8 +105,8 @@ export default function About() {
                   { value: "98.7%", label: "인식 정확도" },
                 ].map((s) => (
                   <div key={s.label}>
-                    <div className="text-2xl font-bold text-white">{s.value}</div>
-                    <div className="text-blue-100 text-xs mt-1">{s.label}</div>
+                    <div className="text-xl font-bold text-white">{s.value}</div>
+                    <div className="text-blue-100 text-xs mt-0.5">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -116,17 +115,17 @@ export default function About() {
         </div>
 
         {/* 차별점 3개 카드 */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
           {differentiators.map((d) => (
             <div
               key={d.title}
-              className={`flex items-start gap-4 p-5 rounded-2xl border ${d.bg} transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md`}
+              className={`flex items-start gap-3 p-4 rounded-2xl border ${d.bg} transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md`}
             >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white shadow-sm`}>
-                <d.icon size={20} className={d.color} />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-white shadow-sm">
+                <d.icon size={16} className={d.color} />
               </div>
               <div>
-                <p className="font-bold text-slate-900 text-sm mb-1">{d.title}</p>
+                <p className="font-bold text-slate-900 text-sm mb-0.5">{d.title}</p>
                 <p className="text-slate-500 text-xs leading-relaxed">{d.desc}</p>
               </div>
             </div>
