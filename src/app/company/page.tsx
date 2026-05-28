@@ -813,7 +813,7 @@ export default function CompanyPage() {
               { label: "대표자",     icon: Users,     value: "이동준" },
               { label: "설립일",     icon: Calendar,  value: "2022년 9월" },
               { label: "핵심 사업",  icon: Zap,       value: "AI OCR / 문서 데이터화 / 지식 프로세스 아웃소싱(KPO)" },
-              { label: "소재지",     icon: MapPin,    value: "서울 구로구 디지털로 26길 43 L-1211호" },
+              { label: "소재지",     icon: MapPin,    value: "서울 구로구 디지털로 26길 43 L-1211" },
               { label: "대표 전화",  icon: Phone,     value: "TEL: 070-4112-5180 / FAX: 02-6442-5180" },
             ].map((item) => (
               <div key={item.label}

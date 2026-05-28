@@ -77,7 +77,7 @@ export default function Contact() {
                   {
                     icon: MapPin,
                     label: "주소",
-                    value: "서울 구로구 디지털로 26길 43 L-1211호",
+                    value: "서울 구로구 디지털로 26길 43 L-1211",
                   },
                   {
                     icon: Mail,
