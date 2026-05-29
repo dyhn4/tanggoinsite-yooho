@@ -551,14 +551,14 @@ const ko = {
     visionDesc:      "언어·시대·형식의 차이를 AI가 극복하여, 모든 문서 정보가 자유롭게 유통되는 지식 인프라를 구축합니다. 기관과 연구자가 원본 자료에 담긴 가치를 최대한 활용할 수 있도록 지원합니다.",
     coreValuesTitle: "핵심 가치",
     values: [
-      { title: "정밀성 (Precision)",   desc: "평균 F1 Score 0.958. 한 글자의 오인식도 연구 결과를 바꿀 수 있습니다. 타협 없는 품질을 추구합니다." },
+      { title: "정밀성 (Precision)",   desc: "평균 F1 Score 0.964. 한 글자의 오인식도 연구 결과를 바꿀 수 있습니다. 타협 없는 품질을 추구합니다." },
       { title: "신뢰성 (Reliability)", desc: "전문 검수 인력의 2차 검증과 체계적인 품질 관리 프로세스로 납품 데이터의 신뢰성을 보장합니다." },
       { title: "혁신성 (Innovation)",  desc: "자기학습 AI 엔진이 처리할수록 더 정확해집니다. 3차 재학습으로 1차 대비 인식률 11%p 향상 달성." },
     ],
     techSectionTitle: "핵심 기술 역량",
     techSectionDesc:  "탱고인사이트의 경쟁력은 기술에서 시작됩니다. 엔진부터 플랫폼, 배포까지 완결된 기술 스택을 보유합니다.",
     technologies: [
-      { title: "Data-Adaptive OCR",  subtitle: "MooN AI OCR 엔진",       points: ["딥러닝 기반 자기학습 인식 엔진", "한자·옛한글·필사체·세로쓰기 지원", "고문헌 기준 F1 Score 0.958 평균 정확도", "처리할수록 진화하는 문서 특화 AI"] },
+      { title: "Data-Adaptive OCR",  subtitle: "MooN AI OCR 엔진",       points: ["딥러닝 기반 자기학습 인식 엔진", "한자·옛한글·필사체·세로쓰기 지원", "고문헌 기준 F1 Score 0.964 평균 정확도", "처리할수록 진화하는 문서 특화 AI"] },
       { title: "웹 기반 편집 플랫폼", subtitle: "MooN Editor",            points: ["별도 설치 없는 브라우저 기반 검수", "원본 레이아웃 보존 PDF 저장", "군집 검수·낱자 정정·이미지 연동", "다중 작업자 협업 환경 지원"] },
       { title: "유연한 배포 환경",   subtitle: "Cloud & On-Premise",     points: ["기관 내부망 On-Premise 구축 지원", "클라우드 분산 처리로 대량 고속 처리", "보안·기밀 요구 환경 완벽 대응", "TXT·XML·JSON·Excel·PDF 납품 형식"] },
     ],
@@ -1177,14 +1177,14 @@ const en: typeof ko = {
     visionDesc:      "We build a knowledge infrastructure where all document information flows freely — AI overcoming barriers of language, era, and format. We empower institutions and researchers to fully utilize the value contained in original materials.",
     coreValuesTitle: "Core Values",
     values: [
-      { title: "Precision",   desc: "Average F1 Score 0.958. A single misrecognized character can change research outcomes. We pursue quality without compromise." },
+      { title: "Precision",   desc: "Average F1 Score 0.964. A single misrecognized character can change research outcomes. We pursue quality without compromise." },
       { title: "Reliability", desc: "We guarantee the reliability of delivered data through secondary verification by specialized review staff and a systematic quality management process." },
       { title: "Innovation",  desc: "Our self-learning AI engine gets more accurate with each use. 3rd-generation retraining achieved an 11%p improvement in recognition rate over the 1st generation." },
     ],
     techSectionTitle: "Core Technology Capabilities",
     techSectionDesc:  "Tangoinsight's competitiveness starts with technology. We have a complete technology stack from engine to platform to deployment.",
     technologies: [
-      { title: "Data-Adaptive OCR",       subtitle: "MooN AI OCR Engine",  points: ["Deep learning-based self-learning recognition engine", "Supports Chinese characters, Old Korean, handwriting, vertical text", "Average F1 Score 0.958 on heritage documents", "Document-specialized AI that evolves with each use"] },
+      { title: "Data-Adaptive OCR",       subtitle: "MooN AI OCR Engine",  points: ["Deep learning-based self-learning recognition engine", "Supports Chinese characters, Old Korean, handwriting, vertical text", "Average F1 Score 0.964 on heritage documents", "Document-specialized AI that evolves with each use"] },
       { title: "Web-Based Edit Platform", subtitle: "MooN Editor",          points: ["Browser-based review without installation", "Layout-preserved PDF export", "Cluster review, character correction & image integration", "Multi-worker collaborative environment"] },
       { title: "Flexible Deployment",     subtitle: "Cloud & On-Premise",   points: ["On-Premise deployment for institutional internal networks", "Cloud parallel processing for high-speed bulk handling", "Fully handles security & confidentiality requirements", "TXT·XML·JSON·Excel·PDF delivery formats"] },
     ],
