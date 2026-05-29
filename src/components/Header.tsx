@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   ChevronDown, Menu, X,
-  GitBranch, PenLine, ScanSearch, Braces, Layers, Newspaper, BrainCircuit,
+  GitBranch, PenLine, ScanSearch, Braces, Layers, BrainCircuit,
   Building2, Clock, Wrench, FileText, MessageCircle, HelpCircle,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -53,7 +53,7 @@ export default function Header() {
         { label: "MooN AI OCR",      href: "/solutions#moon-ai-ocr",      sub: lang === "ko" ? "AI 문자 인식"       : "AI Text Recognition",    icon: ScanSearch,   color: "from-sky-600 to-cyan-400" },
         { label: "Tango XML(JSON)",  href: "/solutions#tango-xml",        sub: lang === "ko" ? "구조화 변환"        : "Structured Conversion",  icon: Braces,       color: "from-emerald-600 to-teal-400" },
         { label: "Tango Batch",      href: "/solutions#tango-batch",      sub: lang === "ko" ? "대량 일괄 처리"     : "Bulk Processing",        icon: Layers,       color: "from-orange-500 to-amber-400" },
-        { label: "Tango Articlo",    href: "/solutions#tango-articlo",    sub: lang === "ko" ? "기사 데이터 분리"   : "Article Data Split",     icon: Newspaper,    color: "from-rose-600 to-pink-400" },
+        { label: "Tango PDF",        href: "/solutions#tango-pdf",        sub: lang === "ko" ? "TOC 구조화 PDF"    : "Structured PDF",         icon: FileText,     color: "from-amber-500 to-yellow-400" },
         { label: "MooN AI Explorer", href: "/solutions#moon-ai-explorer", sub: lang === "ko" ? "AI 탐색·번역"       : "AI Exploration",         icon: BrainCircuit, color: "from-indigo-600 to-blue-400" },
       ],
     },

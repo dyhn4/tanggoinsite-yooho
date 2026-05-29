@@ -11,7 +11,7 @@ const solutions = [
   { label: "MooN AI OCR",     href: "/solutions#moon-ai-ocr"   },
   { label: "Tango XML(JSON)", href: "/solutions#tango-xml"     },
   { label: "Tango Batch",     href: "/solutions#tango-batch"   },
-  { label: "Tango Articlo",   href: "/solutions#tango-articlo" },
+  { label: "Tango PDF",        href: "/solutions#tango-pdf" },
   { label: "MooN AI Explorer",href: "/solutions#moon-ai-explorer" },
 ];
 
