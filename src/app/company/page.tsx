@@ -82,7 +82,7 @@ const clients = [
 const statsStatic: { value: number; numSize: string; suffix?: string }[] = [
   { value: 36230147,  numSize: "text-2xl xl:text-3xl" },
   { value: 260245890, numSize: "text-2xl xl:text-3xl" },
-  { value: 50,        numSize: "text-5xl xl:text-6xl", suffix: "+" },
+  { value: 6,         numSize: "text-5xl xl:text-6xl" },
   { value: 6,         numSize: "text-5xl xl:text-6xl" },
 ];
 

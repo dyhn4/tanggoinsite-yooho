@@ -611,8 +611,8 @@ const ko = {
     statsItems: [
       { unit: "자", label: "고문헌 AI OCR 누적" },
       { unit: "자", label: "현대자료 AI OCR 누적" },
-      { unit: "년+", label: "사업 수행 연수" },
-      { unit: "",   label: "운영 연수" },
+      { unit: "건", label: "등록 지적재산권" },
+      { unit: "개", label: "인증·수상 취득" },
     ],
     clientsSectionTitle: "주요 고객사",
     clientsSectionDesc:  "국가 대표 기관들이 신뢰하는 탱고인사이트입니다",
@@ -1237,8 +1237,8 @@ const en: typeof ko = {
     statsItems: [
       { unit: "chars", label: "Heritage AI OCR Cumulative" },
       { unit: "chars", label: "Modern Material AI OCR Cumulative" },
-      { unit: "orgs",  label: "Client Institutions" },
-      { unit: "",      label: "Years of Operation" },
+      { unit: "assets", label: "Registered IP" },
+      { unit: "awards", label: "Certifications & Awards" },
     ],
     clientsSectionTitle: "Key Clients",
     clientsSectionDesc:  "Trusted by Korea's leading national institutions",
