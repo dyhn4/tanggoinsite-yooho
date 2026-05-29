@@ -12,7 +12,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tangoinsight.ai"),
+  metadataBase: new URL("https://tangoinsight-ai.vercel.app"),
   title: {
     default: "탱고인사이트 | AI 기반 문서 데이터화 전문 기업",
     template: "%s | 탱고인사이트",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "KPO", "지식 프로세스 아웃소싱",
     "MooN AI OCR", "딥러닝 OCR", "데이터 가공", "문서 데이터베이스 구축",
   ],
-  authors: [{ name: "탱고인사이트", url: "https://tangoinsight.ai" }],
+  authors: [{ name: "탱고인사이트", url: "https://tangoinsight-ai.vercel.app" }],
   creator: "탱고인사이트",
   openGraph: {
     title: "탱고인사이트 | AI 기반 문서 데이터화 전문 기업",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       "고문헌부터 현대 문서까지, 인식에서 활용까지 하나의 플랫폼. MooN AI OCR 98.7% 인식 정확도.",
     type: "website",
     locale: "ko_KR",
-    url: "https://tangoinsight.ai",
+    url: "https://tangoinsight-ai.vercel.app",
     siteName: "탱고인사이트",
   },
   twitter: {
