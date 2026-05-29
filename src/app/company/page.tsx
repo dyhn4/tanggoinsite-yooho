@@ -147,7 +147,8 @@ export default function CompanyPage() {
         style: "sphere",
         theme: "purpleBlue",
         speed: 0.7,
-        grain: false,
+        grain: true,
+        target: "#company-hero",
       });
     };
     document.body.appendChild(script);
@@ -159,7 +160,7 @@ export default function CompanyPage() {
   }, []);
 
   return (
-    <div className={`min-h-screen ${notoSansKR.className}`}>
+    <div className={`min-h-screen bg-white ${notoSansKR.className}`}>
 
       {/* ── 상단 네비 ── */}
       <nav
@@ -188,7 +189,7 @@ export default function CompanyPage() {
       </nav>
 
       {/* ── 1. 히어로 ── */}
-      <section className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden">
+      <section id="company-hero" className="relative min-h-[100vh] flex flex-col justify-center overflow-hidden" style={{ background: "#070710" }}>
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
           <div className="max-w-3xl">
@@ -243,40 +244,40 @@ export default function CompanyPage() {
       </section>
 
       {/* ── 2. 미션 · 비전 · 핵심 가치 ── */}
-      <section className="py-20 px-6 sm:px-10" style={{ background: "rgba(7,7,16,0.78)" }}>
+      <section className="py-20 px-6 sm:px-10 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-14">
-            <div className="p-8 rounded-3xl border border-blue-500/20 bg-blue-500/[0.07]">
-              <div className="text-xs font-bold tracking-[0.2em] uppercase text-blue-400 mb-3">{t.missionLabel}</div>
-              <h2 className="text-2xl font-black text-white mb-4 leading-snug" style={{ whiteSpace: "pre-line" }}>
+            <div className="p-8 rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white">
+              <div className="text-xs font-bold tracking-[0.2em] uppercase text-blue-500 mb-3">{t.missionLabel}</div>
+              <h2 className="text-2xl font-black text-slate-900 mb-4 leading-snug" style={{ whiteSpace: "pre-line" }}>
                 &ldquo;{t.missionTitle}&rdquo;
               </h2>
-              <p className="text-slate-400 text-sm leading-relaxed">{t.missionDesc}</p>
+              <p className="text-slate-500 text-sm leading-relaxed">{t.missionDesc}</p>
             </div>
-            <div className="p-8 rounded-3xl border border-indigo-500/20 bg-indigo-500/[0.07]">
-              <div className="text-xs font-bold tracking-[0.2em] uppercase text-indigo-400 mb-3">{t.visionLabel}</div>
-              <h2 className="text-2xl font-black text-white mb-4 leading-snug" style={{ whiteSpace: "pre-line" }}>
+            <div className="p-8 rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 to-white">
+              <div className="text-xs font-bold tracking-[0.2em] uppercase text-indigo-500 mb-3">{t.visionLabel}</div>
+              <h2 className="text-2xl font-black text-slate-900 mb-4 leading-snug" style={{ whiteSpace: "pre-line" }}>
                 &ldquo;{t.visionTitle}&rdquo;
               </h2>
-              <p className="text-slate-400 text-sm leading-relaxed">{t.visionDesc}</p>
+              <p className="text-slate-500 text-sm leading-relaxed">{t.visionDesc}</p>
             </div>
           </div>
 
           <div className="text-center mb-10">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-slate-800/60 text-slate-300 mb-3">CORE VALUES</span>
-            <h2 className="text-3xl font-black text-white">{t.coreValuesTitle}</h2>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-slate-100 text-slate-600 mb-3">CORE VALUES</span>
+            <h2 className="text-3xl font-black text-slate-900">{t.coreValuesTitle}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {valuesStatic.map((v, i) => {
               const tv = t.values[i];
               return (
                 <div key={i}
-                  className="group p-7 rounded-3xl border border-white/[0.1] bg-white/[0.04] hover:border-blue-500/40 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                  className="group p-7 rounded-3xl border border-slate-100 bg-slate-50 hover:border-blue-200 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                   <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${v.gradient} flex items-center justify-center mb-5 shadow-md`}>
                     <v.icon size={22} className="text-white" />
                   </div>
-                  <h3 className="font-black text-white text-base mb-3 group-hover:text-blue-400 transition-colors">{tv.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{tv.desc}</p>
+                  <h3 className="font-black text-slate-900 text-base mb-3 group-hover:text-blue-700 transition-colors">{tv.title}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">{tv.desc}</p>
                 </div>
               );
             })}
@@ -340,12 +341,12 @@ export default function CompanyPage() {
       </section>
 
       {/* ── 4. 주요 사업 분야 ── */}
-      <section className="py-20 px-6 sm:px-10" style={{ background: "rgba(7,7,16,0.78)" }}>
+      <section className="py-20 px-6 sm:px-10 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest border border-blue-400/25 bg-blue-500/10 text-blue-400 mb-3">BUSINESS DOMAIN</span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">{t.bizDomainTitle}</h2>
-            <p className="text-slate-400 text-sm max-w-xl mx-auto">{t.bizDomainDesc}</p>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-blue-100 text-blue-700 border border-blue-200 mb-3">BUSINESS DOMAIN</span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">{t.bizDomainTitle}</h2>
+            <p className="text-slate-500 text-sm max-w-xl mx-auto">{t.bizDomainDesc}</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -353,15 +354,15 @@ export default function CompanyPage() {
               const td = t.businessDomains[i];
               return (
                 <div key={i}
-                  className="p-6 rounded-2xl border border-white/[0.1] bg-white/[0.04] hover:border-blue-500/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                  className="p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:border-blue-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
                     style={{ background: `${domain.color}20`, border: `1px solid ${domain.color}30` }}>
                     <domain.icon size={20} style={{ color: domain.color }} />
                   </div>
-                  <h3 className="font-black text-white text-sm mb-4">{td.title}</h3>
+                  <h3 className="font-black text-slate-900 text-sm mb-4">{td.title}</h3>
                   <ul className="space-y-1.5">
                     {td.items.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-slate-400 text-xs">
+                      <li key={item} className="flex items-center gap-2 text-slate-500 text-xs">
                         <span className="w-1 h-1 rounded-full shrink-0" style={{ background: domain.color }} />
                         {item}
                       </li>
@@ -375,12 +376,12 @@ export default function CompanyPage() {
       </section>
 
       {/* ── 5. 서비스 영역 ── */}
-      <section className="py-20 px-6 sm:px-10" style={{ background: "rgba(7,7,16,0.82)" }}>
+      <section className="py-20 px-6 sm:px-10 bg-slate-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest border border-blue-400/25 bg-blue-500/10 text-blue-400 mb-3">SERVICES</span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">{t.servicesSectionTitle}</h2>
-            <p className="text-slate-400 text-sm max-w-xl mx-auto">{t.servicesSectionDesc}</p>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-blue-100 text-blue-700 border border-blue-200 mb-3">SERVICES</span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">{t.servicesSectionTitle}</h2>
+            <p className="text-slate-500 text-sm max-w-xl mx-auto">{t.servicesSectionDesc}</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -388,13 +389,13 @@ export default function CompanyPage() {
               const ts = t.services[i];
               return (
                 <div key={i}
-                  className="flex items-start gap-5 p-6 rounded-2xl bg-white/[0.05] border border-white/[0.1] hover:border-blue-500/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                  className="flex items-start gap-5 p-6 rounded-2xl bg-white border border-slate-100 hover:border-blue-200 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-700 to-sky-500 flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
                     <svc.icon size={22} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white mb-1.5">{ts.title}</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">{ts.desc}</p>
+                    <h3 className="font-bold text-slate-900 mb-1.5">{ts.title}</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">{ts.desc}</p>
                   </div>
                 </div>
               );
@@ -403,7 +404,7 @@ export default function CompanyPage() {
 
           <div className="mt-8 text-center">
             <Link href="/solutions"
-              className="inline-flex items-center gap-2 text-blue-400 font-semibold text-sm hover:gap-3 transition-all">
+              className="inline-flex items-center gap-2 text-blue-700 font-semibold text-sm hover:gap-3 transition-all">
               {t.solutionsLinkLabel} <ArrowRight size={16} />
             </Link>
           </div>
@@ -477,12 +478,12 @@ export default function CompanyPage() {
       </section>
 
       {/* ── 7. 주요 수행 실적 ── */}
-      <section className="py-20 px-6 sm:px-10" style={{ background: "rgba(7,7,16,0.78)" }}>
+      <section className="py-20 px-6 sm:px-10 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest border border-blue-400/25 bg-blue-500/10 text-blue-400 mb-3">TRACK RECORD</span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">{t.trackSectionTitle}</h2>
-            <p className="text-slate-400 text-sm">{t.trackSectionDesc}</p>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-blue-100 text-blue-700 border border-blue-200 mb-3">TRACK RECORD</span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">{t.trackSectionTitle}</h2>
+            <p className="text-slate-500 text-sm">{t.trackSectionDesc}</p>
           </div>
 
           <div className="space-y-6 mb-12">
@@ -490,35 +491,35 @@ export default function CompanyPage() {
               const tm = t.majorProjects[i];
               const th = t.tableHeaders;
               return (
-                <div key={i} className="rounded-2xl border border-white/[0.1] bg-white/[0.04] overflow-hidden">
-                  <div className="px-6 py-4 border-b border-white/[0.08] flex flex-wrap items-center gap-3">
-                    <h3 className="font-black text-white text-base">{tm.title}</h3>
+                <div key={i} className="rounded-2xl border border-slate-100 bg-slate-50 overflow-hidden">
+                  <div className="px-6 py-4 border-b border-slate-100 flex flex-wrap items-center gap-3">
+                    <h3 className="font-black text-slate-900 text-base">{tm.title}</h3>
                     <span className="text-xs font-bold px-2.5 py-1 rounded-full text-white"
                       style={{ background: proj.badgeColor }}>
                       {tm.badge}
                     </span>
-                    <span className="text-xs text-slate-400">{tm.clientPrefix} {proj.client}</span>
+                    <span className="text-xs text-slate-500">{tm.clientPrefix} {proj.client}</span>
                   </div>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="bg-white/[0.05]">
-                          <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 tracking-wide">{th.year}</th>
-                          <th className="px-4 py-3 text-right text-xs font-bold text-slate-400 tracking-wide">{th.books}</th>
-                          <th className="px-4 py-3 text-right text-xs font-bold text-slate-400 tracking-wide">{th.pages}</th>
-                          <th className="px-4 py-3 text-right text-xs font-bold text-slate-400 tracking-wide">{th.chars}</th>
-                          <th className="px-6 py-3 text-center text-xs font-bold text-slate-400 tracking-wide">{th.f1}</th>
+                        <tr className="bg-slate-100/70">
+                          <th className="px-6 py-3 text-left text-xs font-bold text-slate-500 tracking-wide">{th.year}</th>
+                          <th className="px-4 py-3 text-right text-xs font-bold text-slate-500 tracking-wide">{th.books}</th>
+                          <th className="px-4 py-3 text-right text-xs font-bold text-slate-500 tracking-wide">{th.pages}</th>
+                          <th className="px-4 py-3 text-right text-xs font-bold text-slate-500 tracking-wide">{th.chars}</th>
+                          <th className="px-6 py-3 text-center text-xs font-bold text-slate-500 tracking-wide">{th.f1}</th>
                         </tr>
                       </thead>
                       <tbody>
                         {proj.rows.map((row) => (
-                          <tr key={row.year} className="border-t border-white/[0.06]">
-                            <td className="px-6 py-3 font-bold text-white">{row.year}</td>
-                            <td className="px-4 py-3 text-right text-slate-300">{row.books}</td>
-                            <td className="px-4 py-3 text-right text-slate-300">{row.pages}</td>
-                            <td className="px-4 py-3 text-right text-slate-300">{row.chars}</td>
+                          <tr key={row.year} className="border-t border-slate-100">
+                            <td className="px-6 py-3 font-bold text-slate-900">{row.year}</td>
+                            <td className="px-4 py-3 text-right text-slate-600">{row.books}</td>
+                            <td className="px-4 py-3 text-right text-slate-600">{row.pages}</td>
+                            <td className="px-4 py-3 text-right text-slate-600">{row.chars}</td>
                             <td className="px-6 py-3 text-center">
-                              <span className="inline-block px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold text-xs">
+                              <span className="inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 font-bold text-xs">
                                 {row.f1}
                               </span>
                             </td>
@@ -569,35 +570,35 @@ export default function CompanyPage() {
       </section>
 
       {/* ── 9. 주요 고객사 ── */}
-      <section className="py-20 px-6 sm:px-10" style={{ background: "rgba(7,7,16,0.78)" }}>
+      <section className="py-20 px-6 sm:px-10 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-slate-800/60 text-slate-300 mb-3">CLIENTS</span>
-            <h2 className="text-3xl font-black text-white mb-3">{t.clientsSectionTitle}</h2>
-            <p className="text-slate-400 text-sm">{t.clientsSectionDesc}</p>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-slate-100 text-slate-600 mb-3">CLIENTS</span>
+            <h2 className="text-3xl font-black text-slate-900 mb-3">{t.clientsSectionTitle}</h2>
+            <p className="text-slate-500 text-sm">{t.clientsSectionDesc}</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
             {clients.map((c) => (
               <div key={c.name}
-                className="group flex flex-col gap-3 p-6 rounded-2xl border border-white/[0.1] bg-white/[0.05] hover:border-blue-500/30 hover:bg-blue-500/[0.08] hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+                className="group flex flex-col gap-3 p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:border-blue-200 hover:bg-blue-50/60 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/[0.15] flex items-center justify-center shadow-sm shrink-0 overflow-hidden">
+                  <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-sm shrink-0 overflow-hidden">
                     <Image src={c.logo} alt={c.name} width={40} height={40} className="object-contain" />
                   </div>
                   <div>
-                    <p className="font-bold text-white text-sm group-hover:text-blue-400 transition-colors leading-snug">{c.name}</p>
-                    <p className="text-slate-500 text-[11px] mt-0.5">{t.clientDesc}</p>
+                    <p className="font-bold text-slate-900 text-sm group-hover:text-blue-700 transition-colors leading-snug">{c.name}</p>
+                    <p className="text-slate-400 text-[11px] mt-0.5">{t.clientDesc}</p>
                   </div>
                 </div>
-                <div className="border-t border-white/[0.1] pt-3 space-y-1">
+                <div className="border-t border-slate-200 pt-3 space-y-1">
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400 text-xs">{t.ocrDataLabel}</span>
-                    <span className="text-blue-400 font-bold text-xs">{c.stat}</span>
+                    <span className="text-slate-500 text-xs">{t.ocrDataLabel}</span>
+                    <span className="text-blue-700 font-bold text-xs">{c.stat}</span>
                   </div>
                   {c.times !== null && (
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-400 text-xs">{t.techAppliedLabel}</span>
+                      <span className="text-slate-500 text-xs">{t.techAppliedLabel}</span>
                       <span className="inline-flex items-center gap-1 text-xs font-bold text-white px-2 py-0.5 rounded-full"
                         style={{ background: "linear-gradient(135deg, #1d4ed8, #0ea5e9)" }}>
                         {c.times}{t.timesUnit}
@@ -609,10 +610,10 @@ export default function CompanyPage() {
             ))}
           </div>
 
-          <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <p className="font-bold text-white text-sm mb-1">{t.historyPrompt}</p>
-              <p className="text-slate-400 text-xs">{t.historyDesc}</p>
+              <p className="font-bold text-slate-800 text-sm mb-1">{t.historyPrompt}</p>
+              <p className="text-slate-500 text-xs">{t.historyDesc}</p>
             </div>
             <Link href="/history"
               className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90"
@@ -624,24 +625,24 @@ export default function CompanyPage() {
       </section>
 
       {/* ── 10. 회사 정보 ── */}
-      <section className="py-16 px-6 sm:px-10 border-t border-white/[0.08]" style={{ background: "rgba(7,7,16,0.85)" }}>
+      <section className="py-16 px-6 sm:px-10 bg-slate-50 border-t border-slate-100">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-slate-800/60 text-slate-300 mb-3">COMPANY INFO</span>
-            <h2 className="text-2xl font-black text-white">{t.companyInfoTitle}</h2>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-slate-200 text-slate-600 mb-3">COMPANY INFO</span>
+            <h2 className="text-2xl font-black text-slate-900">{t.companyInfoTitle}</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {t.companyInfoItems.map((item, i) => {
               const Icon = companyInfoIcons[i];
               return (
-                <div key={i} className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.05] border border-white/[0.1]">
-                  <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon size={15} className="text-blue-400" />
+                <div key={i} className="flex items-start gap-4 p-5 rounded-xl bg-white border border-slate-100">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
+                    <Icon size={15} className="text-blue-600" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-slate-500 tracking-wide block mb-0.5">{item.label}</span>
-                    <span className="text-slate-200 text-sm font-medium">{item.value}</span>
+                    <span className="text-xs font-bold text-slate-400 tracking-wide block mb-0.5">{item.label}</span>
+                    <span className="text-slate-800 text-sm font-medium">{item.value}</span>
                   </div>
                 </div>
               );
