@@ -152,85 +152,98 @@ export default function CompanyPage() {
     resize();
     window.addEventListener("resize", resize);
 
-    type Helix = {
-      cx: number;
-      amp: number;
-      freq: number;
-      phase: number;
+    type Star = {
+      angle: number;
+      dist: number;
       speed: number;
-      col1: [number, number, number];
-      col2: [number, number, number];
+      size: number;
+      opacity: number;
+      color: [number, number, number];
     };
 
-    const makeHelices = (): Helix[] => {
-      const w = canvas.width || 1200;
-      return [
-        { cx: w * 0.15, amp: 32, freq: 0.024, phase: 0,    speed: 0.010, col1: [56,189,248],  col2: [6,182,212]   },
-        { cx: w * 0.40, amp: 40, freq: 0.020, phase: 2.1,  speed: 0.007, col1: [52,211,153],  col2: [14,165,233]  },
-        { cx: w * 0.65, amp: 36, freq: 0.026, phase: 4.2,  speed: 0.012, col1: [103,232,249], col2: [56,189,248]  },
-        { cx: w * 0.88, amp: 30, freq: 0.022, phase: 1.0,  speed: 0.009, col1: [6,182,212],   col2: [52,211,153]  },
-      ];
-    };
+    const COLORS: [number, number, number][] = [
+      [255, 255, 255],
+      [200, 235, 255],
+      [150, 210, 255],
+      [180, 245, 255],
+    ];
 
-    let helices = makeHelices();
-    window.addEventListener("resize", () => { helices = makeHelices(); });
+    const COUNT = 280;
 
-    const STEP = 3;
-    const RUNG = 30;
+    const makeStar = (): Star => ({
+      angle:   Math.random() * Math.PI * 2,
+      dist:    Math.random() * 40,
+      speed:   0.6 + Math.random() * 2.2,
+      size:    0.4 + Math.random() * 1.2,
+      opacity: 0.4 + Math.random() * 0.6,
+      color:   COLORS[Math.floor(Math.random() * COLORS.length)],
+    });
 
-    const drawHelix = (h: Helix) => {
-      const [r1, g1, b1] = h.col1;
-      const [r2, g2, b2] = h.col2;
-
-      for (let y = -10; y < canvas.height + 10; y += STEP) {
-        const a1 = y * h.freq + h.phase;
-        const a2 = a1 + Math.PI;
-
-        const x1 = h.cx + Math.cos(a1) * h.amp;
-        const x2 = h.cx + Math.cos(a2) * h.amp;
-
-        const z1 = Math.sin(a1);   // -1 ~ 1 (depth)
-        const z2 = Math.sin(a2);
-
-        const op1 = Math.max(0.04, 0.12 + z1 * 0.20);
-        const op2 = Math.max(0.04, 0.12 + z2 * 0.20);
-        const rad1 = Math.max(0.5, 1.2 + z1 * 1.4);
-        const rad2 = Math.max(0.5, 1.2 + z2 * 1.4);
-
-        // strand 1
-        ctx.beginPath();
-        ctx.arc(x1, y, rad1, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r1},${g1},${b1},${op1})`;
-        ctx.fill();
-
-        // strand 2
-        ctx.beginPath();
-        ctx.arc(x2, y, rad2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r2},${g2},${b2},${op2})`;
-        ctx.fill();
-
-        // rung (cross-link)
-        if (y % RUNG < STEP) {
-          const midZ = (z1 + z2) * 0.5;
-          const rungOp = Math.max(0.03, 0.07 + midZ * 0.08);
-          ctx.beginPath();
-          ctx.moveTo(x1, y);
-          ctx.lineTo(x2, y);
-          ctx.strokeStyle = `rgba(150,230,255,${rungOp})`;
-          ctx.lineWidth = 0.9;
-          ctx.stroke();
-        }
-      }
-    };
+    const stars: Star[] = Array.from({ length: COUNT }, makeStar);
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const h of helices) {
-        drawHelix(h);
-        h.phase += h.speed;
+      // 잔상 효과: 완전 지우지 않고 어둡게 덮어씌움
+      ctx.fillStyle = "rgba(1, 8, 16, 0.18)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const cx = canvas.width  * 0.5;
+      const cy = canvas.height * 0.42;
+
+      for (const s of stars) {
+        const px = cx + Math.cos(s.angle) * s.dist;
+        const py = cy + Math.sin(s.angle) * s.dist;
+
+        // 거리에 따라 크기·투명도 증가
+        const progress = Math.min(s.dist / 600, 1);
+        const r = s.size * (0.3 + progress * 3.5);
+        const op = s.opacity * progress;
+
+        const [rc, gc, bc] = s.color;
+
+        // 꼬리(trail) - 뒤쪽 선
+        const tailLen = s.dist * 0.18;
+        const tx = px - Math.cos(s.angle) * tailLen;
+        const ty = py - Math.sin(s.angle) * tailLen;
+
+        const grad = ctx.createLinearGradient(tx, ty, px, py);
+        grad.addColorStop(0, `rgba(${rc},${gc},${bc},0)`);
+        grad.addColorStop(1, `rgba(${rc},${gc},${bc},${op * 0.85})`);
+        ctx.beginPath();
+        ctx.moveTo(tx, ty);
+        ctx.lineTo(px, py);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = Math.max(0.3, r * 0.5);
+        ctx.stroke();
+
+        // 별 dot
+        if (r > 0.3) {
+          ctx.beginPath();
+          ctx.arc(px, py, r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${rc},${gc},${bc},${op})`;
+          ctx.fill();
+        }
+
+        s.dist += s.speed;
+
+        // 화면 밖으로 나가면 중앙 근처에서 다시 시작
+        const maxDist = Math.sqrt(cx * cx + cy * cy) * 1.6;
+        if (s.dist > maxDist) {
+          s.dist    = Math.random() * 20;
+          s.angle   = Math.random() * Math.PI * 2;
+          s.speed   = 0.6 + Math.random() * 2.2;
+          s.size    = 0.4 + Math.random() * 1.2;
+          s.opacity = 0.4 + Math.random() * 0.6;
+          s.color   = COLORS[Math.floor(Math.random() * COLORS.length)];
+        }
       }
+
       animId = requestAnimationFrame(draw);
     };
+
+    // 첫 프레임: 배경 완전히 채우기
+    ctx.fillStyle = "rgb(1,8,16)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     draw();
     return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
   }, []);
