@@ -47,7 +47,7 @@ const ko = {
     badge:  "회사 소개",
     title:  ["고문헌부터 현대 문서까지,", "인식에서 활용까지", "하나의 플랫폼에서"],
     p1:     "탱고인사이트(Tangoinsight)는 2022년 설립된 AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱(KPO) 전문 기업입니다.",
-    p2:     "딥러닝 기반의 Data-Adaptive OCR을 핵심 기술로, 한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등 50개 이상의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.",
+    p2:     "딥러닝 기반의 Data-Adaptive OCR을 핵심 기술로, 한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등 다수의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.",
     missionPrefix: "미션:",
     missionBody:   '"모든 역사적 기록이 디지털 지식 자산으로" — 아날로그에 잠들어 있는 정보를 누구나 검색하고 활용할 수 있도록 합니다.',
     highlights: [
@@ -683,7 +683,7 @@ const en: typeof ko = {
     badge:  "About Us",
     title:  ["From Ancient to Modern,", "From Recognition to Use —", "One Platform."],
     p1:     "Tangoinsight is an AI-powered document digitization and Knowledge Process Outsourcing (KPO) company founded in 2022.",
-    p2:     "With Data-Adaptive OCR at its core, Tangoinsight achieves 98.7% recognition accuracy even on heritage documents containing Chinese characters, Old Korean, and vertical text — where conventional OCR fails. Over 50 institutions, including the National Library, have adopted our platform to process more than 5 million pages.",
+    p2:     "With Data-Adaptive OCR at its core, Tangoinsight achieves 98.7% recognition accuracy even on heritage documents containing Chinese characters, Old Korean, and vertical text — where conventional OCR fails. Leading institutions including the National Library and universities have adopted our platform to process more than 5 million pages.",
     missionPrefix: "Mission:",
     missionBody:   '"Every Historical Record as a Digital Knowledge Asset" — making information buried in analog records accessible and searchable for everyone.',
     highlights: [
