@@ -152,72 +152,82 @@ export default function CompanyPage() {
     resize();
     window.addEventListener("resize", resize);
 
-    type Shape = {
-      x: number; y: number;
-      vx: number; vy: number;
-      sides: number; size: number;
-      rot: number; rotSpeed: number;
-      opacity: number; strokeOnly: boolean;
-      colorIdx: number;
+    type Helix = {
+      cx: number;
+      amp: number;
+      freq: number;
+      phase: number;
+      speed: number;
+      col1: [number, number, number];
+      col2: [number, number, number];
     };
 
-    const COLORS = [
-      [56, 189, 248],   // sky-400
-      [14, 165, 233],   // sky-500
-      [6, 182, 212],    // cyan-500
-      [52, 211, 153],   // emerald-400
-      [103, 232, 249],  // cyan-300
-    ];
+    const makeHelices = (): Helix[] => {
+      const w = canvas.width || 1200;
+      return [
+        { cx: w * 0.15, amp: 32, freq: 0.024, phase: 0,    speed: 0.010, col1: [56,189,248],  col2: [6,182,212]   },
+        { cx: w * 0.40, amp: 40, freq: 0.020, phase: 2.1,  speed: 0.007, col1: [52,211,153],  col2: [14,165,233]  },
+        { cx: w * 0.65, amp: 36, freq: 0.026, phase: 4.2,  speed: 0.012, col1: [103,232,249], col2: [56,189,248]  },
+        { cx: w * 0.88, amp: 30, freq: 0.022, phase: 1.0,  speed: 0.009, col1: [6,182,212],   col2: [52,211,153]  },
+      ];
+    };
 
-    const shapes: Shape[] = Array.from({ length: 38 }, () => ({
-      x:          Math.random() * (canvas.width  || 1200),
-      y:          Math.random() * (canvas.height || 800),
-      vx:         (Math.random() - 0.5) * 0.28,
-      vy:         (Math.random() - 0.5) * 0.28,
-      sides:      Math.random() < 0.5 ? 6 : 3,
-      size:       22 + Math.random() * 65,
-      rot:        Math.random() * Math.PI * 2,
-      rotSpeed:   (Math.random() - 0.5) * 0.004,
-      opacity:    0.04 + Math.random() * 0.08,
-      strokeOnly: Math.random() < 0.60,
-      colorIdx:   Math.floor(Math.random() * COLORS.length),
-    }));
+    let helices = makeHelices();
+    window.addEventListener("resize", () => { helices = makeHelices(); });
 
-    const drawPolygon = (s: Shape) => {
-      const [r, g, b] = COLORS[s.colorIdx];
-      ctx.save();
-      ctx.translate(s.x, s.y);
-      ctx.rotate(s.rot);
-      ctx.beginPath();
-      for (let i = 0; i < s.sides; i++) {
-        const angle = (Math.PI * 2 / s.sides) * i - Math.PI / 2;
-        const px = Math.cos(angle) * s.size;
-        const py = Math.sin(angle) * s.size;
-        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
-      }
-      ctx.closePath();
-      if (s.strokeOnly) {
-        ctx.strokeStyle = `rgba(${r},${g},${b},${s.opacity * 1.6})`;
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
-      } else {
-        ctx.fillStyle = `rgba(${r},${g},${b},${s.opacity})`;
+    const STEP = 3;
+    const RUNG = 30;
+
+    const drawHelix = (h: Helix) => {
+      const [r1, g1, b1] = h.col1;
+      const [r2, g2, b2] = h.col2;
+
+      for (let y = -10; y < canvas.height + 10; y += STEP) {
+        const a1 = y * h.freq + h.phase;
+        const a2 = a1 + Math.PI;
+
+        const x1 = h.cx + Math.cos(a1) * h.amp;
+        const x2 = h.cx + Math.cos(a2) * h.amp;
+
+        const z1 = Math.sin(a1);   // -1 ~ 1 (depth)
+        const z2 = Math.sin(a2);
+
+        const op1 = Math.max(0.04, 0.12 + z1 * 0.20);
+        const op2 = Math.max(0.04, 0.12 + z2 * 0.20);
+        const rad1 = Math.max(0.5, 1.2 + z1 * 1.4);
+        const rad2 = Math.max(0.5, 1.2 + z2 * 1.4);
+
+        // strand 1
+        ctx.beginPath();
+        ctx.arc(x1, y, rad1, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r1},${g1},${b1},${op1})`;
         ctx.fill();
+
+        // strand 2
+        ctx.beginPath();
+        ctx.arc(x2, y, rad2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r2},${g2},${b2},${op2})`;
+        ctx.fill();
+
+        // rung (cross-link)
+        if (y % RUNG < STEP) {
+          const midZ = (z1 + z2) * 0.5;
+          const rungOp = Math.max(0.03, 0.07 + midZ * 0.08);
+          ctx.beginPath();
+          ctx.moveTo(x1, y);
+          ctx.lineTo(x2, y);
+          ctx.strokeStyle = `rgba(150,230,255,${rungOp})`;
+          ctx.lineWidth = 0.9;
+          ctx.stroke();
+        }
       }
-      ctx.restore();
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const s of shapes) {
-        drawPolygon(s);
-        s.rot += s.rotSpeed;
-        s.x   += s.vx;
-        s.y   += s.vy;
-        if (s.x < -s.size)               s.x = canvas.width  + s.size;
-        else if (s.x > canvas.width  + s.size) s.x = -s.size;
-        if (s.y < -s.size)               s.y = canvas.height + s.size;
-        else if (s.y > canvas.height + s.size) s.y = -s.size;
+      for (const h of helices) {
+        drawHelix(h);
+        h.phase += h.speed;
       }
       animId = requestAnimationFrame(draw);
     };
