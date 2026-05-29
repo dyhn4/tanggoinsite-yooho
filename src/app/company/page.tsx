@@ -189,7 +189,7 @@ export default function CompanyPage() {
       </nav>
 
       {/* ── 1. 히어로 ── */}
-      <section id="company-hero" className="relative min-h-[100vh] flex flex-col justify-center overflow-hidden" style={{ background: "#070710" }}>
+      <section id="company-hero" className="relative isolate min-h-[100vh] flex flex-col justify-center overflow-hidden" style={{ background: "#070710" }}>
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
           <div className="max-w-3xl">
