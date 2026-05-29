@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, Mail, ExternalLink } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
@@ -110,17 +110,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <p>© {currentYear} {t.copyright}</p>
-          <div className="flex items-center gap-4">
-            <span>AI-powered document digitization</span>
-            <a
-              href="https://github.com/dyhn4/tanggoinsite-yooho"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-white transition-colors"
-            >
-              GitHub <ExternalLink size={10} />
-            </a>
-          </div>
+          <span>AI-powered document digitization</span>
         </div>
 
       </div>

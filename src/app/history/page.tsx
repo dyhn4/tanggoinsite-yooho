@@ -229,9 +229,8 @@ export default function HistoryPage() {
         <div className="relative">
           {/* 세로 선 */}
           <div
-            className="absolute top-0 bottom-0 w-[2px]"
+            className="absolute top-0 bottom-0 w-[2px] left-[72px] sm:left-[110px]"
             style={{
-              left: "110px",
               background: "linear-gradient(to bottom, #1d4ed8 0%, #1d4ed8 70%, transparent 100%)",
               opacity: 0.18,
             }}
@@ -242,12 +241,9 @@ export default function HistoryPage() {
               <div key={entry.year} className="relative flex items-start gap-0">
 
                 {/* 연도 */}
-                <div
-                  className="flex-shrink-0 flex flex-col items-end pr-6 pt-3"
-                  style={{ width: "110px" }}
-                >
+                <div className="flex-shrink-0 flex flex-col items-end pr-4 sm:pr-6 pt-3 w-[72px] sm:w-[110px]">
                   <span
-                    className="text-2xl sm:text-3xl font-black tabular-nums"
+                    className="text-xl sm:text-3xl font-black tabular-nums"
                     style={{ color: idx === 0 ? "#1d4ed8" : "#94a3b8", lineHeight: 1 }}
                   >
                     {entry.year}
@@ -297,7 +293,7 @@ export default function HistoryPage() {
           </div>
 
           {/* 종단 */}
-          <div className="flex items-center gap-3 mt-8" style={{ paddingLeft: "122px" }}>
+          <div className="flex items-center gap-3 mt-8 pl-[84px] sm:pl-[122px]">
             <div className="w-2.5 h-2.5 rounded-full bg-slate-300 border border-slate-300" />
             <span className="text-slate-400 text-xs">{t.growthNote}</span>
           </div>

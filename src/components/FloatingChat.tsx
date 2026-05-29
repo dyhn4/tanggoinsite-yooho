@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FloatingChat() {
+  const { lang } = useLanguage();
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
       {/* 말풍선 툴팁 */}
       <div className="bg-white text-slate-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-lg border border-slate-100 whitespace-nowrap animate-bounce-slow">
-        도입 문의하기
+        {lang === "ko" ? "도입 문의하기" : "Contact Us"}
       </div>
 
       {/* 채팅 버튼 → /contact 연결 */}

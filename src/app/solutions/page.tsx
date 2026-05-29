@@ -112,9 +112,9 @@ const solutions: AnySolution[] = [
     id: "tango-pdf", icon: FileText,
     title: "Tango PDF",
     badge: "Plug in Program",
-    bg: "linear-gradient(135deg, #1a1000 0%, #713f12 35%, #a16207 65%, #fbbf24 100%)",
-    orbs: ["rgba(161,98,7,0.55)", "rgba(251,191,36,0.40)", "rgba(253,224,71,0.25)"],
-    accent: "#fbbf24", tag: "amber",
+    bg: "linear-gradient(135deg, #1c0008 0%, #881337 35%, #e11d48 65%, #fb7185 100%)",
+    orbs: ["rgba(225,29,72,0.55)", "rgba(251,113,133,0.40)", "rgba(253,164,175,0.25)"],
+    accent: "#fb7185", tag: "rose",
     featureIcons: ["🔗", "📑", "📖", "🗂️"],
   },
   {
