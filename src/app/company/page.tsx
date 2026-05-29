@@ -163,23 +163,23 @@ export default function CompanyPage() {
 
     const COLORS = [
       [56, 189, 248],   // sky-400
-      [129, 140, 248],  // indigo-400
+      [14, 165, 233],   // sky-500
+      [6, 182, 212],    // cyan-500
       [52, 211, 153],   // emerald-400
-      [248, 113, 133],  // rose-400
-      [196, 181, 253],  // violet-300
+      [103, 232, 249],  // cyan-300
     ];
 
-    const shapes: Shape[] = Array.from({ length: 22 }, () => ({
+    const shapes: Shape[] = Array.from({ length: 38 }, () => ({
       x:          Math.random() * (canvas.width  || 1200),
       y:          Math.random() * (canvas.height || 800),
-      vx:         (Math.random() - 0.5) * 0.3,
-      vy:         (Math.random() - 0.5) * 0.3,
+      vx:         (Math.random() - 0.5) * 0.28,
+      vy:         (Math.random() - 0.5) * 0.28,
       sides:      Math.random() < 0.5 ? 6 : 3,
-      size:       28 + Math.random() * 60,
+      size:       22 + Math.random() * 65,
       rot:        Math.random() * Math.PI * 2,
       rotSpeed:   (Math.random() - 0.5) * 0.004,
-      opacity:    0.06 + Math.random() * 0.10,
-      strokeOnly: Math.random() < 0.55,
+      opacity:    0.04 + Math.random() * 0.08,
+      strokeOnly: Math.random() < 0.60,
       colorIdx:   Math.floor(Math.random() * COLORS.length),
     }));
 
@@ -257,11 +257,11 @@ export default function CompanyPage() {
       {/* ── 1. 히어로 ── */}
       <section
         className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #07101f 0%, #0c1832 50%, #0d1c40 80%, #07101f 100%)" }}
+        style={{ background: "linear-gradient(135deg, #010810 0%, #03111f 40%, #050d1a 80%, #010810 100%)" }}
       >
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-sky-900/25 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-900/25 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-2/3 left-2/3 w-[300px] h-[300px] bg-emerald-900/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-sky-950/60 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-950/50 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-2/3 left-2/3 w-[300px] h-[300px] bg-blue-950/40 rounded-full blur-3xl pointer-events-none" />
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
