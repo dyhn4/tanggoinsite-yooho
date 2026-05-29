@@ -93,7 +93,7 @@ export default function FaqPage() {
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <div className="h-px w-8 bg-blue-400/60" />
-            <span className="text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">Support</span>
+            <span className="text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">{t.heroBadge}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3" style={{ letterSpacing: "-0.01em" }}>{t.heroTitle}</h1>
           <p className="text-slate-400 text-sm font-normal">{t.heroSubtitle}</p>

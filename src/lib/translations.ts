@@ -26,7 +26,7 @@ const ko = {
 
   // ── HERO ────────────────────────────────────
   hero: {
-    badge:      "AI Heritage Document Intelligence",
+    badge:      "고문헌 AI 인텔리전스",
     title:      ["고문헌을 읽는", "차세대 AI OCR", "플랫폼"],
     desc:       "한자, 고문헌, 현대 문서를 AI가 정밀하게 인식하고 구조화합니다. 탱고인사이트는 역사적 자료를 검색 가능한 디지털 지식 자산으로 전환합니다.",
     cta1:       "도입 문의하기",
@@ -44,7 +44,7 @@ const ko = {
 
   // ── ABOUT ───────────────────────────────────
   about: {
-    badge:  "About Us",
+    badge:  "회사 소개",
     title:  ["고문헌부터 현대 문서까지,", "인식에서 활용까지", "하나의 플랫폼에서"],
     p1:     "탱고인사이트(Tangoinsight)는 2022년 설립된 AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱(KPO) 전문 기업입니다.",
     p2:     "딥러닝 기반의 Data-Adaptive OCR을 핵심 기술로, 한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등 50개 이상의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.",
@@ -99,7 +99,7 @@ const ko = {
 
   // ── TECHNOLOGY ──────────────────────────────
   technology: {
-    badge:        "Solution",
+    badge:        "솔루션",
     title:        "솔루션",
     subtitle:     "문서 디지털화 전 과정을 커버하는 7가지 전문 솔루션",
     workflowBadge:"Plug in Program",
@@ -325,7 +325,7 @@ const ko = {
     heroBadge:    "Contact",
     heroTitle:    "문의하기",
     heroSubtitle: "전문 컨설턴트가 맞춤 솔루션을 제안해 드립니다.",
-    sectionBadge: "Contact",
+    sectionBadge: "문의하기",
     sectionTitle: "문의하기",
     sectionDesc:  "문서 디지털화 도입을 고민하고 계신가요? 전문 컨설턴트가 맞춤 솔루션을 제안해 드립니다.",
     infoTitle:    "연락처 정보",
@@ -351,6 +351,7 @@ const ko = {
   // ── FAQ PAGE (/faq) ──────────────────────────
   faqPage: {
     backHome:     "홈으로",
+    heroBadge:    "고객 지원",
     heroTitle:    "FAQ",
     heroSubtitle: "자주 묻는 질문을 확인해 보세요.",
     noResults:    "해당 카테고리에 등록된 FAQ가 없습니다.",
@@ -532,6 +533,7 @@ const ko = {
   // ── COMPANY PAGE (/company) ──────────────────
   companyPage: {
     backHome:         "홈으로",
+    heroBadge:        "회사 개요",
     contactBtn:       "문의하기",
     heroDesc:         "2022년 설립된 AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱(KPO) 전문 기업입니다. 딥러닝 기반 Data-Adaptive OCR 기술로 고문헌·현대자료의 전자화를 이끌며, 국내 최다 실적 AI OCR 사례를 보유하고 있습니다.",
     heroCtaConsult:   "도입 문의",
@@ -976,6 +978,7 @@ const en: typeof ko = {
   // ── FAQ PAGE (/faq) ──────────────────────────
   faqPage: {
     backHome:     "Home",
+    heroBadge:    "Support",
     heroTitle:    "FAQ",
     heroSubtitle: "Find answers to commonly asked questions.",
     noResults:    "No FAQs found in this category.",
@@ -1157,6 +1160,7 @@ const en: typeof ko = {
   // ── COMPANY PAGE (/company) ──────────────────
   companyPage: {
     backHome:         "Home",
+    heroBadge:        "Company Overview",
     contactBtn:       "Contact Us",
     heroDesc:         "An AI-powered document digitization and Knowledge Process Outsourcing (KPO) company founded in 2022. Leading the digitization of heritage and modern materials with deep learning-based Data-Adaptive OCR technology, we hold Korea's most extensive AI OCR project track record.",
     heroCtaConsult:   "Get Consultation",

@@ -268,7 +268,7 @@ export default function CompanyPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/12 border border-blue-400/25 text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
               <Building2 size={13} />
-              Company Overview
+              {t.heroBadge}
             </div>
 
             <h1 className="text-5xl sm:text-7xl font-black text-white mb-4 leading-none tracking-tight"
