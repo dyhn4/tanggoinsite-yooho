@@ -152,98 +152,75 @@ export default function CompanyPage() {
     resize();
     window.addEventListener("resize", resize);
 
-    type Star = {
-      angle: number;
-      dist: number;
-      speed: number;
-      size: number;
-      opacity: number;
-      color: [number, number, number];
+    type Shape = {
+      x: number; y: number;
+      vx: number; vy: number;
+      sides: number; size: number;
+      rot: number; rotSpeed: number;
+      opacity: number; strokeOnly: boolean;
+      colorIdx: number;
     };
 
-    const COLORS: [number, number, number][] = [
-      [255, 255, 255],
-      [200, 235, 255],
-      [150, 210, 255],
-      [180, 245, 255],
+    const COLORS = [
+      [56, 189, 248],   // sky-400
+      [129, 140, 248],  // indigo-400
+      [52, 211, 153],   // emerald-400
+      [248, 113, 133],  // rose-400
+      [196, 181, 253],  // violet-300
     ];
 
-    const COUNT = 280;
+    const shapes: Shape[] = Array.from({ length: 22 }, () => ({
+      x:          Math.random() * (canvas.width  || 1200),
+      y:          Math.random() * (canvas.height || 800),
+      vx:         (Math.random() - 0.5) * 0.3,
+      vy:         (Math.random() - 0.5) * 0.3,
+      sides:      Math.random() < 0.5 ? 6 : 3,
+      size:       28 + Math.random() * 60,
+      rot:        Math.random() * Math.PI * 2,
+      rotSpeed:   (Math.random() - 0.5) * 0.004,
+      opacity:    0.06 + Math.random() * 0.10,
+      strokeOnly: Math.random() < 0.55,
+      colorIdx:   Math.floor(Math.random() * COLORS.length),
+    }));
 
-    const makeStar = (): Star => ({
-      angle:   Math.random() * Math.PI * 2,
-      dist:    Math.random() * 40,
-      speed:   0.6 + Math.random() * 2.2,
-      size:    0.4 + Math.random() * 1.2,
-      opacity: 0.4 + Math.random() * 0.6,
-      color:   COLORS[Math.floor(Math.random() * COLORS.length)],
-    });
-
-    const stars: Star[] = Array.from({ length: COUNT }, makeStar);
-
-    const draw = () => {
-      // 잔상 효과: 완전 지우지 않고 어둡게 덮어씌움
-      ctx.fillStyle = "rgba(1, 8, 16, 0.18)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const cx = canvas.width  * 0.5;
-      const cy = canvas.height * 0.42;
-
-      for (const s of stars) {
-        const px = cx + Math.cos(s.angle) * s.dist;
-        const py = cy + Math.sin(s.angle) * s.dist;
-
-        // 거리에 따라 크기·투명도 증가
-        const progress = Math.min(s.dist / 600, 1);
-        const r = s.size * (0.3 + progress * 3.5);
-        const op = s.opacity * progress;
-
-        const [rc, gc, bc] = s.color;
-
-        // 꼬리(trail) - 뒤쪽 선
-        const tailLen = s.dist * 0.18;
-        const tx = px - Math.cos(s.angle) * tailLen;
-        const ty = py - Math.sin(s.angle) * tailLen;
-
-        const grad = ctx.createLinearGradient(tx, ty, px, py);
-        grad.addColorStop(0, `rgba(${rc},${gc},${bc},0)`);
-        grad.addColorStop(1, `rgba(${rc},${gc},${bc},${op * 0.85})`);
-        ctx.beginPath();
-        ctx.moveTo(tx, ty);
-        ctx.lineTo(px, py);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = Math.max(0.3, r * 0.5);
-        ctx.stroke();
-
-        // 별 dot
-        if (r > 0.3) {
-          ctx.beginPath();
-          ctx.arc(px, py, r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${rc},${gc},${bc},${op})`;
-          ctx.fill();
-        }
-
-        s.dist += s.speed;
-
-        // 화면 밖으로 나가면 중앙 근처에서 다시 시작
-        const maxDist = Math.sqrt(cx * cx + cy * cy) * 1.6;
-        if (s.dist > maxDist) {
-          s.dist    = Math.random() * 20;
-          s.angle   = Math.random() * Math.PI * 2;
-          s.speed   = 0.6 + Math.random() * 2.2;
-          s.size    = 0.4 + Math.random() * 1.2;
-          s.opacity = 0.4 + Math.random() * 0.6;
-          s.color   = COLORS[Math.floor(Math.random() * COLORS.length)];
-        }
+    const drawPolygon = (s: Shape) => {
+      const [r, g, b] = COLORS[s.colorIdx];
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      ctx.rotate(s.rot);
+      ctx.beginPath();
+      for (let i = 0; i < s.sides; i++) {
+        const angle = (Math.PI * 2 / s.sides) * i - Math.PI / 2;
+        const px = Math.cos(angle) * s.size;
+        const py = Math.sin(angle) * s.size;
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
       }
-
-      animId = requestAnimationFrame(draw);
+      ctx.closePath();
+      if (s.strokeOnly) {
+        ctx.strokeStyle = `rgba(${r},${g},${b},${s.opacity * 1.6})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = `rgba(${r},${g},${b},${s.opacity})`;
+        ctx.fill();
+      }
+      ctx.restore();
     };
 
-    // 첫 프레임: 배경 완전히 채우기
-    ctx.fillStyle = "rgb(1,8,16)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const s of shapes) {
+        drawPolygon(s);
+        s.rot += s.rotSpeed;
+        s.x   += s.vx;
+        s.y   += s.vy;
+        if (s.x < -s.size)                    s.x = canvas.width  + s.size;
+        else if (s.x > canvas.width  + s.size) s.x = -s.size;
+        if (s.y < -s.size)                    s.y = canvas.height + s.size;
+        else if (s.y > canvas.height + s.size) s.y = -s.size;
+      }
+      animId = requestAnimationFrame(draw);
+    };
     draw();
     return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
   }, []);
@@ -280,11 +257,11 @@ export default function CompanyPage() {
       {/* ── 1. 히어로 ── */}
       <section
         className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #010810 0%, #03111f 40%, #050d1a 80%, #010810 100%)" }}
+        style={{ background: "linear-gradient(135deg, #07101f 0%, #0c1832 50%, #0d1c40 80%, #07101f 100%)" }}
       >
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-sky-950/60 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-950/50 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-2/3 left-2/3 w-[300px] h-[300px] bg-blue-950/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-sky-900/25 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-900/25 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-2/3 left-2/3 w-[300px] h-[300px] bg-emerald-900/15 rounded-full blur-3xl pointer-events-none" />
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
