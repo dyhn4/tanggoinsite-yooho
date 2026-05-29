@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowLeft, ArrowRight, Target,
-  BookOpen, Shield, Zap, Users, Award, Calendar,
+  BookOpen, Shield, Zap, Users, Award, Calendar, Clock,
   Building2, ChevronRight, Sparkles, Globe, Lock,
   Phone, MapPin, Star, FileCheck, CheckCircle2, Trophy,
   Cpu, Database, FileText, Layers,
@@ -126,7 +126,7 @@ const majorProjectsStatic = [
 const heroStatsStatic = [
   { icon: Calendar,  value: "2022"  },
   { icon: Award,     value: "0.964" },
-  { icon: Users,     value: "50+"   },
+  { icon: Clock,     value: "6년+"  },
   { icon: FileCheck, value: "6"     },
 ];
 

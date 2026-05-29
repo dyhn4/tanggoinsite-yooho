@@ -109,7 +109,7 @@ export default function Image() {
           {[
             { value: "98.7%", label: "OCR 인식 정확도" },
             { value: "1M+",   label: "누적 처리 건수"  },
-            { value: "50+",   label: "도입 기관 수"    },
+            { value: "6년+",  label: "사업 수행 연수"   },
           ].map((stat) => (
             <div
               key={stat.label}

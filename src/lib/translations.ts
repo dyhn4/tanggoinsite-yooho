@@ -59,7 +59,7 @@ const ko = {
     statsLabel: "검증된 실적",
     stats: [
       { value: "5M+",   label: "처리 페이지" },
-      { value: "50+",   label: "도입 기관" },
+      { value: "6년+",  label: "사업 수행 연수" },
       { value: "98.7%", label: "인식 정확도" },
     ],
     diff: [
@@ -130,7 +130,7 @@ const ko = {
     processBadge: "Process",
     processTitle: "문서 처리 프로세스",
     statLabel:    "누적 처리 페이지",
-    statSub:      "50+ 기관 · 국립도서관·대학·연구원",
+    statSub:      "국립도서관 · 대학 · 연구원 등",
     bars: [
       { label: "고문헌 인식 정확도", sub: "일반 OCR 대비 3배 향상", value: 98.7, display: "98.7%" },
       { label: "현대 문서 정확도",   sub: "인쇄체 기준",            value: 99.5, display: "99.5%+" },
@@ -191,7 +191,7 @@ const ko = {
     heroDesc:       "스캔 입력부터 AI OCR, 전문가 검수, 최종 납품까지 — 탱고인사이트의 엔드투엔드 서비스로 복잡한 문서 디지털화를 단번에 해결하세요.",
     stats: [
       { value: "5M+",   label: "처리 페이지" },
-      { value: "50+",   label: "도입 기관" },
+      { value: "6년+",  label: "사업 수행 연수" },
       { value: "0.964", label: "평균 F1 Score" },
       { value: "3년",   label: "국립중앙도서관 연속 수주" },
     ],
@@ -238,7 +238,7 @@ const ko = {
     ],
     industryBadge:    "적용 분야",
     industryTitle:    "다양한 기관에서 활용 중",
-    industrySubtitle: "50개 이상의 기관이 탱고인사이트의 서비스로 디지털 전환을 완료했습니다.",
+    industrySubtitle: "탱고인사이트와 함께 디지털 전환을 완료한 기관들입니다.",
     industries: [
       { label: "국가 도서관·문화원", desc: "고문헌 디지털 아카이빙" },
       { label: "대학·연구기관",     desc: "학술 자료 데이터화" },
@@ -541,7 +541,7 @@ const ko = {
     heroStats: [
       { unit: "년 설립", label: "설립연도" },
       { unit: "avg F1",  label: "AI OCR 인식 정확도" },
-      { unit: "개 기관", label: "도입 기관" },
+      { unit: "년+",     label: "사업 수행 연수" },
       { unit: "건 IP",   label: "프로그램 저작권" },
     ],
     missionLabel:    "MISSION",
@@ -612,7 +612,7 @@ const ko = {
     statsItems: [
       { unit: "자", label: "고문헌 AI OCR 누적" },
       { unit: "자", label: "현대자료 AI OCR 누적" },
-      { unit: "곳", label: "도입 기관" },
+      { unit: "년+", label: "사업 수행 연수" },
       { unit: "",   label: "운영 연수" },
     ],
     clientsSectionTitle: "주요 고객사",
@@ -695,7 +695,7 @@ const en: typeof ko = {
     statsLabel: "Proven Track Record",
     stats: [
       { value: "5M+",   label: "Pages Processed" },
-      { value: "50+",   label: "Institutions" },
+      { value: "6+",    label: "Years of Experience" },
       { value: "98.7%", label: "Recognition Accuracy" },
     ],
     diff: [
@@ -762,7 +762,7 @@ const en: typeof ko = {
     processBadge: "Process",
     processTitle: "Document Processing Workflow",
     statLabel:    "Total Pages Processed",
-    statSub:      "50+ institutions · Libraries, Universities, Research Centers",
+    statSub:      "Libraries · Universities · Research Centers",
     bars: [
       { label: "Heritage OCR Accuracy",    sub: "3× better than standard OCR", value: 98.7, display: "98.7%" },
       { label: "Modern Document Accuracy", sub: "Printed text baseline",        value: 99.5, display: "99.5%+" },
@@ -820,7 +820,7 @@ const en: typeof ko = {
     heroDesc:       "From scanning to AI OCR, expert review, and final delivery — solve complex document digitization challenges in one go with Tangoinsight's end-to-end service.",
     stats: [
       { value: "5M+",   label: "Pages Processed" },
-      { value: "50+",   label: "Institutions" },
+      { value: "6+",    label: "Years of Experience" },
       { value: "0.964", label: "Avg. F1 Score" },
       { value: "3 yrs", label: "NLK Consecutive Awards" },
     ],
@@ -867,7 +867,7 @@ const en: typeof ko = {
     ],
     industryBadge:    "Industries",
     industryTitle:    "Trusted Across Sectors",
-    industrySubtitle: "Over 50 institutions have completed digital transformation with Tangoinsight.",
+    industrySubtitle: "Institutions that have completed digital transformation with Tangoinsight.",
     industries: [
       { label: "National Libraries & Archives", desc: "Heritage digital archiving" },
       { label: "Universities & Research",       desc: "Academic material digitization" },
@@ -1168,7 +1168,7 @@ const en: typeof ko = {
     heroStats: [
       { unit: "Founded", label: "Established" },
       { unit: "avg F1",  label: "AI OCR Accuracy" },
-      { unit: "Institutions", label: "Clients" },
+      { unit: "yrs+", label: "Years of Experience" },
       { unit: "IP Assets",    label: "Program Copyrights" },
     ],
     missionLabel:    "MISSION",
