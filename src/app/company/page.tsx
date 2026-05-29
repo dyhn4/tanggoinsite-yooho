@@ -191,6 +191,26 @@ export default function CompanyPage() {
       {/* ── 1. 히어로 ── */}
       <section id="company-hero" className="relative isolate min-h-[100vh] flex flex-col justify-center overflow-hidden" style={{ background: "#070710" }}>
 
+        {/* 코너 글로우 */}
+        <div className="absolute -top-32 -left-32 w-[700px] h-[700px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(124,92,255,0.13) 0%, transparent 60%)" }} />
+        <div className="absolute -bottom-32 -right-32 w-[700px] h-[700px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(77,124,255,0.11) 0%, transparent 60%)" }} />
+        <div className="absolute top-1/4 -right-20 w-[480px] h-[480px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(63,182,255,0.08) 0%, transparent 60%)" }} />
+
+        {/* 별 필드 */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px)", backgroundSize: "80px 80px", opacity: 0.2 }} />
+
+        {/* 오비탈 링 */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+          style={{ width: "510px", height: "510px", border: "1px solid rgba(124,92,255,0.12)" }} />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+          style={{ width: "730px", height: "730px", border: "1px solid rgba(77,124,255,0.08)" }} />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+          style={{ width: "950px", height: "950px", border: "1px solid rgba(63,182,255,0.05)" }} />
+
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/12 border border-blue-400/25 text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-6">
