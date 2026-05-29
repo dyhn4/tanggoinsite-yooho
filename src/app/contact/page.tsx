@@ -3,8 +3,13 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Contact from "@/components/Contact";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function ContactPage() {
+  const { lang } = useLanguage();
+  const t = translations[lang].contact;
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* 상단 헤더 바 */}
@@ -18,7 +23,7 @@ export default function ContactPage() {
             className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-700 transition-colors text-sm font-medium group"
           >
             <ArrowLeft size={15} className="group-hover:-translate-x-0.5 transition-transform" />
-            홈으로
+            {t.backHome}
           </Link>
           <span
             className="text-base font-black tracking-tight"
@@ -37,10 +42,10 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <div className="h-px w-8 bg-blue-400/60" />
-            <span className="text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">Contact</span>
+            <span className="text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">{t.heroBadge}</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-white mb-3">문의하기</h1>
-          <p className="text-slate-400 text-sm">전문 컨설턴트가 맞춤 솔루션을 제안해 드립니다.</p>
+          <h1 className="text-3xl sm:text-4xl font-black text-white mb-3">{t.heroTitle}</h1>
+          <p className="text-slate-400 text-sm">{t.heroSubtitle}</p>
         </div>
       </div>
 

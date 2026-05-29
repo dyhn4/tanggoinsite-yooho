@@ -3,19 +3,27 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const CHARS = "訓民正音國語文字不相流通愚民有所欲言終得伸情者多矣予爲此憫然新制二十八字覽者易習便於日用耳".split("");
 
 const timeline = [
+  {
+    year: 2026,
+    items: [
+      "고문헌(근대자료) 원문 텍스트 데이터베이스 구축사업(수행 중)",
+    ],
+  },
   {
     year: 2025,
     items: [
       "고문헌(근대자료) 원문 텍스트 데이터베이스 구축사업",
       "디지털화 원문(현대자료) AI 텍스트 데이터 구축사업",
       "시각장애인용 대체자료 기본장서 제작사업",
-      "문화예술자료 디지털화 구축사업",
+      "문화예술자료 디지털화 및 지식정보자원 공유기반 구축 사업",
       "국립도서관 원문DB 구축사업(DB III)",
-      "단행자료 디지털화 구축사업",
+      "단행자료 디지털화 및 지식정보자원 공유기반 구축 사업",
     ],
   },
   {
@@ -24,38 +32,48 @@ const timeline = [
       "고문헌(근대자료) 원문 텍스트 데이터베이스 구축사업",
       "기본장서 텍스트 데이터베이스 구축 연구용역",
       "국립도서관 원문DB 구축사업(DB II)",
-      "문화예술자료 디지털화 구축사업",
-      "단행자료 디지털화 구축사업",
+      "문화예술자료 디지털화 및 지식정보자원 공유기반 구축 사업",
+      "단행자료 디지털화 및 지식정보자원 공유기반 구축 사업",
+      "행정안전부 대통령기록관 비전자대통령 기록물 전자화 사업",
     ],
   },
   {
     year: 2023,
     items: [
       "고문헌(근대자료) 원문 텍스트 데이터베이스 구축사업",
-      "고문헌문화예술 자료 디지털화 구축사업",
+      "고문헌·문화예술 자료 디지털화 및 지식정보자원 공유기반 구축 사업",
       "인공지능 기반 고문헌 필사본 텍스트구축 연구용역 사업",
-      "연속간행물 자료 디지털화 구축사업",
-      "현대간행물 자료 디지털화 구축사업",
+      "연속간행물 자료 디지털화 및 지식정보자원 공유기반 구축 사업",
+      "현대간행물 자료 디지털화 및 지식정보자원 공유기반 구축 사업",
+      "국회도서관 원문DB 구축사업(II)",
     ],
   },
   {
     year: 2022,
     items: [
-      "국립도서관 원문DB 구축사업(DB I, II)",
-      "연속간행물 자료 디지털화 구축사업",
-      "현대간행물 자료 디지털화 구축사업",
+      "2022년도 국회도서관 원문DB 구축사업(DBIII)",
+      "2022년도 국회도서관 원문DB 구축사업(DBII)",
+      "2022년도 국회도서관 원문DB 구축사업(I)",
+      "2022년 연속간행물 자료 디지털화 및 지식정보자원 공유기반 구축 사업",
+      "2022년 현대간행물 자료 디지털화 및 지식정보자원 공유기반 구축 사업",
     ],
   },
   {
     year: 2021,
     items: [
-      "국립도서관 원문DB 구축사업(DB I, II, III)",
-      "현대간행물 자료 디지털화 구축사업",
+      "2021년도 국회도서관 원문DB 구축사업(DBIII)",
+      "2021년도 국회도서관 원문DB 구축사업(DBII)",
+      "2021년도 국회도서관 원문DB 구축사업(DBI)",
+      "2021년 현대간행물 자료 디지털화 및 지식정보자원 공유기반 구축 사업",
     ],
   },
   {
     year: 2020,
-    items: ["국립도서관 원문DB 구축사업(DB I, II, III)"],
+    items: [
+      "2020년도 국회도서관 원문DB 구축사업(DBIII)",
+      "2020년도 국회도서관 원문DB 구축사업(DBII)",
+      "2020년도 국회도서관 원문DB 구축사업(DBI)",
+    ],
   },
 ];
 
@@ -90,6 +108,8 @@ function makeParticle(w: number, h: number, randomY = false): Particle {
 }
 
 export default function HistoryPage() {
+  const { lang } = useLanguage();
+  const t = translations[lang].historyPage;
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -177,7 +197,7 @@ export default function HistoryPage() {
             className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-700 transition-colors text-sm font-medium group"
           >
             <ArrowLeft size={15} className="group-hover:-translate-x-0.5 transition-transform" />
-            홈으로
+            {t.backHome}
           </Link>
           <span
             className="text-base font-black tracking-tight"
@@ -195,14 +215,13 @@ export default function HistoryPage() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-4">
             <div className="h-px w-10 bg-blue-700" />
-            <span className="text-blue-700 font-bold text-xs tracking-[0.2em] uppercase">History</span>
+            <span className="text-blue-700 font-bold text-xs tracking-[0.2em] uppercase">{t.heroLabel}</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight mb-4">
-            디지털 원문 구축<br />수행 실적 연혁
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight mb-4" style={{ whiteSpace: "pre-line" }}>
+            {t.heroTitle}
           </h1>
           <p className="text-slate-500 text-sm leading-relaxed max-w-md">
-            MooN AI OCR 기술을 기반으로 고문헌부터 현대 자료까지,
-            다양한 기록물의 디지털화 사업을 성공적으로 수행해 왔습니다.
+            {t.heroDesc}
           </p>
         </div>
 
@@ -280,13 +299,13 @@ export default function HistoryPage() {
           {/* 종단 */}
           <div className="flex items-center gap-3 mt-8" style={{ paddingLeft: "122px" }}>
             <div className="w-2.5 h-2.5 rounded-full bg-slate-300 border border-slate-300" />
-            <span className="text-slate-400 text-xs">2020년 이후 꾸준히 성장 중</span>
+            <span className="text-slate-400 text-xs">{t.growthNote}</span>
           </div>
         </div>
 
         {/* 고객사 */}
         <div className="mt-16 pt-10 border-t border-slate-200">
-          <p className="text-xs font-semibold text-slate-400 tracking-widest uppercase mb-4">주요 고객사</p>
+          <p className="text-xs font-semibold text-slate-400 tracking-widest uppercase mb-4">{t.clientsLabel}</p>
           <div className="flex flex-wrap gap-3">
             {["국회도서관", "국립중앙도서관", "국립장애인도서관", "행정안전부"].map((c) => (
               <span
