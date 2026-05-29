@@ -82,8 +82,8 @@ const clients = [
 const statsStatic: { value: number; numSize: string; suffix?: string }[] = [
   { value: 36230147,  numSize: "text-2xl xl:text-3xl" },
   { value: 260245890, numSize: "text-2xl xl:text-3xl" },
-  { value: 6,         numSize: "text-5xl xl:text-6xl" },
-  { value: 6,         numSize: "text-5xl xl:text-6xl" },
+  { value: 4,         numSize: "text-5xl xl:text-6xl" },
+  { value: 7,         numSize: "text-5xl xl:text-6xl" },
 ];
 
 const certificationsStatic = [
@@ -125,7 +125,7 @@ const majorProjectsStatic = [
 
 const heroStatsStatic = [
   { icon: Calendar,  value: "2022"  },
-  { icon: Award,     value: "0.964" },
+  { icon: Award,     value: "0.958" },
   { icon: Clock,     value: "6년+"  },
   { icon: FileCheck, value: "6"     },
 ];
