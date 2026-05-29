@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
   ArrowLeft, GitBranch, PenLine, ScanSearch, Braces,
-  Layers, Newspaper, BrainCircuit, ChevronRight, Check,
+  Layers, FileText, BrainCircuit, ChevronRight, Check,
   Briefcase, ShieldCheck, BookOpen, ClipboardCheck, Package, Settings,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -39,12 +39,12 @@ type EditorSol    = SolBase & { kind: "editor";    featureIcons: string[]; ocrSt
 type OcrSol       = SolBase & { kind: "ocr";       f1Score: string; ocrSteps: OcrStep[] };
 type XmlSol       = SolBase & { kind: "xml";       featureIcons: string[] };
 type BatchSol     = SolBase & { kind: "batch";     outputIcons: string[] };
-type ArticloSol   = SolBase & { kind: "articlo";   featureIcons: string[] };
+type PdfSol       = SolBase & { kind: "pdf";       featureIcons: string[] };
 type ExplorerSol  = SolBase & { kind: "explorer";  capabilityIcons: string[] };
 
 type AnySolution =
   | WorkflowSol | EditorSol | OcrSol | XmlSol
-  | BatchSol | ArticloSol | ExplorerSol;
+  | BatchSol | PdfSol | ExplorerSol;
 
 /* ─────────────────────────────────────────────
    정적 메타 (아이콘·색상·시각 데이터만)
@@ -70,7 +70,7 @@ const solutions: AnySolution[] = [
     bg: "linear-gradient(135deg, #1a0533 0%, #4c1d95 35%, #7c3aed 65%, #a855f7 100%)",
     orbs: ["rgba(124,58,237,0.55)", "rgba(168,85,247,0.40)", "rgba(196,181,253,0.20)"],
     accent: "#c084fc", tag: "violet",
-    featureIcons: ["🔍", "🎯", "✏️", "📝"],
+    featureIcons: ["🔍", "🎯", "✏️", "📝", "🗂️"],
   },
   {
     kind: "ocr",
@@ -105,17 +105,17 @@ const solutions: AnySolution[] = [
     bg: "linear-gradient(135deg, #2d0f00 0%, #7c2d12 35%, #c2410c 65%, #fb923c 100%)",
     orbs: ["rgba(194,65,12,0.55)", "rgba(251,146,60,0.40)", "rgba(253,186,116,0.25)"],
     accent: "#fb923c", tag: "orange",
-    outputIcons: ["📊", "🖼️", "📑", "📚", "📈"],
+    outputIcons: ["📊", "🖼️", "📑", "📚", "📈", "📰", "⚖️"],
   },
   {
-    kind: "articlo",
-    id: "tango-articlo", icon: Newspaper,
-    title: "Tango Articlo",
+    kind: "pdf",
+    id: "tango-pdf", icon: FileText,
+    title: "Tango PDF",
     badge: "Plug in Program",
-    bg: "linear-gradient(135deg, #2d0010 0%, #881337 35%, #be123c 65%, #fb7185 100%)",
-    orbs: ["rgba(190,18,60,0.55)", "rgba(251,113,133,0.40)", "rgba(253,164,175,0.25)"],
-    accent: "#fb7185", tag: "rose",
-    featureIcons: ["📰", "🖼️", "📂", "⚖️"],
+    bg: "linear-gradient(135deg, #1a1000 0%, #713f12 35%, #a16207 65%, #fbbf24 100%)",
+    orbs: ["rgba(161,98,7,0.55)", "rgba(251,191,36,0.40)", "rgba(253,224,71,0.25)"],
+    accent: "#fbbf24", tag: "amber",
+    featureIcons: ["🔗", "📑", "📖", "🗂️"],
   },
   {
     kind: "explorer",
@@ -344,7 +344,7 @@ function SectionContent({ sol, tSol, labels }: { sol: AnySolution; tSol: TSol; l
     );
   }
 
-  if (sol.kind === "articlo") {
+  if (sol.kind === "pdf") {
     return (
       <div>
         <SectionLabel accent={accent}>{labels.featuresLabel}</SectionLabel>
