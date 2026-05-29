@@ -152,41 +152,72 @@ export default function CompanyPage() {
     resize();
     window.addEventListener("resize", resize);
 
-    const COUNT = 80;
-    type P = { x:number; y:number; vx:number; vy:number; r:number; o:number };
-    const pts: P[] = Array.from({ length: COUNT }, () => ({
-      x:  Math.random() * canvas.width,
-      y:  Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      r:  Math.random() * 1.8 + 0.8,
-      o:  Math.random() * 0.5 + 0.15,
+    type Shape = {
+      x: number; y: number;
+      vx: number; vy: number;
+      sides: number; size: number;
+      rot: number; rotSpeed: number;
+      opacity: number; strokeOnly: boolean;
+      colorIdx: number;
+    };
+
+    const COLORS = [
+      [56, 189, 248],   // sky-400
+      [129, 140, 248],  // indigo-400
+      [52, 211, 153],   // emerald-400
+      [248, 113, 133],  // rose-400
+      [196, 181, 253],  // violet-300
+    ];
+
+    const shapes: Shape[] = Array.from({ length: 22 }, () => ({
+      x:          Math.random() * (canvas.width  || 1200),
+      y:          Math.random() * (canvas.height || 800),
+      vx:         (Math.random() - 0.5) * 0.3,
+      vy:         (Math.random() - 0.5) * 0.3,
+      sides:      Math.random() < 0.5 ? 6 : 3,
+      size:       28 + Math.random() * 60,
+      rot:        Math.random() * Math.PI * 2,
+      rotSpeed:   (Math.random() - 0.5) * 0.004,
+      opacity:    0.06 + Math.random() * 0.10,
+      strokeOnly: Math.random() < 0.55,
+      colorIdx:   Math.floor(Math.random() * COLORS.length),
     }));
+
+    const drawPolygon = (s: Shape) => {
+      const [r, g, b] = COLORS[s.colorIdx];
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      ctx.rotate(s.rot);
+      ctx.beginPath();
+      for (let i = 0; i < s.sides; i++) {
+        const angle = (Math.PI * 2 / s.sides) * i - Math.PI / 2;
+        const px = Math.cos(angle) * s.size;
+        const py = Math.sin(angle) * s.size;
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      if (s.strokeOnly) {
+        ctx.strokeStyle = `rgba(${r},${g},${b},${s.opacity * 1.6})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = `rgba(${r},${g},${b},${s.opacity})`;
+        ctx.fill();
+      }
+      ctx.restore();
+    };
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-          const d  = Math.sqrt(dx * dx + dy * dy);
-          if (d < 110) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(99,179,237,${(1 - d / 110) * 0.25})`;
-            ctx.lineWidth = 0.7;
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      for (const p of pts) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(147,210,250,${p.o})`;
-        ctx.fill();
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      for (const s of shapes) {
+        drawPolygon(s);
+        s.rot += s.rotSpeed;
+        s.x   += s.vx;
+        s.y   += s.vy;
+        if (s.x < -s.size)               s.x = canvas.width  + s.size;
+        else if (s.x > canvas.width  + s.size) s.x = -s.size;
+        if (s.y < -s.size)               s.y = canvas.height + s.size;
+        else if (s.y > canvas.height + s.size) s.y = -s.size;
       }
       animId = requestAnimationFrame(draw);
     };
@@ -226,10 +257,11 @@ export default function CompanyPage() {
       {/* ── 1. 히어로 ── */}
       <section
         className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #0f172a 0%, #0c1a35 50%, #0e1f45 80%, #0f172a 100%)" }}
+        style={{ background: "linear-gradient(135deg, #07101f 0%, #0c1832 50%, #0d1c40 80%, #07101f 100%)" }}
       >
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-900/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-sky-900/25 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-900/25 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-2/3 left-2/3 w-[300px] h-[300px] bg-emerald-900/15 rounded-full blur-3xl pointer-events-none" />
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto px-6 sm:px-10 py-20 w-full">
