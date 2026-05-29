@@ -105,7 +105,7 @@ const solutions: AnySolution[] = [
     bg: "linear-gradient(135deg, #2d0f00 0%, #7c2d12 35%, #c2410c 65%, #fb923c 100%)",
     orbs: ["rgba(194,65,12,0.55)", "rgba(251,146,60,0.40)", "rgba(253,186,116,0.25)"],
     accent: "#fb923c", tag: "orange",
-    outputIcons: ["📊", "🖼️", "📑", "📚", "📈", "📰", "⚖️"],
+    outputIcons: ["📊", "🖼️", "📑", "📚", "📈", "📰"],
   },
   {
     kind: "pdf",
