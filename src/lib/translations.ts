@@ -101,7 +101,7 @@ const ko = {
   technology: {
     badge:        "솔루션",
     title:        "솔루션",
-    subtitle:     "문서 디지털화 전 과정을 커버하는 7가지 전문 솔루션",
+    subtitle:     "문서 디지털화 전 과정을 커버하는 8가지 전문 솔루션",
     workflowBadge:"Plug in Program",
     workflowTitle:"Tango Workflow",
     workflowDesc: "모든 솔루션을 연결하는 통합 워크플로우 관리 시스템",
@@ -115,10 +115,11 @@ const ko = {
     solutions: [
       { features: ["텍스트 자동 교정·교열", "자동 문단 정제", "표·그림·메타데이터 구축/점검", "MooN파일 추출"] },
       { features: ["딥러닝 기반 Data-Adaptive OCR 엔진", "고문서·타자체·필기체 90%+ 인식률", "자기학습으로 엔진 성능 자동 업데이트", "OCR PDF 및 데이터셋(JSON/XML) 생성"] },
+      { features: ["Vision-Language Model(VLM) 기반", "텍스트·이미지 멀티모달 AI 처리", "이미지 인식·설명·질의응답", "아카이브 관리 및 데이터 탐색"] },
+      { features: ["OCR 인식 후 목차 이미지 자동 연결", "TOC(목차) 입력 및 검수 기능", "TOC 적용된 북마크 PDF 생성", "다중 목차 선택 및 단계 조정"] },
       { features: ["XML 구조화 파일 변환", "자동 XML Tagging 지원", "의미기반 JSON 파일 변환"] },
       { features: ["결과물 XML·JSON·TXT 생성", "표·이미지, 글자 이미지 추출", "Hidden Text PDF 생성", "서지 정보 목록 추출 및 통계"] },
-      { features: ["OCR 인식 후 목차 이미지 자동 연결", "TOC(목차) 입력 및 검수 기능", "TOC 적용된 북마크 PDF 생성", "다중 목차 선택 및 단계 조정"] },
-      { features: ["Vision-Language Model(VLM) 기반", "텍스트·이미지 멀티모달 AI 처리", "이미지 인식·설명·질의응답", "아카이브 관리 및 데이터 탐색"] },
+      { features: ["자동 기울기보정 및 배경/외곽 삭제", "컬러(JPEG)/회색(TIFF) 자동 선별", "자동 센터링·중앙정렬 및 리사이즈", "잡티 제거 및 단면자르기"] },
     ],
   },
 
@@ -733,7 +734,7 @@ const en: typeof ko = {
   technology: {
     badge:        "Solution",
     title:        "Solutions",
-    subtitle:     "7 specialized solutions covering the entire document digitization workflow",
+    subtitle:     "8 specialized solutions covering the entire document digitization workflow",
     workflowBadge:"Plug in Program",
     workflowTitle:"Tango Workflow",
     workflowDesc: "Integrated workflow management system connecting all solutions",
@@ -747,10 +748,11 @@ const en: typeof ko = {
     solutions: [
       { features: ["Auto text correction & proofreading", "Auto paragraph refinement", "Table, image & metadata review", "MooN file export"] },
       { features: ["Deep learning Data-Adaptive OCR engine", "90%+ accuracy on heritage, typed & handwritten", "Self-learning engine auto-updates", "OCR PDF & dataset (JSON/XML) generation"] },
+      { features: ["Vision-Language Model (VLM) based", "Text & image multimodal AI processing", "Image recognition, description & Q&A", "Archive management & data exploration"] },
+      { features: ["Auto-link TOC images after OCR", "TOC input and verification interface", "Bookmark PDF generation with TOC applied", "Multi-level TOC selection and hierarchy adjustment"] },
       { features: ["XML structured file conversion", "Automatic XML tagging", "Semantic JSON file conversion"] },
       { features: ["Output XML·JSON·TXT generation", "Table, image & character image extraction", "Hidden Text PDF generation", "Bibliography extraction & statistics"] },
-      { features: ["Auto-link TOC images after OCR", "TOC input and verification interface", "Bookmark PDF generation with TOC applied", "Multi-level TOC selection and hierarchy adjustment"] },
-      { features: ["Vision-Language Model (VLM) based", "Text & image multimodal AI processing", "Image recognition, description & Q&A", "Archive management & data exploration"] },
+      { features: ["Auto skew correction & background/edge removal", "Auto color(JPEG)/grayscale(TIFF) sort", "Auto centering, alignment & resize", "Noise removal & page cropping"] },
     ],
   },
 
