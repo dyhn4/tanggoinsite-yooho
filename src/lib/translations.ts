@@ -47,7 +47,7 @@ const ko = {
     badge:  "회사 소개",
     title:  ["고문헌부터 현대 문서까지,", "인식에서 활용까지", "하나의 플랫폼에서"],
     p1:     "탱고인사이트(Tangoinsight)는 2022년 설립된 AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱(KPO) 전문 기업입니다.",
-    p2:     "딥러닝 기반의 Data-Adaptive OCR을 핵심 기술로, 한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등 다수의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.",
+    p2:     "AI 학습 기반의 Data-Adaptive OCR을 핵심 기술로, 한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등 다수의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.",
     missionPrefix: "미션:",
     missionBody:   '"모든 역사적 기록이 디지털 지식 자산으로" — 아날로그에 잠들어 있는 정보를 누구나 검색하고 활용할 수 있도록 합니다.',
     highlights: [
@@ -63,7 +63,7 @@ const ko = {
       { value: "98.7%", label: "인식 정확도" },
     ],
     diff: [
-      { title: "고문헌 특화 AI",    desc: "일반 OCR이 포기하는 한자·옛한글·필사체를 98.7% 정확도로 인식. 딥러닝이 자료 특성에 스스로 적응합니다." },
+      { title: "고문헌 특화 AI",    desc: "일반 OCR이 포기하는 한자·옛한글·필사체를 98.7% 정확도로 인식. AI 학습으로 자료 특성에 스스로 적응합니다." },
       { title: "엔드투엔드 서비스", desc: "스캔 입력 → AI OCR → 전문가 검수 → 납품까지 단일 플랫폼에서 완결. 별도 솔루션 없이 바로 활용 가능합니다." },
       { title: "자기학습 엔진",     desc: "처리할수록 더 정확해지는 Data-Adaptive OCR. 기관별 자료 특성에 맞춰 지속적으로 성능이 향상됩니다." },
     ],
@@ -88,7 +88,7 @@ const ko = {
     title:    "고문헌 특화 AI 기술",
     subtitle: "한자, 옛한글, 활자본까지 정확하게 인식하는 전문 OCR 기술. 인식부터 편집, 데이터 활용까지 하나의 플랫폼에서 해결합니다.",
     items: [
-      { title: "고문헌 특화 OCR",     desc: "한자, 활자본까지 인식합니다. 딥러닝 기반 Data-Adaptive OCR로 일반 OCR 대비 정확도 3배 향상. 옛한글·세로쓰기·인쇄체·필사체 모두 지원합니다.", tags: ["한자 인식", "옛한글", "필사체", "세로쓰기"] },
+      { title: "고문헌 특화 OCR",     desc: "한자, 활자본까지 인식합니다. AI 학습 기반 Data-Adaptive OCR로 일반 OCR 대비 정확도 3배 향상. 옛한글·세로쓰기·인쇄체·필사체 모두 지원합니다.", tags: ["한자 인식", "옛한글", "필사체", "세로쓰기"] },
       { title: "인터랙티브 웹 편집",   desc: "웹에서 바로 인식 결과를 수정하고, 원본 레이아웃을 유지한 PDF로 저장합니다. 별도 프로그램 설치 없이 브라우저에서 전문가 검수까지 완료할 수 있습니다.", tags: ["웹 기반 편집", "PDF 저장", "레이아웃 보존"] },
       { title: "스마트 데이터 추출",   desc: "표와 이미지를 자동으로 분리하여 Excel·CSV로 변환합니다. 고문헌 속 수치·통계 데이터를 즉시 연구에 활용 가능한 형태로 구조화합니다.", tags: ["Excel/CSV 변환", "표 자동 분리", "데이터 구조화"] },
       { title: "AI 문서 대화",         desc: "인식된 문서에 질문하고, 번역하고, 요약하는 AI 어시스턴트. 방대한 고문헌 자료에서 필요한 정보를 대화하듯 찾아냅니다.", tags: ["문서 QA", "자동 번역", "자동 요약"] },
@@ -114,7 +114,7 @@ const ko = {
     pluginBadge: "Plug in",
     solutions: [
       { features: ["텍스트 자동 교정·교열", "자동 문단 정제", "표·그림·메타데이터 구축/점검", "MooN파일 추출"] },
-      { features: ["딥러닝 기반 Data-Adaptive OCR 엔진", "고문서·타자체·필기체 90%+ 인식률", "자기학습으로 엔진 성능 자동 업데이트", "OCR PDF 및 데이터셋(JSON/XML) 생성"] },
+      { features: ["AI 학습 기반 Data-Adaptive OCR 엔진", "고문서·타자체·필기체 90%+ 인식률", "자기학습으로 엔진 성능 자동 업데이트", "OCR PDF 및 데이터셋(JSON/XML) 생성"] },
       { features: ["Vision-Language Model(VLM) 기반", "텍스트·이미지 멀티모달 AI 처리", "이미지 인식·설명·질의응답", "아카이브 관리 및 데이터 탐색"] },
       { features: ["OCR 인식 후 목차 이미지 자동 연결", "TOC(목차) 입력 및 검수 기능", "TOC 적용된 북마크 PDF 생성", "다중 목차 선택 및 단계 조정"] },
       { features: ["XML 구조화 파일 변환", "자동 XML Tagging 지원", "의미기반 JSON 파일 변환"] },
@@ -126,7 +126,7 @@ const ko = {
   // ── PROCESS ─────────────────────────────────
   process: {
     techBadge:    "기술력",
-    techTitle:    ["딥러닝이 만든", "압도적인 정확도"],
+    techTitle:    ["AI 학습이 만든", "압도적인 정확도"],
     techDesc:     "한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 사용할수록 특정 문서에 최적화되는 Data-Adaptive 학습 엔진이 핵심입니다.",
     processBadge: "Process",
     processTitle: "문서 처리 프로세스",
@@ -210,9 +210,9 @@ const ko = {
     ],
     ocrBadge: "AI OCR 솔루션",
     ocrTitle: "Data-Adaptive OCR",
-    ocrDesc:  "딥러닝이 자료 특성에 스스로 적응하는 AI OCR. API 또는 독립 솔루션으로 제공됩니다.",
+    ocrDesc:  "AI 학습으로 자료 특성에 스스로 적응하는 AI OCR. API 또는 독립 솔루션으로 제공됩니다.",
     ocrItems: [
-      { name: "고문헌 특화 OCR",  desc: "한문·옛한글·세로쓰기·필사체 전용 딥러닝 모델, F1 Score 0.96+" },
+      { name: "고문헌 특화 OCR",  desc: "한문·옛한글·세로쓰기·필사체 전용 AI 학습 모델, F1 Score 0.96+" },
       { name: "현대문서 OCR",     desc: "행정서류·단행본·잡지·신문 등 대용량 고속 처리" },
       { name: "OCR API 연동",     desc: "REST API로 기존 시스템에 즉시 통합 가능한 맞춤형 파이프라인" },
       { name: "On-Premise 구축",  desc: "내부망 보안 환경에서 운영 가능한 독립형 솔루션 설치" },
@@ -367,7 +367,7 @@ const ko = {
       { category: "서비스 문의", q: "작업 전 샘플 테스트가 가능한가요?", a: "네, 가능합니다. 본 계약 전 샘플 문서를 제공해 주시면 시범 처리 결과를 통해 품질을 직접 확인하실 수 있습니다. 자세한 안내는 문의하기 페이지를 통해 요청해 주세요." },
       { category: "서비스 문의", q: "원본 자료는 어떤 형태로 전달해야 하나요?", a: "스캔 이미지(TIFF, JPEG, PDF), 마이크로필름 스캔본 등 다양한 형태로 전달 가능합니다. 자료 상태에 따라 최적의 전달 방식을 안내해 드리니 사전 문의를 통해 협의해 주세요." },
       { category: "서비스 문의", q: "작업 진행 절차는 어떻게 되나요?", a: "문의 접수 → 자료 분석 및 견적 안내 → 계약 체결 → AI OCR 처리 → 전문 검수 → 결과물 납품 순서로 진행됩니다. 프로젝트 특성에 따라 파일럿 테스트 단계가 추가될 수 있습니다." },
-      { category: "기술 문의", q: "MooN AI OCR의 인식 정확도는 어느 정도인가요?", a: "고문헌 기준 약 98.7%, 현대 인쇄물 기준 99.5% 이상의 인식 정확도를 제공합니다. 딥러닝 기반 Data-Adaptive 엔진으로 문서 특성에 맞게 최적화됩니다." },
+      { category: "기술 문의", q: "MooN AI OCR의 인식 정확도는 어느 정도인가요?", a: "고문헌 기준 약 98.7%, 현대 인쇄물 기준 99.5% 이상의 인식 정확도를 제공합니다. AI 학습 기반 Data-Adaptive 엔진으로 문서 특성에 맞게 최적화됩니다." },
       { category: "기술 문의", q: "On-Premise(내부 설치형) 방식으로 구축이 가능한가요?", a: "네, 가능합니다. 보안성과 기밀성이 요구되는 고객 환경에 맞추어 On-Premise 방식의 구축을 지원합니다. 내부망 환경에서도 안정적으로 운영할 수 있도록 지원합니다." },
       { category: "기술 문의", q: "처리 속도는 얼마나 되나요?", a: "문서 유형과 처리 환경에 따라 차이는 있으나, 평균 2초 이내의 고속 처리가 가능합니다. 수십만 페이지의 대량 프로젝트는 클라우드 분산 처리 방식으로 효율적으로 대응합니다." },
       { category: "기술 문의", q: "표, 그림, 이미지 자료도 처리할 수 있나요?", a: "네, 표 구조 인식 및 이미지 내 텍스트 추출을 지원합니다. 복잡한 레이아웃의 문서도 구조를 유지한 채 디지털화할 수 있으며, 자세한 처리 범위는 문의를 통해 확인해 주세요." },
@@ -446,12 +446,12 @@ const ko = {
         capabilities: [] as { name: string; desc: string }[],
       },
       {
-        subtitle: "딥러닝 기반 고정밀 AI 문자 인식",
-        description: "탱고인사이트가 자체 개발한 딥러닝 기반 Data-Adaptive OCR 엔진. 고문서(한적)·국漢文 혼용·타자체·필기체 등 어떠한 문서도 스스로 학습하며 90% 이상의 인식률을 달성합니다.",
+        subtitle: "AI 학습 기반 고정밀 문자 인식",
+        description: "탱고인사이트가 자체 개발한 AI 학습 기반 Data-Adaptive OCR 엔진. 고문서(한적)·국漢文 혼용·타자체·필기체 등 어떠한 문서도 스스로 학습하며 90% 이상의 인식률을 달성합니다.",
         processes: [] as { label: string; items: string[] }[],
         automation: [] as string[],
         editorFeatures: [] as { name: string; stage: string; desc: string }[],
-        ocrFeatures: ["딥러닝 기반 데이터 적응형 문자인식(Data-Adaptive OCR) 엔진", "고문서(한적)·국漢文 혼용·타자체·필기체 등 90% 이상 인식률 달성", "고문헌 기준 F1 Score 0.964 평균 인식 정확도", "글자 분할(Segmentation)·분류(Classification) 최적화 학습 에디터 제공", "학습 데이터 누적 시 '스스로' OCR 엔진 성능 자동 업데이트", "데이터셋(이미지, JSON, XML) 및 OCR PDF 자동 생성", "ABBYY 14(95.7%) 대비 우위 — AI 자기학습 미들웨어 적용"],
+        ocrFeatures: ["AI 학습 기반 데이터 적응형 문자인식(Data-Adaptive OCR) 엔진", "고문서(한적)·국漢文 혼용·타자체·필기체 등 90% 이상 인식률 달성", "고문헌 기준 F1 Score 0.964 평균 인식 정확도", "글자 분할(Segmentation)·분류(Classification) 최적화 학습 에디터 제공", "학습 데이터 누적 시 '스스로' OCR 엔진 성능 자동 업데이트", "데이터셋(이미지, JSON, XML) 및 OCR PDF 자동 생성", "ABBYY 14(95.7%) 대비 우위 — AI 자기학습 미들웨어 적용"],
         accuracyLabels: ["A.I. OCR (MooN)", "ABBYY 14", "Readiris"],
         namedFeatures: [] as { name: string; desc: string }[],
         outputs: [] as { name: string; desc: string }[],
@@ -535,7 +535,7 @@ const ko = {
     backHome:         "홈으로",
     heroBadge:        "회사 개요",
     contactBtn:       "문의하기",
-    heroDesc:         "2022년 설립된 AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱(KPO) 전문 기업입니다. 딥러닝 기반 Data-Adaptive OCR 기술로 고문헌·현대자료의 전자화를 이끌며, 국내 최다 실적 AI OCR 사례를 보유하고 있습니다.",
+    heroDesc:         "2022년 설립된 AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱(KPO) 전문 기업입니다. AI 학습 기반 Data-Adaptive OCR 기술로 고문헌·현대자료의 전자화를 이끌며, 국내 최다 실적 AI OCR 사례를 보유하고 있습니다.",
     heroCtaConsult:   "도입 문의",
     heroCtaSolutions: "솔루션 보기",
     heroStats: [
@@ -559,7 +559,7 @@ const ko = {
     techSectionTitle: "핵심 기술 역량",
     techSectionDesc:  "탱고인사이트의 경쟁력은 기술에서 시작됩니다. 엔진부터 플랫폼, 배포까지 완결된 기술 스택을 보유합니다.",
     technologies: [
-      { title: "Data-Adaptive OCR",  subtitle: "MooN AI OCR 엔진",       points: ["딥러닝 기반 자기학습 인식 엔진", "한자·옛한글·필사체·세로쓰기 지원", "고문헌 기준 F1 Score 0.964 평균 정확도", "처리할수록 진화하는 문서 특화 AI"] },
+      { title: "Data-Adaptive OCR",  subtitle: "MooN AI OCR 엔진",       points: ["AI 기반 자기학습 인식 엔진", "한자·옛한글·필사체·세로쓰기 지원", "고문헌 기준 F1 Score 0.964 평균 정확도", "처리할수록 진화하는 문서 특화 AI"] },
       { title: "웹 기반 편집 플랫폼", subtitle: "MooN Editor",            points: ["별도 설치 없는 브라우저 기반 검수", "원본 레이아웃 보존 PDF 저장", "군집 검수·낱자 정정·이미지 연동", "다중 작업자 협업 환경 지원"] },
       { title: "유연한 배포 환경",   subtitle: "Cloud & On-Premise",     points: ["기관 내부망 On-Premise 구축 지원", "클라우드 분산 처리로 대량 고속 처리", "보안·기밀 요구 환경 완벽 대응", "TXT·XML·JSON·Excel·PDF 납품 형식"] },
     ],
@@ -699,7 +699,7 @@ const en: typeof ko = {
       { value: "98.7%", label: "Recognition Accuracy" },
     ],
     diff: [
-      { title: "Heritage-Specialized AI",    desc: "Recognizes Chinese characters, Old Korean, and handwritten manuscripts at 98.7% accuracy — where standard OCR gives up. The deep-learning engine self-adapts to document characteristics." },
+      { title: "Heritage-Specialized AI",    desc: "Recognizes Chinese characters, Old Korean, and handwritten manuscripts at 98.7% accuracy — where standard OCR gives up. The AI learning engine self-adapts to document characteristics." },
       { title: "End-to-End Service",         desc: "Scan input → AI OCR → Expert review → Delivery — all on a single platform. No extra software required." },
       { title: "Self-Learning Engine",       desc: "Our Data-Adaptive OCR gets more accurate with each use, continuously improving performance to match institution-specific document characteristics." },
     ],
@@ -747,7 +747,7 @@ const en: typeof ko = {
     pluginBadge: "Plug in",
     solutions: [
       { features: ["Auto text correction & proofreading", "Auto paragraph refinement", "Table, image & metadata review", "MooN file export"] },
-      { features: ["Deep learning Data-Adaptive OCR engine", "90%+ accuracy on heritage, typed & handwritten", "Self-learning engine auto-updates", "OCR PDF & dataset (JSON/XML) generation"] },
+      { features: ["AI learning Data-Adaptive OCR engine", "90%+ accuracy on heritage, typed & handwritten", "Self-learning engine auto-updates", "OCR PDF & dataset (JSON/XML) generation"] },
       { features: ["Vision-Language Model (VLM) based", "Text & image multimodal AI processing", "Image recognition, description & Q&A", "Archive management & data exploration"] },
       { features: ["Auto-link TOC images after OCR", "TOC input and verification interface", "Bookmark PDF generation with TOC applied", "Multi-level TOC selection and hierarchy adjustment"] },
       { features: ["XML structured file conversion", "Automatic XML tagging", "Semantic JSON file conversion"] },
@@ -758,7 +758,7 @@ const en: typeof ko = {
 
   process: {
     techBadge:    "Technology",
-    techTitle:    ["Deep Learning Powers", "Unrivaled Accuracy"],
+    techTitle:    ["AI Learning Powers", "Unrivaled Accuracy"],
     techDesc:     "We achieve 98.7% recognition accuracy even on heritage documents with Chinese characters, Old Korean, and vertical text — where conventional OCR fails. Our Data-Adaptive learning engine continuously optimizes for specific document types.",
     processBadge: "Process",
     processTitle: "Document Processing Workflow",
@@ -841,7 +841,7 @@ const en: typeof ko = {
     ocrTitle: "Data-Adaptive OCR",
     ocrDesc:  "AI that self-adapts to document characteristics. Available as API or standalone solution.",
     ocrItems: [
-      { name: "Heritage-Specialized OCR", desc: "Dedicated deep-learning model for Chinese, Old Korean, vertical text, and handwriting — F1 Score 0.96+" },
+      { name: "Heritage-Specialized OCR", desc: "Dedicated AI learning model for Chinese, Old Korean, vertical text, and handwriting — F1 Score 0.96+" },
       { name: "Modern Document OCR",      desc: "High-speed bulk processing for administrative documents, monographs, magazines, and newspapers" },
       { name: "OCR API Integration",      desc: "Custom pipeline instantly integrated into existing systems via REST API" },
       { name: "On-Premise Deployment",    desc: "Standalone solution installable in isolated internal network security environments" },
@@ -994,7 +994,7 @@ const en: typeof ko = {
       { category: "Service", q: "Is a sample test available before the project?", a: "Yes. If you provide sample documents before the main contract, you can verify quality directly through pilot processing results. For details, please request via the Contact page." },
       { category: "Service", q: "In what form should original materials be delivered?", a: "Delivery is possible in various forms including scanned images (TIFF, JPEG, PDF) and microfilm scans. We will guide you on the optimal delivery method based on the condition of your materials — please consult with us in advance." },
       { category: "Service", q: "What is the processing workflow?", a: "The process follows: Inquiry → Material analysis & quote → Contract → AI OCR processing → Expert review → Delivery. A pilot test stage may be added depending on project characteristics." },
-      { category: "Technical", q: "What is the recognition accuracy of MooN AI OCR?", a: "We provide approximately 98.7% recognition accuracy for heritage documents and 99.5%+ for modern printed materials. Our deep learning-based Data-Adaptive engine self-optimizes to document characteristics." },
+      { category: "Technical", q: "What is the recognition accuracy of MooN AI OCR?", a: "We provide approximately 98.7% recognition accuracy for heritage documents and 99.5%+ for modern printed materials. Our AI learning-based Data-Adaptive engine self-optimizes to document characteristics." },
       { category: "Technical", q: "Is On-Premise installation possible?", a: "Yes. We support On-Premise deployment tailored to customer environments requiring security and confidentiality, ensuring stable operation even in isolated internal network environments." },
       { category: "Technical", q: "How fast is the processing speed?", a: "While it varies by document type and environment, average processing is under 2 seconds per page. Large-scale projects of hundreds of thousands of pages are handled efficiently via cloud distributed processing." },
       { category: "Technical", q: "Can tables, figures, and image materials be processed?", a: "Yes, we support table structure recognition and text extraction from images. Complex layout documents can be digitized while preserving their structure. Please contact us for detailed processing scope." },
@@ -1073,12 +1073,12 @@ const en: typeof ko = {
         capabilities: [] as { name: string; desc: string }[],
       },
       {
-        subtitle: "Deep Learning-Based High-Precision AI Character Recognition",
-        description: "Deep learning-based Data-Adaptive OCR engine developed in-house by Tangoinsight. Achieves 90%+ recognition rates on any document — including heritage (sino-Korean), mixed Chinese-Korean, typed, and handwritten texts — through self-learning.",
+        subtitle: "AI Learning-Based High-Precision Character Recognition",
+        description: "AI learning-based Data-Adaptive OCR engine developed in-house by Tangoinsight. Achieves 90%+ recognition rates on any document — including heritage (sino-Korean), mixed Chinese-Korean, typed, and handwritten texts — through self-learning.",
         processes: [] as { label: string; items: string[] }[],
         automation: [] as string[],
         editorFeatures: [] as { name: string; stage: string; desc: string }[],
-        ocrFeatures: ["Deep learning-based Data-Adaptive OCR engine", "90%+ recognition rate on heritage, mixed Chinese-Korean, typed & handwritten documents", "Average F1 Score 0.964 on heritage documents", "Optimized learning editor for character segmentation & classification", "OCR engine performance auto-updates as training data accumulates", "Automatic generation of datasets (image, JSON, XML) and OCR PDF", "Outperforms ABBYY 14 (95.7%) — AI self-learning middleware applied"],
+        ocrFeatures: ["AI learning-based Data-Adaptive OCR engine", "90%+ recognition rate on heritage, mixed Chinese-Korean, typed & handwritten documents", "Average F1 Score 0.964 on heritage documents", "Optimized learning editor for character segmentation & classification", "OCR engine performance auto-updates as training data accumulates", "Automatic generation of datasets (image, JSON, XML) and OCR PDF", "Outperforms ABBYY 14 (95.7%) — AI self-learning middleware applied"],
         accuracyLabels: ["A.I. OCR (MooN)", "ABBYY 14", "Readiris"],
         namedFeatures: [] as { name: string; desc: string }[],
         outputs: [] as { name: string; desc: string }[],
@@ -1162,7 +1162,7 @@ const en: typeof ko = {
     backHome:         "Home",
     heroBadge:        "Company Overview",
     contactBtn:       "Contact Us",
-    heroDesc:         "An AI-powered document digitization and Knowledge Process Outsourcing (KPO) company founded in 2022. Leading the digitization of heritage and modern materials with deep learning-based Data-Adaptive OCR technology, we hold Korea's most extensive AI OCR project track record.",
+    heroDesc:         "An AI-powered document digitization and Knowledge Process Outsourcing (KPO) company founded in 2022. Leading the digitization of heritage and modern materials with AI learning-based Data-Adaptive OCR technology, we hold Korea's most extensive AI OCR project track record.",
     heroCtaConsult:   "Get Consultation",
     heroCtaSolutions: "View Solutions",
     heroStats: [
@@ -1186,7 +1186,7 @@ const en: typeof ko = {
     techSectionTitle: "Core Technology Capabilities",
     techSectionDesc:  "Tangoinsight's competitiveness starts with technology. We have a complete technology stack from engine to platform to deployment.",
     technologies: [
-      { title: "Data-Adaptive OCR",       subtitle: "MooN AI OCR Engine",  points: ["Deep learning-based self-learning recognition engine", "Supports Chinese characters, Old Korean, handwriting, vertical text", "Average F1 Score 0.964 on heritage documents", "Document-specialized AI that evolves with each use"] },
+      { title: "Data-Adaptive OCR",       subtitle: "MooN AI OCR Engine",  points: ["AI-based self-learning recognition engine", "Supports Chinese characters, Old Korean, handwriting, vertical text", "Average F1 Score 0.964 on heritage documents", "Document-specialized AI that evolves with each use"] },
       { title: "Web-Based Edit Platform", subtitle: "MooN Editor",          points: ["Browser-based review without installation", "Layout-preserved PDF export", "Cluster review, character correction & image integration", "Multi-worker collaborative environment"] },
       { title: "Flexible Deployment",     subtitle: "Cloud & On-Premise",   points: ["On-Premise deployment for institutional internal networks", "Cloud parallel processing for high-speed bulk handling", "Fully handles security & confidentiality requirements", "TXT·XML·JSON·Excel·PDF delivery formats"] },
     ],
