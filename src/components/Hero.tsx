@@ -2,11 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Cpu, Sparkles, Users } from "lucide-react";
+import { ArrowRight, BookOpen, Cpu, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
-const featureIcons = [BookOpen, Users, Cpu];
+const featureIcons = [Sparkles, BookOpen, Cpu];
 
 export default function Hero() {
   const { lang } = useLanguage();
