@@ -80,7 +80,7 @@ const clients = [
   { name: "국회도서관",      eng: "National Assembly Library",        logo: "/logos/nanet.png" },
   { name: "국립중앙도서관",  eng: "National Library of Korea",         logo: "/logos/nl.png"    },
   { name: "국립장애인도서관", eng: "National Library for the Disabled", logo: "/logos/nld.png"   },
-  { name: "행정안전부",      eng: "Ministry of the Interior and Safety", logo: "/logos/mois.png" },
+  { name: "대통령기록관",    eng: "Presidential Archives",               logo: "/logos/mois.png" },
 ];
 
 const HANJA = "訓民正音國語文字不相流通愚民有所欲言終得伸情者多矣予爲此憫然新制二十八字覽者易習便於日用耳".split("");

@@ -75,7 +75,7 @@ const servicesStatic = [
 const clients = [
   { name: "국립중앙도서관",         eng: "National Library of Korea",         logo: "/logos/nl.png",    stat: "108,594,914면", times: 15,   highlight: true  },
   { name: "국회도서관",             eng: "National Assembly Library",          logo: "/logos/nanet.png", stat: "78,141,238면",  times: 11,   highlight: false },
-  { name: "행정안전부 대통령기록관", eng: "Ministry of Interior and Safety",   logo: "/logos/mois.png",  stat: "1,468,278면",   times: null, highlight: false },
+  { name: "대통령기록관",            eng: "Presidential Archives",             logo: "/logos/mois.png",  stat: "1,468,278면",   times: null, highlight: false },
   { name: "국립장애인도서관",        eng: "National Library for the Disabled", logo: "/logos/nld.png",   stat: "14,624면",      times: 2,    highlight: false },
 ];
 
