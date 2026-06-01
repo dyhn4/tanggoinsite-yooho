@@ -36,9 +36,9 @@ const ko = {
     liveTag:    "실시간 분석",
     heritageTag:"고문헌 특화 AI",
     features: [
+      { tag: "AI",     label: "현대어·영어 자동 번역 및 분석", desc: "AI 기반 고문헌 추론·요약·검색" },
       { tag: "AI OCR", label: "고문헌·한자 문서 인식",    desc: "스캔 이미지 기반 텍스트 추출" },
       { tag: "DATA",   label: "검색 가능한 데이터 변환",   desc: "문서 내용을 구조화하여 활용" },
-      { tag: "AI",     label: "현대어·영어 자동 번역 및 분석", desc: "AI 기반 고문헌 추론·요약·검색" },
     ],
   },
 
@@ -673,9 +673,9 @@ const en: typeof ko = {
     liveTag:     "Live Analysis",
     heritageTag: "Heritage AI",
     features: [
-      { tag: "AI OCR", label: "Heritage Document Recognition",       desc: "Text extraction from scanned images" },
-      { tag: "DATA",   label: "Searchable Data Conversion",        desc: "Documents structured for immediate use" },
       { tag: "AI",     label: "Auto Translation & AI Analysis",    desc: "AI-powered inference, summarization & search" },
+      { tag: "AI OCR", label: "Heritage Document Recognition",    desc: "Text extraction from scanned images" },
+      { tag: "DATA",   label: "Searchable Data Conversion",       desc: "Documents structured for immediate use" },
     ],
   },
 
