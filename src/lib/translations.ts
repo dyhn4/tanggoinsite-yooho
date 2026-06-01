@@ -566,7 +566,7 @@ const ko = {
     bizDomainTitle: "주요 사업 분야",
     bizDomainDesc:  "IT 분야의 전문성을 보유한 빅데이터·인공지능 기반 최신기술 보유 기업",
     businessDomains: [
-      { title: "차세대 DB 구축",        items: ["원문DB 구축", "관계형 DB 구축", "AI 학습용 데이터 구축", "중요기록물 정리·DB 구축"] },
+      { title: "원문 DB 구축",          items: ["원문DB 구축", "관계형 DB 구축", "AI 학습용 데이터 구축", "중요기록물 정리·DB 구축"] },
       { title: "빅데이터·인공지능",     items: ["빅데이터 수집·분석", "자연어 처리·이동 패턴", "인공지능 기반 분석모델 개발", "데이터분석 시각화"] },
       { title: "지능형 통합시스템 구축", items: ["지능형 서비스 구축", "최신의 시각화 기술", "Cloud", "Mobile·IoT"] },
       { title: "시스템 운영",           items: ["시스템 개선", "유지 관리·품질 관리", "솔루션·장비 도입", "Help-Desk 운영"] },
@@ -1193,7 +1193,7 @@ const en: typeof ko = {
     bizDomainTitle: "Key Business Areas",
     bizDomainDesc:  "A company with IT expertise possessing cutting-edge big data and AI-based technologies",
     businessDomains: [
-      { title: "Next-Gen DB Construction",        items: ["Full-text DB construction", "Relational DB construction", "AI training data construction", "Important records organization & DB"] },
+      { title: "Full-Text DB Construction",        items: ["Full-text DB construction", "Relational DB construction", "AI training data construction", "Important records organization & DB"] },
       { title: "Big Data & AI",                   items: ["Big data collection & analysis", "NLP & mobility pattern analysis", "AI-based analytical model development", "Data analysis visualization"] },
       { title: "Intelligent Integrated Systems",  items: ["Intelligent service construction", "Latest visualization technologies", "Cloud", "Mobile & IoT"] },
       { title: "System Operations",               items: ["System improvement", "Maintenance & quality management", "Solution & equipment procurement", "Help-Desk operations"] },
