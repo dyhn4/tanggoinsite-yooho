@@ -14,15 +14,14 @@ import {
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
-// 순서: 그리드 위치 col/row와 일치 (MooN Editor·OCR·Explorer → Tango PDF·XML·Batch·Image)
 const solutionMeta = [
-  { id: "moon-editor",      icon: PenLine,      title: "MooN Editor",      color: "from-violet-600 to-blue-500",  col: 1, row: 1 },
-  { id: "moon-ai-ocr",      icon: ScanSearch,   title: "MooN AI OCR",      color: "from-sky-600 to-cyan-400",     col: 2, row: 1 },
-  { id: "moon-ai-explorer", icon: BrainCircuit, title: "MooN AI Explorer", color: "from-indigo-600 to-blue-400",  col: 3, row: 1 },
-  { id: "tango-pdf",        icon: FileText,     title: "Tango PDF",        color: "from-rose-600 to-pink-400",    col: 1, row: 2 },
-  { id: "tango-xml",        icon: Braces,       title: "Tango XML(JSON)",  color: "from-emerald-600 to-teal-400", col: 3, row: 2 },
-  { id: "tango-batch",      icon: Layers,       title: "Tango Batch",      color: "from-orange-500 to-amber-400", col: 1, row: 3 },
-  { id: "tango-image",      icon: Wand2,        title: "Tango Image",      color: "from-red-600 to-orange-500",   col: 3, row: 3 },
+  { id: "moon-editor",      icon: PenLine,      title: "MooN Editor",      color: "from-violet-600 to-blue-500",  col: 1, row: 1, series: "moon"  },
+  { id: "moon-ai-ocr",      icon: ScanSearch,   title: "MooN AI OCR",      color: "from-sky-600 to-cyan-400",     col: 2, row: 1, series: "moon"  },
+  { id: "moon-ai-explorer", icon: BrainCircuit, title: "MooN AI Explorer", color: "from-indigo-600 to-blue-400",  col: 3, row: 1, series: "moon"  },
+  { id: "tango-pdf",        icon: FileText,     title: "Tango PDF",        color: "from-rose-600 to-pink-400",    col: 1, row: 2, series: "tango" },
+  { id: "tango-xml",        icon: Braces,       title: "Tango XML(JSON)",  color: "from-emerald-600 to-teal-400", col: 3, row: 2, series: "tango" },
+  { id: "tango-batch",      icon: Layers,       title: "Tango Batch",      color: "from-orange-500 to-amber-400", col: 1, row: 3, series: "tango" },
+  { id: "tango-image",      icon: Wand2,        title: "Tango Image",      color: "from-red-600 to-orange-500",   col: 3, row: 3, series: "tango" },
 ];
 
 export default function Technology() {
@@ -54,18 +53,22 @@ export default function Technology() {
         <div className="grid grid-cols-3 gap-4">
 
           {/* 7개 솔루션 카드 (명시적 위치 지정) */}
-          {solutions.map((sol) => (
+          {solutions.map((sol) => {
+            const isMoon = sol.series === "moon";
+            const cardBg    = isMoon ? "bg-violet-50 border-violet-100 hover:border-violet-300" : "bg-sky-50/70 border-sky-100 hover:border-sky-300";
+            const badgeCls  = isMoon ? "text-violet-500 border-violet-200" : "text-sky-600 border-sky-200";
+            return (
             <Link
               key={sol.id}
               href={`/solutions#${sol.id}`}
               style={{ gridColumn: String(sol.col), gridRow: String(sol.row) }}
-              className="group flex flex-col gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-100 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300"
+              className={`group flex flex-col gap-3 p-4 rounded-2xl border hover:bg-white hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 ${cardBg}`}
             >
               <div className="flex items-center gap-2.5">
                 <div className={`flex-shrink-0 w-9 h-9 rounded-xl bg-gradient-to-br ${sol.color} flex items-center justify-center shadow-md`}>
                   <sol.icon size={16} className="text-white" />
                 </div>
-                <span className="text-[10px] font-bold tracking-widest uppercase text-slate-400 border border-slate-200 rounded-full px-2 py-0.5">
+                <span className={`text-[10px] font-bold tracking-widest uppercase border rounded-full px-2 py-0.5 ${badgeCls}`}>
                   {t.pluginBadge}
                 </span>
               </div>
@@ -83,7 +86,8 @@ export default function Technology() {
                 ))}
               </ul>
             </Link>
-          ))}
+            );
+          })}
 
           {/* Tango Workflow — 중앙 col 2, row 2-3 */}
           <Link

@@ -101,7 +101,7 @@ const ko = {
   technology: {
     badge:        "솔루션",
     title:        "솔루션",
-    subtitle:     "문서 디지털화 전 과정을 커버하는 8가지 전문 솔루션",
+    subtitle:     "문서 디지털화 전 과정을 지원하는 8가지 전문 솔루션",
     workflowBadge:"Plug in Program",
     workflowTitle:"Tango Workflow",
     workflowDesc: "모든 솔루션을 연결하는 통합 워크플로우 관리 시스템",
@@ -734,7 +734,7 @@ const en: typeof ko = {
   technology: {
     badge:        "Solution",
     title:        "Solutions",
-    subtitle:     "8 specialized solutions covering the entire document digitization workflow",
+    subtitle:     "8 specialized solutions supporting the entire document digitization workflow",
     workflowBadge:"Plug in Program",
     workflowTitle:"Tango Workflow",
     workflowDesc: "Integrated workflow management system connecting all solutions",
