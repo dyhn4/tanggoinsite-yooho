@@ -107,7 +107,7 @@ const ko = {
     workflowDesc: "모든 솔루션을 연결하는 통합 워크플로우 관리 시스템",
     workflowFeatures: [
       "대량 이미지 기반 DB 구축 공정관리",
-      "상용 OCR(ABBYY) 및 MooN OCR 탑재",
+      "상용 OCR(ABBYY) 및 MooN AI OCR 탑재",
       "실시간 프로젝트 모니터링·리포팅",
       "작업자 성과 및 정산 리포팅",
     ],
@@ -410,7 +410,7 @@ const ko = {
     solutions: [
       {
         subtitle: "통합 공정 워크플로우 관리",
-        description: "대량 이미지 기반 DB 구축을 위한 통합 공정관리 시스템. 상용 OCR(ABBYY) 및 MooN OCR을 모두 탑재하여 어떤 문서 유형도 처리 가능하며, 실시간 모니터링부터 작업자 성과 정산까지 전 공정을 일원화합니다.",
+        description: "대량 이미지 기반 DB 구축을 위한 통합 공정관리 시스템. 상용 OCR(ABBYY) 및 MooN AI OCR을 모두 탑재하여 어떤 문서 유형도 처리 가능하며, 실시간 모니터링부터 작업자 성과 정산까지 전 공정을 일원화합니다.",
         processes: [
           { label: "사업관리", items: ["사업 등록/관리 및 장서 등록/관리", "일정·작업 실적 모니터링", "공정별 작업 배분 및 권한 관리", "작업자/점검자 ID/PW 로그인"] },
           { label: "품질관리", items: ["전체 공정 통합 계획 수립", "검증된 노하우 기반 품질관리", "공정별 품질 지표 실시간 집계"] },
@@ -740,7 +740,7 @@ const en: typeof ko = {
     workflowDesc: "Integrated workflow management system connecting all solutions",
     workflowFeatures: [
       "Mass image-based DB construction project management",
-      "Includes commercial OCR (ABBYY) and MooN OCR",
+      "Includes commercial OCR (ABBYY) and MooN AI OCR",
       "Real-time project monitoring & reporting",
       "Worker performance and settlement reporting",
     ],
@@ -1037,7 +1037,7 @@ const en: typeof ko = {
     solutions: [
       {
         subtitle: "Integrated Process Workflow Management",
-        description: "Integrated process management system for mass image-based DB construction. Equipped with both commercial OCR (ABBYY) and MooN OCR to handle any document type — from real-time monitoring to worker performance settlement, all processes unified.",
+        description: "Integrated process management system for mass image-based DB construction. Equipped with both commercial OCR (ABBYY) and MooN AI OCR to handle any document type — from real-time monitoring to worker performance settlement, all processes unified.",
         processes: [
           { label: "Project Management",    items: ["Project & collection registration/management", "Schedule & task performance monitoring", "Task allocation and permission management by process", "Worker/inspector ID/PW login"] },
           { label: "Quality Management",    items: ["Comprehensive process plan establishment", "Quality management based on proven expertise", "Real-time collection of quality metrics by process"] },
