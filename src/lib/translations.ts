@@ -575,7 +575,7 @@ const ko = {
     servicesSectionDesc:  "고문헌부터 현대 인쇄물까지, 다양한 문서 유형에 걸쳐 폭넓은 디지털화 서비스를 제공합니다.",
     services: [
       { title: "고문헌·근대자료 디지털화",  desc: "고전적(1600~1910년), 근대잡지(1910~1945년), 근대자료(1900~1960년) 문서 유형별 최적화 처리" },
-      { title: "시각장애인 대체자료 제작",  desc: "국립장애인도서관 협력 기반 총 14,624면·10,261,035자 처리. 순수과학·기술·예술·언어 분야 대체자료 제작" },
+      { title: "시각장애인 대체자료 제작",  desc: "국립장애인도서관 협력 기반 총 220,390면·10,304,504자 처리. 순수과학·기술·예술·언어 분야 대체자료 제작" },
       { title: "대량 DB 구축 & 아카이빙", desc: "국회도서관 원문DB 총 64,555,500면, 단행자료 총 65,055,227면 처리. 수십만 페이지 규모 고속 납품" },
       { title: "AI 기반 지식 추출",        desc: "인식된 문서에서 표·수치 데이터 자동 추출, JSON·XML 구조화 납품. 총 364,500면 JSON 단독 공급 실적" },
     ],
@@ -1202,7 +1202,7 @@ const en: typeof ko = {
     servicesSectionDesc:  "We provide a broad range of digitization services across diverse document types — from heritage manuscripts to modern publications.",
     services: [
       { title: "Heritage & Modern Material Digitization",       desc: "Optimized processing by document type: classical texts (1600–1910), modern magazines (1910–1945), and modern materials (1900–1960)" },
-      { title: "Alternative Materials for the Visually Impaired", desc: "Based on NLK for the Disabled cooperation — 14,624 pages / 10,261,035 characters processed. Alternative materials in pure science, technology, arts, and linguistics" },
+      { title: "Alternative Materials for the Visually Impaired", desc: "Based on NLK for the Disabled cooperation — 220,390 pages / 10,304,504 characters processed. Alternative materials in pure science, technology, arts, and linguistics" },
       { title: "Large-Scale DB & Archiving",                    desc: "National Assembly Library full-text DB: 64,555,500 pages; Monograph materials: 65,055,227 pages. High-speed delivery at hundreds of thousands of pages scale" },
       { title: "AI-Based Knowledge Extraction",                 desc: "Automatically extracts tables and numerical data from recognized documents, delivered as JSON/XML. 364,500-page JSON-only supply track record" },
     ],
