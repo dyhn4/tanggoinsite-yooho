@@ -153,7 +153,7 @@ const ko = {
     subtitle: "실제 사용자들의 생생한 경험을 들어보세요",
     footer:   "더 많은 도입 사례가 계속 추가됩니다",
     items: [
-      { quote: "조선시대 고문서 디지털화 작업이 80% 빠르게 완료되었습니다. 특히 한자 인식 정확도가 일반 OCR과는 비교할 수 없을 정도로 뛰어났습니다.", name: "김진수", role: "디지털 아카이브팀", org: "국립도서관", initial: "김" },
+      { quote: "조선시대 고문서 디지털화 작업이 80% 빠르게 완료되었습니다. 특히 한자 인식 정확도가 일반 OCR과는 비교할 수 없을 정도로 뛰어났습니다.", name: "홍아름 교수", role: "디지털 아카이브팀", org: "국립도서관", initial: "홍" },
       { quote: "세로쓰기 신문 자료를 검색 가능한 텍스트로 변환하는 프로젝트에서 96% 이상의 정확도를 달성했습니다. 연구 효율이 3배 향상되었어요.", name: "이서연 교수", role: "역사학과", org: "국내 주요 대학", initial: "이" },
       { quote: "한의학 고전 데이터베이스 구축에 Tangoinsight를 활용했습니다. 웹 기반 편집 기능 덕분에 전문가 검수가 매우 편리했습니다.", name: "박민준 연구원", role: "연구원", org: "한의학 연구소", initial: "박" },
     ],
@@ -784,7 +784,7 @@ const en: typeof ko = {
     subtitle: "Hear directly from those who use Tangoinsight",
     footer:   "More case studies are added regularly",
     items: [
-      { quote: "Digitization of Joseon-era documents was completed 80% faster. The Chinese character recognition accuracy was incomparably better than standard OCR.", name: "Kim Jin-su", role: "Digital Archive Team", org: "National Library", initial: "K" },
+      { quote: "Digitization of Joseon-era documents was completed 80% faster. The Chinese character recognition accuracy was incomparably better than standard OCR.", name: "Prof. Hong A-reum", role: "Digital Archive Team", org: "National Library", initial: "H" },
       { quote: "We achieved over 96% accuracy converting vertical-text newspaper archives into searchable text. Research efficiency improved threefold.", name: "Prof. Lee Seo-yeon", role: "History Department", org: "Major Korean University", initial: "L" },
       { quote: "We used Tangoinsight to build a traditional Korean medicine database. The web-based editor made expert review extremely convenient.", name: "Park Min-jun", role: "Researcher", org: "Korean Medicine Research Institute", initial: "P" },
     ],
