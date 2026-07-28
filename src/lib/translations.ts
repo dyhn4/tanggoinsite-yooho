@@ -37,7 +37,7 @@ const ko = {
     heritageTag:"고문헌 특화 AI",
     features: [
       { tag: "AI 번역", label: "현대어·영어 자동 번역 및 분석", desc: "AI 기반 고문헌 추론·요약·검색" },
-      { tag: "AI OCR", label: "고문헌·한자 문서 인식",    desc: "스캔 이미지 기반 텍스트 추출" },
+      { tag: "AI OCR", label: "한글, 옛한글, 한자, 영어 문서 인식",    desc: "스캔 이미지 기반 텍스트 추출" },
       { tag: "DATA",   label: "검색 가능한 데이터 변환",   desc: "문서 내용을 구조화하여 활용" },
     ],
   },
@@ -45,9 +45,9 @@ const ko = {
   // ── ABOUT ───────────────────────────────────
   about: {
     badge:  "회사 소개",
-    title:  ["고문헌부터 현대 문서까지,", "인식에서 활용까지", "하나의 플랫폼에서"],
-    p1:     "탱고인사이트(Tangoinsight)는 2022년 설립된 AI 기반 문서 데이터화 및 지식 프로세스 아웃소싱(KPO) 전문 기업입니다.",
-    p2:     "AI 학습 기반의 Data-Adaptive OCR을 핵심 기술로, 한자·옛한글·세로쓰기 등 기존 OCR이 실패하는 고문헌에서도 98.7%의 인식 정확도를 달성합니다. 국립도서관, 한국학연구원, 대학 역사학과 등 다수의 기관이 도입하여 5백만 페이지 이상을 처리했습니다.",
+    title:  ["고문헌부터 현대 문서까지,", "인식에서 활용까지 하나의 플랫폼으로"],
+    p1:     "탱고인사이트는 2022년 설립된 AI 기반 문서 데이터화 및 지식 프로세스 혁신 기업입니다.",
+    p2:     "AI 학습 기반의 Data-Adaptive OCR을 핵심 기술로 활용해 한자, 옛한글, 세로쓰기 등 기존 OCR로 인식하기 어려운 고문헌에서도 98.7%의 인식 정확도를 제공합니다. 국회도서관, 한국학연구원, 대학 역사학과 등 다양한 기관에 기술을 적용했으며, 지금까지 500만 페이지 이상의 문서 데이터화 경험을 보유하고 있습니다.",
     missionPrefix: "미션:",
     missionBody:   '"모든 역사적 기록이 디지털 지식 자산으로" — 아날로그에 잠들어 있는 정보를 누구나 검색하고 활용할 수 있도록 합니다.',
     highlights: [
@@ -86,14 +86,14 @@ const ko = {
   services: {
     badge:    "핵심 기능",
     title:    "고문헌 특화 AI 기술",
-    subtitle: "한자, 옛한글, 활자본까지 정확하게 인식하는 전문 OCR 기술. 인식부터 편집, 데이터 활용까지 하나의 플랫폼에서 해결합니다.",
+    subtitle: "한자, 옛한글, 활자본까지 정확하게 인식하는 전문 OCR 기술.\n인식부터 편집, 데이터 활용까지 하나의 플랫폼에서 해결합니다.",
     items: [
       { title: "고문헌 특화 OCR",     desc: "한자, 활자본까지 인식합니다. AI 학습 기반 Data-Adaptive OCR로 일반 OCR 대비 정확도 3배 향상. 옛한글·세로쓰기·인쇄체·필사체 모두 지원합니다.", tags: ["한자 인식", "옛한글", "필사체", "세로쓰기"] },
       { title: "인터랙티브 웹 편집",   desc: "웹에서 바로 인식 결과를 수정하고, 원본 레이아웃을 유지한 PDF로 저장합니다. 별도 프로그램 설치 없이 브라우저에서 전문가 검수까지 완료할 수 있습니다.", tags: ["웹 기반 편집", "PDF 저장", "레이아웃 보존"] },
       { title: "스마트 데이터 추출",   desc: "표와 이미지를 자동으로 분리하여 Excel·CSV로 변환합니다. 고문헌 속 수치·통계 데이터를 즉시 연구에 활용 가능한 형태로 구조화합니다.", tags: ["Excel/CSV 변환", "표 자동 분리", "데이터 구조화"] },
       { title: "AI 문서 대화",         desc: "인식된 문서에 질문하고, 번역하고, 요약하는 AI 어시스턴트. 방대한 고문헌 자료에서 필요한 정보를 대화하듯 찾아냅니다.", tags: ["문서 QA", "자동 번역", "자동 요약"] },
       { title: "보안 배포",            desc: "On-Premise와 Cloud 모두 지원하는 유연한 배포 방식. 기밀성이 요구되는 기관 자료도 내부망에서 안전하게 처리합니다.", tags: ["On-Premise", "Cloud", "내부망 지원"] },
-      { title: "고속 대량 처리",       desc: "페이지당 평균 2초 이내의 고속 처리 속도. 클라우드 분산 처리로 수십만 페이지의 아카이빙 프로젝트도 빠르게 완수합니다.", tags: ["페이지당 2초", "병렬 처리", "대용량 지원"] },
+      { title: "고속 대량 처리",       desc: "페이지당 평균 2초 이내의 고속 처리. 클라우드 분산 처리로 수십만 페이지의 아카이빙 프로젝트도 빠르게 완수합니다.", tags: ["페이지당 2초", "병렬 처리", "대용량 지원"] },
     ],
   },
 
@@ -328,10 +328,10 @@ const ko = {
     heroSubtitle: "전문 컨설턴트가 맞춤 솔루션을 제안해 드립니다.",
     sectionBadge: "문의하기",
     sectionTitle: "문의하기",
-    sectionDesc:  "문서 디지털화 도입을 고민하고 계신가요? 전문 컨설턴트가 맞춤 솔루션을 제안해 드립니다.",
+    sectionDesc:  "문서 디지털화 도입을 고민하고 계신가요?\n전문 컨설턴트가 맞춤 솔루션을 제안해 드립니다.",
     infoTitle:    "연락처 정보",
     guarantee:    "빠른 답변 보장",
-    guaranteeDesc:"평일 기준 24시간 내 담당 컨설턴트가 연락드립니다. 파일럿 프로젝트를 통해 실제 효과를 확인하신 후 도입을 결정하실 수 있습니다.",
+    guaranteeDesc:"궁금한 사항을 남겨주시면 빠른 시간 내에 답변드리겠습니다.",
     nameLabel:    "이름",
     emailLabel:   "이메일",
     phoneLabel:   "연락처",
@@ -347,6 +347,11 @@ const ko = {
     errorMsg:     "전송 중 오류가 발생했습니다. 다시 시도해주세요.",
     selectService:"서비스를 선택해주세요",
     serviceOptions:["AI OCR 문서 인식", "워크플로우 기반 문서 처리", "데이터 변환 및 가공", "지식 프로세스 아웃소싱(KPO)", "문서 디지털 아카이빙", "맞춤형 솔루션 컨설팅", "기타"],
+    assigneeLabel: "담당자",
+    assigneeOptions: ["선택 안 함", "영업·도입 문의", "기술 문의", "아카이브·DB 구축", "기타"],
+    privacyLabel:  "[필수] 개인정보 수집·이용 동의",
+    privacyText:   "문의 서비스 제공을 위해 성명, 이메일, 연락처, 회사명을 수집합니다. 수집된 정보는 문의 답변 목적으로만 사용되며 1년 후 파기됩니다.",
+    privacyRequired: "개인정보 수집·이용에 동의해 주세요.",
   },
 
   // ── FAQ PAGE (/faq) ──────────────────────────
@@ -674,16 +679,16 @@ const en: typeof ko = {
     heritageTag: "Heritage AI",
     features: [
       { tag: "AI 번역", label: "Auto Translation & AI Analysis",    desc: "AI-powered inference, summarization & search" },
-      { tag: "AI OCR", label: "Heritage Document Recognition",    desc: "Text extraction from scanned images" },
+      { tag: "AI OCR", label: "Korean, Old Korean, Chinese & English Recognition",    desc: "Text extraction from scanned images" },
       { tag: "DATA",   label: "Searchable Data Conversion",       desc: "Documents structured for immediate use" },
     ],
   },
 
   about: {
     badge:  "About Us",
-    title:  ["From Ancient to Modern,", "From Recognition to Use —", "One Platform."],
-    p1:     "Tangoinsight is an AI-powered document digitization and Knowledge Process Outsourcing (KPO) company founded in 2022.",
-    p2:     "With Data-Adaptive OCR at its core, Tangoinsight achieves 98.7% recognition accuracy even on heritage documents containing Chinese characters, Old Korean, and vertical text — where conventional OCR fails. Leading institutions including the National Library and universities have adopted our platform to process more than 5 million pages.",
+    title:  ["From Ancient to Modern,", "From Recognition to Use — One Platform."],
+    p1:     "Tangoinsight is an AI-powered document digitization and knowledge process innovation company founded in 2022.",
+    p2:     "Leveraging Data-Adaptive OCR as its core technology, Tangoinsight achieves 98.7% recognition accuracy on heritage documents with Chinese characters, Old Korean, and vertical text — where conventional OCR struggles. Institutions including the National Assembly Library, Korean Studies institutes, and universities have applied our technology, accumulating over 5 million pages of document digitization experience.",
     missionPrefix: "Mission:",
     missionBody:   '"Every Historical Record as a Digital Knowledge Asset" — making information buried in analog records accessible and searchable for everyone.',
     highlights: [
@@ -720,14 +725,14 @@ const en: typeof ko = {
   services: {
     badge:    "Core Features",
     title:    "Heritage-Specialized AI Technology",
-    subtitle: "Professional OCR that accurately recognizes Chinese characters, Old Korean, and printed text — from recognition to editing and data use on a single platform.",
+    subtitle: "Professional OCR that accurately recognizes Chinese characters, Old Korean, and printed text.\nFrom recognition to editing and data use on a single platform.",
     items: [
       { title: "Heritage OCR",             desc: "Recognizes Chinese characters and printed scripts with 3× the accuracy of standard OCR. Supports Old Korean, vertical text, printed text, and handwriting.", tags: ["Chinese Chars", "Old Korean", "Handwriting", "Vertical Text"] },
       { title: "Interactive Web Editor",   desc: "Edit recognition results directly in-browser and save as layout-preserved PDF. Complete expert review without installing any software.", tags: ["Web Editor", "PDF Export", "Layout Preserved"] },
       { title: "Smart Data Extraction",    desc: "Auto-separates tables and images into Excel/CSV. Instantly structures numerical and statistical data from heritage documents for research.", tags: ["Excel/CSV", "Auto Tables", "Data Structuring"] },
       { title: "AI Document Chat",         desc: "Ask questions, translate, and summarize recognized documents with an AI assistant. Find what you need in vast archives through natural conversation.", tags: ["Doc Q&A", "Auto Translation", "Summarization"] },
       { title: "Secure Deployment",        desc: "Flexible deployment supporting On-Premise and Cloud. Classified institutional records can be processed safely on isolated internal networks.", tags: ["On-Premise", "Cloud", "Internal Network"] },
-      { title: "High-Speed Bulk Processing",desc: "Average processing under 2 sec per page. Cloud parallel processing handles archiving projects of hundreds of thousands of pages rapidly.", tags: ["<2 sec/page", "Parallel", "Large Scale"] },
+      { title: "High-Speed Bulk Processing",desc: "High-speed processing averaging under 2 sec per page. Cloud parallel processing handles archiving projects of hundreds of thousands of pages rapidly.", tags: ["<2 sec/page", "Parallel", "Large Scale"] },
     ],
   },
 
@@ -955,10 +960,10 @@ const en: typeof ko = {
     heroSubtitle: "Our expert consultants will propose a tailored solution for you.",
     sectionBadge: "Contact",
     sectionTitle: "Contact Us",
-    sectionDesc:  "Considering document digitization? Our expert consultants will propose a tailored solution.",
+    sectionDesc:  "Considering document digitization?\nOur expert consultants will propose a tailored solution.",
     infoTitle:    "Contact Information",
     guarantee:    "Fast Response Guaranteed",
-    guaranteeDesc:"A dedicated consultant will contact you within 24 business hours. You can decide after confirming actual results through a pilot project.",
+    guaranteeDesc:"Leave your inquiry and we will get back to you as soon as possible.",
     nameLabel:    "Name",
     emailLabel:   "Email",
     phoneLabel:   "Phone",
@@ -974,6 +979,11 @@ const en: typeof ko = {
     errorMsg:     "An error occurred. Please try again.",
     selectService:"Select a service",
     serviceOptions:["AI OCR Document Recognition", "Workflow-Based Document Processing", "Data Conversion & Processing", "Knowledge Process Outsourcing (KPO)", "Document Digital Archiving", "Custom Solution Consulting", "Other"],
+    assigneeLabel: "Contact Person",
+    assigneeOptions: ["No preference", "Sales & Adoption", "Technical Support", "Archive & DB Construction", "Other"],
+    privacyLabel:  "[Required] Personal Information Consent",
+    privacyText:   "We collect your name, email, phone, and company name to respond to your inquiry. Information is used solely for inquiry response and deleted after one year.",
+    privacyRequired: "Please agree to the personal information collection and use policy.",
   },
 
   // ── FAQ PAGE (/faq) ──────────────────────────

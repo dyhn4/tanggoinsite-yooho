@@ -28,7 +28,7 @@ export default function Services() {
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
             {t.title}
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-base leading-relaxed">
+          <p className="text-slate-600 max-w-2xl mx-auto text-base leading-relaxed whitespace-pre-line">
             {t.subtitle}
           </p>
         </div>

@@ -36,8 +36,6 @@ export default function About() {
               {t.title[0]}
               <br />
               {t.title[1]}
-              <br />
-              {t.title[2]}
             </h2>
 
             <div className="space-y-2.5 text-slate-600 leading-relaxed text-sm">

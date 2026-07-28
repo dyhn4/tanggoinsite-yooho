@@ -34,15 +34,15 @@ export default function Header() {
     {
       label: t.companyLabel,
       items: [
-        { label: t.companyOverview, href: "/company",  sub: t.companyOverviewSub, icon: Building2, color: "from-blue-600 to-sky-400" },
-        { label: t.companyHistory,  href: "/history",  sub: t.companyHistorySub,  icon: Clock,      color: "from-indigo-600 to-blue-400" },
+        { label: t.companyOverview, href: "/company",  icon: Building2, color: "from-blue-600 to-sky-400" },
+        { label: t.companyHistory,  href: "/history",  icon: Clock,      color: "from-indigo-600 to-blue-400" },
       ],
     },
     {
       label: t.servicesLabel,
       items: [
-        { label: t.servicesGuide,  href: "/services", sub: t.servicesGuideSub,  icon: FileText, color: "from-sky-600 to-cyan-400" },
-        { label: t.servicesApply,  href: "/apply",    sub: t.servicesApplySub,  icon: Wrench,   color: "from-blue-600 to-violet-500" },
+        { label: t.servicesGuide,  href: "/services", icon: FileText, color: "from-sky-600 to-cyan-400" },
+        { label: t.servicesApply,  href: "/apply",    icon: Wrench,   color: "from-blue-600 to-violet-500" },
       ],
     },
     {
@@ -60,8 +60,8 @@ export default function Header() {
     {
       label: t.supportLabel,
       items: [
-        { label: t.contactUs, href: "/contact", sub: t.contactUsSub, icon: MessageCircle, color: "from-blue-600 to-sky-400" },
-        { label: t.faq,       href: "/faq",     sub: t.faqSub,       icon: HelpCircle,    color: "from-violet-600 to-blue-500" },
+        { label: t.contactUs, href: "/contact", icon: MessageCircle, color: "from-blue-600 to-sky-400" },
+        { label: t.faq,       href: "/faq",     icon: HelpCircle,    color: "from-violet-600 to-blue-500" },
       ],
     },
   ];

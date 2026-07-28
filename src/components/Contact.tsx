@@ -15,8 +15,11 @@ export default function Contact() {
     phone: "",
     company: "",
     service: "",
+    assignee: "",
     message: "",
   });
+  const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [privacyError, setPrivacyError] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleChange = (
@@ -27,6 +30,11 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!privacyConsent) {
+      setPrivacyError(true);
+      return;
+    }
+    setPrivacyError(false);
     setStatus("loading");
     try {
       const res = await fetch("/api/contact", {
@@ -36,7 +44,8 @@ export default function Contact() {
       });
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", email: "", phone: "", company: "", service: "", message: "" });
+        setForm({ name: "", email: "", phone: "", company: "", service: "", assignee: "", message: "" });
+        setPrivacyConsent(false);
       } else {
         setStatus("error");
       }
@@ -61,7 +70,7 @@ export default function Contact() {
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
             {t.sectionTitle}
           </h2>
-          <p className="text-slate-600 max-w-xl mx-auto">
+          <p className="text-slate-600 max-w-xl mx-auto whitespace-pre-line">
             {t.sectionDesc}
           </p>
         </div>
@@ -174,23 +183,42 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                    {t.serviceLabel}
-                  </label>
-                  <select
-                    name="service"
-                    value={form.service}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm bg-white"
-                  >
-                    <option value="">{t.selectService}</option>
-                    {t.serviceOptions.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                      {t.serviceLabel}
+                    </label>
+                    <select
+                      name="service"
+                      value={form.service}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm bg-white"
+                    >
+                      <option value="">{t.selectService}</option>
+                      {t.serviceOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                      {t.assigneeLabel}
+                    </label>
+                    <select
+                      name="assignee"
+                      value={form.assignee}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition text-sm bg-white"
+                    >
+                      {t.assigneeOptions.map((opt) => (
+                        <option key={opt} value={opt === t.assigneeOptions[0] ? "" : opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 <div>
@@ -208,8 +236,38 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* 개인정보 수집·이용 동의 */}
+                <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-xs text-slate-500 leading-relaxed mb-3">
+                    {t.privacyText}
+                  </p>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={privacyConsent}
+                      onChange={(e) => {
+                        setPrivacyConsent(e.target.checked);
+                        if (e.target.checked) setPrivacyError(false);
+                      }}
+                      className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <span className="text-sm font-medium text-slate-700">{t.privacyLabel}</span>
+                  </label>
+                  {privacyError && (
+                    <p className="text-red-500 text-xs mt-2">{t.privacyRequired}</p>
+                  )}
+                </div>
+
                 {status === "error" && (
-                  <p className="text-red-500 text-sm">{t.errorMsg}</p>
+                  <p className="text-red-500 text-sm">
+                    {t.errorMsg}{" "}
+                    <a
+                      href="mailto:contact@tangoinsight.ai"
+                      className="underline hover:text-red-700"
+                    >
+                      contact@tangoinsight.ai
+                    </a>
+                  </p>
                 )}
 
                 <button
