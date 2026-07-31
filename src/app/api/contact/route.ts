@@ -1,5 +1,45 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import nodemailer from "nodemailer";
+
+const TO_EMAIL = "qqh9514@naver.com";
+
+function buildHtml(data: {
+  name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  service?: string;
+  assignee?: string;
+  message: string;
+}) {
+  const rows = [
+    ["이름", data.name],
+    ["이메일", data.email],
+    ["연락처", data.phone || "-"],
+    ["회사·기관명", data.company || "-"],
+    ["관심 서비스", data.service || "-"],
+    ["담당자 요청", data.assignee || "-"],
+  ];
+
+  const tableRows = rows
+    .map(
+      ([label, value]) =>
+        `<tr><td style="padding:6px 12px;background:#f1f5f9;font-weight:600;white-space:nowrap;">${label}</td><td style="padding:6px 12px;">${value}</td></tr>`
+    )
+    .join("");
+
+  return `
+<div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+  <h2 style="background:#1d4ed8;color:#fff;padding:16px 20px;margin:0;border-radius:8px 8px 0 0;">탱고인사이트 홈페이지 문의</h2>
+  <table style="width:100%;border-collapse:collapse;border:1px solid #e2e8f0;border-top:none;">
+    ${tableRows}
+  </table>
+  <div style="margin-top:16px;padding:16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:0 0 8px 8px;">
+    <p style="margin:0 0 8px;font-weight:600;">문의 내용</p>
+    <p style="margin:0;white-space:pre-wrap;">${data.message}</p>
+  </div>
+</div>`;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,13 +53,25 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const fullMessage = assignee ? `[담당자: ${assignee}]\n\n${message}` : message;
-
-    const contact = await prisma.contact.create({
-      data: { name, email, phone, company, service, message: fullMessage },
+    const transporter = nodemailer.createTransport({
+      host: "smtp.naver.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.NAVER_USER,
+        pass: process.env.NAVER_PASS,
+      },
     });
 
-    return NextResponse.json({ success: true, id: contact.id }, { status: 201 });
+    await transporter.sendMail({
+      from: `"탱고인사이트 문의" <${process.env.NAVER_USER}>`,
+      to: TO_EMAIL,
+      subject: `[문의] ${name} / ${company || email}`,
+      html: buildHtml({ name, email, phone, company, service, assignee, message }),
+      replyTo: email,
+    });
+
+    return NextResponse.json({ success: true }, { status: 201 });
   } catch (error) {
     console.error("Contact API error:", error);
     return NextResponse.json(
@@ -27,17 +79,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-export async function GET(req: NextRequest) {
-  const password = req.headers.get("x-admin-password");
-  if (password !== process.env.ADMIN_PASSWORD) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const contacts = await prisma.contact.findMany({
-    orderBy: { createdAt: "desc" },
-  });
-
-  return NextResponse.json(contacts);
 }
