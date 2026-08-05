@@ -125,7 +125,7 @@ const solutions: AnySolution[] = [
     bg: "linear-gradient(135deg, #0f0a2e 0%, #312e81 35%, #4338ca 65%, #818cf8 100%)",
     orbs: ["rgba(67,56,202,0.55)", "rgba(129,140,248,0.40)", "rgba(196,181,253,0.25)"],
     accent: "#818cf8", tag: "indigo",
-    capabilityIcons: ["🧠", "🖼️", "🇰🇷", "🌐", "🤖"],
+    capabilityIcons: ["🧠", "🖼️", "📖", "🌐", "🤖"],
   },
 ];
 
