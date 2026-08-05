@@ -105,7 +105,7 @@ const ko = {
     subtitle:     "문서 디지털화 전 과정을 지원하는 8가지 전문 솔루션",
     workflowBadge:"Plug in Program",
     workflowTitle:"Tango Workflow",
-    workflowDesc: "모든 솔루션을 연결하는 통합 워크플로우 관리 시스템",
+    workflowDesc: "모든 솔루션을 연결하는\n통합 워크플로우 관리 시스템",
     workflowFeatures: [
       "대량 이미지 기반 DB 구축 공정관리",
       "상용 OCR(ABBYY) 및 MooN AI OCR 탑재",

@@ -115,7 +115,7 @@ export default function Technology() {
               Workflow
             </h3>
 
-            <p className="relative z-10 text-sm text-white/70 mb-6 leading-relaxed">
+            <p className="relative z-10 text-sm text-white/70 mb-6 leading-relaxed whitespace-pre-line">
               {t.workflowDesc}
             </p>
 
