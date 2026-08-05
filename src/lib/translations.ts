@@ -554,7 +554,7 @@ const ko = {
     missionTitle:    "모든 역사적 기록이\n디지털 지식 자산으로",
     missionDesc:     "아날로그에 잠들어 있는 인류의 기록을 깨워,\n누구나 검색하고 활용할 수 있는 디지털 지식 자산으로 전환합니다.\n탱고인사이트는 그 전환의 가장 신뢰할 수 있는 파트너가 됩니다.",
     visionLabel:     "VISION",
-    visionTitle:     "AI 기술로 지식의 장벽을\n허무는 세상",
+    visionTitle:     "AI 기술로\n지식의 장벽을 허무는 세상",
     visionDesc:      "언어·시대·형식의 차이를 AI가 극복하여,\n모든 문서 정보가 자유롭게 유통되는 지식 인프라를 구축합니다.\n기관과 연구자가 원본 자료에 담긴 가치를 최대한 활용할 수 있도록 지원합니다.",
     coreValuesTitle: "핵심 가치",
     values: [
