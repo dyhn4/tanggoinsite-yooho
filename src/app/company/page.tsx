@@ -227,7 +227,7 @@ export default function CompanyPage() {
             <p className="text-lg sm:text-xl text-sky-300 font-semibold mb-6 tracking-tight">
               Tangoinsight Co., Ltd.
             </p>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-10 max-w-2xl">
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-10 max-w-2xl whitespace-pre-line">
               {t.heroDesc}
             </p>
 
@@ -272,14 +272,14 @@ export default function CompanyPage() {
               <h2 className="text-2xl font-black text-slate-900 mb-4 leading-snug" style={{ whiteSpace: "pre-line" }}>
                 &ldquo;{t.missionTitle}&rdquo;
               </h2>
-              <p className="text-slate-500 text-sm leading-relaxed">{t.missionDesc}</p>
+              <p className="text-slate-500 text-sm leading-relaxed whitespace-pre-line">{t.missionDesc}</p>
             </div>
             <div className="p-8 rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 to-white">
               <div className="text-xs font-bold tracking-[0.2em] uppercase text-indigo-500 mb-3">{t.visionLabel}</div>
               <h2 className="text-2xl font-black text-slate-900 mb-4 leading-snug" style={{ whiteSpace: "pre-line" }}>
                 &ldquo;{t.visionTitle}&rdquo;
               </h2>
-              <p className="text-slate-500 text-sm leading-relaxed">{t.visionDesc}</p>
+              <p className="text-slate-500 text-sm leading-relaxed whitespace-pre-line">{t.visionDesc}</p>
             </div>
           </div>
 
@@ -297,7 +297,7 @@ export default function CompanyPage() {
                     <v.icon size={22} className="text-white" />
                   </div>
                   <h3 className="font-black text-slate-900 text-base mb-3 group-hover:text-blue-700 transition-colors">{tv.title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">{tv.desc}</p>
+                  <p className="text-slate-500 text-sm leading-relaxed whitespace-pre-line">{tv.desc}</p>
                 </div>
               );
             })}
@@ -315,7 +315,7 @@ export default function CompanyPage() {
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest border border-blue-400/25 bg-blue-500/10 text-blue-400 mb-3">TECHNOLOGY</span>
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">{t.techSectionTitle}</h2>
-            <p className="text-slate-400 text-sm max-w-xl mx-auto">{t.techSectionDesc}</p>
+            <p className="text-slate-400 text-sm max-w-xl mx-auto whitespace-pre-line">{t.techSectionDesc}</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
@@ -415,7 +415,7 @@ export default function CompanyPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 mb-1.5">{ts.title}</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">{ts.desc}</p>
+                    <p className="text-slate-500 text-sm leading-relaxed whitespace-pre-line">{ts.desc}</p>
                   </div>
                 </div>
               );
@@ -585,7 +585,7 @@ export default function CompanyPage() {
             })}
           </div>
 
-          <p className="text-center text-slate-600 text-xs mt-8">{t.statsNote}</p>
+          <p className="text-center text-slate-400 text-xs mt-8">{t.statsNote}</p>
         </div>
       </section>
 

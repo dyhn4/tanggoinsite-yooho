@@ -106,7 +106,7 @@ export default function ServicesPage() {
               {t.heroTitle[1]}
             </span>
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed mb-12">
+          <p className="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed mb-12 whitespace-pre-line">
             {t.heroDesc}
           </p>
 
@@ -148,7 +148,7 @@ export default function ServicesPage() {
                   {t.kpoBadge}
                 </span>
                 <h3 className="text-2xl font-black text-white mb-3">{t.kpoTitle}</h3>
-                <p className="text-blue-100/80 text-sm leading-relaxed">
+                <p className="text-blue-100/80 text-sm leading-relaxed whitespace-pre-line">
                   {t.kpoDesc}
                 </p>
               </div>
@@ -177,7 +177,7 @@ export default function ServicesPage() {
                   {t.ocrBadge}
                 </span>
                 <h3 className="text-2xl font-black text-white mb-3">{t.ocrTitle}</h3>
-                <p className="text-violet-100/80 text-sm leading-relaxed">
+                <p className="text-violet-100/80 text-sm leading-relaxed whitespace-pre-line">
                   {t.ocrDesc}
                 </p>
               </div>
@@ -221,7 +221,7 @@ export default function ServicesPage() {
                     <s.icon size={20} className="text-blue-700" />
                   </div>
                   <h3 className="font-bold text-slate-900 mb-2 text-sm">{s.title}</h3>
-                  <p className="text-slate-500 text-xs leading-relaxed flex-1">{s.desc}</p>
+                  <p className="text-slate-500 text-xs leading-relaxed flex-1 whitespace-pre-line">{s.desc}</p>
                 </div>
                 {i < processSteps.length - 1 && (
                   <div className="hidden lg:flex absolute top-1/2 -right-3 z-10 -translate-y-1/2">
@@ -259,7 +259,7 @@ export default function ServicesPage() {
                   <f.icon size={22} className={f.color} />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2 text-sm">{f.title}</h3>
-                <p className="text-slate-500 text-xs leading-relaxed">{f.desc}</p>
+                <p className="text-slate-500 text-xs leading-relaxed whitespace-pre-line">{f.desc}</p>
               </div>
             ))}
           </div>

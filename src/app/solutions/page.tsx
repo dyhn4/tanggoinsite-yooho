@@ -315,7 +315,7 @@ function SectionContent({ sol, tSol, labels }: { sol: AnySolution; tSol: TSol; l
               style={{ background: "rgba(255,255,255,0.03)" }}>
               <span className="text-3xl block mb-3">{sol.featureIcons[fi] ?? "⚡"}</span>
               <h3 className="font-bold text-white mb-1.5 text-sm">{f.name}</h3>
-              <p className="text-xs text-white/50 leading-relaxed">{f.desc}</p>
+              <p className="text-xs text-white/50 leading-relaxed whitespace-pre-line">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -336,7 +336,7 @@ function SectionContent({ sol, tSol, labels }: { sol: AnySolution; tSol: TSol; l
               </div>
               <span className="text-2xl block mb-2.5">{sol.outputIcons[i] ?? "📄"}</span>
               <h3 className="font-bold text-white text-sm mb-1.5">{o.name}</h3>
-              <p className="text-xs text-white/50 leading-relaxed">{o.desc}</p>
+              <p className="text-xs text-white/50 leading-relaxed whitespace-pre-line">{o.desc}</p>
             </div>
           ))}
         </div>
@@ -355,7 +355,7 @@ function SectionContent({ sol, tSol, labels }: { sol: AnySolution; tSol: TSol; l
               <span className="text-2xl flex-shrink-0">{sol.featureIcons[fi] ?? "📄"}</span>
               <div>
                 <h3 className="font-bold text-white mb-1 text-sm">{f.name}</h3>
-                <p className="text-xs text-white/50 leading-relaxed">{f.desc}</p>
+                <p className="text-xs text-white/50 leading-relaxed whitespace-pre-line">{f.desc}</p>
               </div>
             </div>
           ))}
@@ -374,7 +374,7 @@ function SectionContent({ sol, tSol, labels }: { sol: AnySolution; tSol: TSol; l
               style={{ background: "rgba(255,255,255,0.03)" }}>
               <span className="text-3xl block mb-3">{sol.capabilityIcons[ci] ?? "🤖"}</span>
               <h3 className="font-bold text-white mb-1.5 text-sm">{c.name}</h3>
-              <p className="text-xs text-white/50 leading-relaxed">{c.desc}</p>
+              <p className="text-xs text-white/50 leading-relaxed whitespace-pre-line">{c.desc}</p>
             </div>
           ))}
         </div>
@@ -488,7 +488,7 @@ export default function SolutionsPage() {
                     </div>
                     <h1 className="text-3xl sm:text-4xl font-black text-white mb-2 leading-tight">{sol.title}</h1>
                     <p className="text-base font-semibold mb-3" style={{ color: sol.accent }}>{tSol.subtitle}</p>
-                    <p className="text-white/60 text-sm leading-relaxed max-w-xl">{tSol.description}</p>
+                    <p className="text-white/60 text-sm leading-relaxed max-w-xl whitespace-pre-line">{tSol.description}</p>
                   </div>
 
                   <div className="flex-shrink-0 flex items-center justify-center">

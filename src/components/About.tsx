@@ -41,11 +41,12 @@ export default function About() {
             <div className="space-y-2.5 text-slate-600 leading-relaxed text-sm">
               <p>{t.p1}</p>
               <p>{t.p2}</p>
+              <p>{t.p3}</p>
             </div>
 
             {/* 미션 박스 */}
             <div className="mt-4 p-4 rounded-xl bg-blue-50 border border-blue-100">
-              <p className="text-blue-900 font-medium text-xs leading-relaxed">
+              <p className="text-blue-900 font-medium text-xs leading-relaxed whitespace-pre-line">
                 <strong>{t.missionPrefix}</strong> {t.missionBody}
               </p>
             </div>
