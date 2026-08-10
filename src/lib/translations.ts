@@ -453,7 +453,7 @@ const ko = {
       },
       {
         subtitle: "AI 학습 기반 고정밀 문자 인식",
-        description: "탱고인사이트가 자체 개발한 AI 학습 기반 Data-Adaptive OCR 엔진.\n고문서(한적)·국한문 혼용·타자체·필기체 등 어떠한 문서도 스스로 학습하며 90% 이상의 인식률을 달성합니다.",
+        description: "탱고인사이트가 자체 개발한 AI 학습 기반 Data-Adaptive OCR 엔진.\n고문서(한적)·국한문 혼용·타자체·필기체 등 어떠한 문서도 스스로 학습하며\n90% 이상의 인식률을 달성합니다.",
         processes: [] as { label: string; items: string[] }[],
         automation: [] as string[],
         editorFeatures: [] as { name: string; stage: string; desc: string }[],
