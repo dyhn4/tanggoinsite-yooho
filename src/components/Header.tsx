@@ -70,7 +70,7 @@ export default function Header() {
     {
       label: t.demoLabel,
       items: [
-        { label: t.demoOcr,       href: "/demo/ocr",       sub: t.demoOcrSub,       icon: Zap,       color: "from-cyan-500 to-blue-500" },
+        { label: t.demoOcr,       href: "http://tango.ai.kr", sub: t.demoOcrSub,       icon: Zap,       color: "from-cyan-500 to-blue-500" },
         { label: t.demoTranslate, href: "/demo/translate",  sub: t.demoTranslateSub, icon: Languages, color: "from-violet-500 to-purple-400", badge: t.demoBadge, disabled: true },
       ],
     },
@@ -272,6 +272,13 @@ export default function Header() {
                   if (sub.disabled) {
                     return <div key={sub.label}>{inner}</div>;
                   }
+                  if (sub.href.startsWith("http")) {
+                    return (
+                      <a key={sub.label} href={sub.href} target="_blank" rel="noopener noreferrer" onClick={() => setActiveMenu(null)}>
+                        {inner}
+                      </a>
+                    );
+                  }
                   return sub.href.startsWith("/") ? (
                     <Link key={sub.label} href={sub.href} onClick={() => setActiveMenu(null)}>
                       {inner}
@@ -332,6 +339,20 @@ export default function Header() {
 
                       if (subItem.disabled) {
                         return <div key={subItem.label} className="opacity-60 cursor-not-allowed text-slate-400 rounded-lg">{mobileInner}</div>;
+                      }
+                      if (subItem.href.startsWith("http")) {
+                        return (
+                          <a
+                            key={subItem.label}
+                            href={subItem.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => { setIsOpen(false); setOpenMobileMenu(null); }}
+                            className="text-slate-600 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors block"
+                          >
+                            {mobileInner}
+                          </a>
+                        );
                       }
                       return subItem.href.startsWith("/") ? (
                         <Link
