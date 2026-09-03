@@ -7,6 +7,7 @@ import {
   ChevronDown, Menu, X,
   GitBranch, PenLine, ScanSearch, Braces, Layers, BrainCircuit,
   Building2, Clock, Wrench, FileText, MessageCircle, HelpCircle,
+  Zap, Languages,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
@@ -17,6 +18,8 @@ type NavSubItem = {
   sub?: string;
   icon?: React.ComponentType<{ size?: number; className?: string }>;
   color?: string;
+  badge?: string;
+  disabled?: boolean;
 };
 
 type NavItem = {
@@ -62,6 +65,13 @@ export default function Header() {
       items: [
         { label: t.contactUs, href: "/contact", icon: MessageCircle, color: "from-blue-600 to-sky-400" },
         { label: t.faq,       href: "/faq",     icon: HelpCircle,    color: "from-violet-600 to-blue-500" },
+      ],
+    },
+    {
+      label: t.demoLabel,
+      items: [
+        { label: t.demoOcr,       href: "/demo/ocr",       sub: t.demoOcrSub,       icon: Zap,       color: "from-cyan-500 to-blue-500" },
+        { label: t.demoTranslate, href: "/demo/translate",  sub: t.demoTranslateSub, icon: Languages, color: "from-violet-500 to-purple-400", badge: t.demoBadge, disabled: true },
       ],
     },
   ];
@@ -233,16 +243,23 @@ export default function Header() {
                 {activeItem.items.map((sub) => {
                   const Icon = sub.icon;
                   const inner = (
-                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/8 transition-colors group/item cursor-pointer min-w-[200px]">
+                    <div className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors group/item min-w-[200px] ${sub.disabled ? "cursor-not-allowed opacity-60" : "hover:bg-white/8 cursor-pointer"}`}>
                       {Icon && (
                         <div className={`flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br ${sub.color} flex items-center justify-center`}>
                           <Icon size={14} className="text-white" />
                         </div>
                       )}
-                      <div>
-                        <p className="text-sm font-semibold text-white/90 group-hover/item:text-sky-300 transition-colors leading-tight whitespace-nowrap">
-                          {sub.label}
-                        </p>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <p className={`text-sm font-semibold leading-tight whitespace-nowrap ${sub.disabled ? "text-white/60" : "text-white/90 group-hover/item:text-sky-300 transition-colors"}`}>
+                            {sub.label}
+                          </p>
+                          {sub.badge && (
+                            <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 leading-none whitespace-nowrap">
+                              {sub.badge}
+                            </span>
+                          )}
+                        </div>
                         {sub.sub && (
                           <p className="text-[11px] text-white/40 leading-tight mt-0.5 whitespace-nowrap">
                             {sub.sub}
@@ -252,6 +269,9 @@ export default function Header() {
                     </div>
                   );
 
+                  if (sub.disabled) {
+                    return <div key={sub.label}>{inner}</div>;
+                  }
                   return sub.href.startsWith("/") ? (
                     <Link key={sub.label} href={sub.href} onClick={() => setActiveMenu(null)}>
                       {inner}
@@ -289,38 +309,46 @@ export default function Header() {
                   <div className="ml-3 mt-1 border-l border-blue-100 pl-3">
                     {item.items.map((subItem) => {
                       const Icon = subItem.icon;
+                      const mobileInner = (
+                        <div className="flex items-center gap-2.5 w-full px-3 py-2.5 text-sm">
+                          {Icon && (
+                            <div className={`flex-shrink-0 w-5 h-5 rounded-md bg-gradient-to-br ${subItem.color} flex items-center justify-center`}>
+                              <Icon size={10} className="text-white" />
+                            </div>
+                          )}
+                          <div className="flex-1">
+                            <div className="flex items-center gap-1.5">
+                              <p className="font-medium leading-tight">{subItem.label}</p>
+                              {subItem.badge && (
+                                <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-100 text-amber-600 border border-amber-200 leading-none">
+                                  {subItem.badge}
+                                </span>
+                              )}
+                            </div>
+                            {subItem.sub && <p className="text-xs text-slate-400">{subItem.sub}</p>}
+                          </div>
+                        </div>
+                      );
+
+                      if (subItem.disabled) {
+                        return <div key={subItem.label} className="opacity-60 cursor-not-allowed text-slate-400 rounded-lg">{mobileInner}</div>;
+                      }
                       return subItem.href.startsWith("/") ? (
                         <Link
                           key={subItem.label}
                           href={subItem.href}
                           onClick={() => { setIsOpen(false); setOpenMobileMenu(null); }}
-                          className="flex items-center gap-2.5 w-full px-3 py-2.5 text-sm text-slate-600 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                          className="text-slate-600 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors block"
                         >
-                          {Icon && (
-                            <div className={`flex-shrink-0 w-5 h-5 rounded-md bg-gradient-to-br ${subItem.color} flex items-center justify-center`}>
-                              <Icon size={10} className="text-white" />
-                            </div>
-                          )}
-                          <div>
-                            <p className="font-medium leading-tight">{subItem.label}</p>
-                            {subItem.sub && <p className="text-xs text-slate-400">{subItem.sub}</p>}
-                          </div>
+                          {mobileInner}
                         </Link>
                       ) : (
                         <button
                           key={subItem.label}
                           onClick={() => handleNavClick(subItem.href)}
-                          className="flex items-center gap-2.5 w-full px-3 py-2.5 text-sm text-slate-600 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                          className="text-slate-600 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors"
                         >
-                          {Icon && (
-                            <div className={`flex-shrink-0 w-5 h-5 rounded-md bg-gradient-to-br ${subItem.color} flex items-center justify-center`}>
-                              <Icon size={10} className="text-white" />
-                            </div>
-                          )}
-                          <div>
-                            <p className="font-medium leading-tight">{subItem.label}</p>
-                            {subItem.sub && <p className="text-xs text-slate-400">{subItem.sub}</p>}
-                          </div>
+                          {mobileInner}
                         </button>
                       );
                     })}

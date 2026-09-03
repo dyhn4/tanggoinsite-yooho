@@ -22,6 +22,12 @@ const ko = {
     faq:               "FAQ",
     faqSub:            "자주 묻는 질문",
     freeConsult:       "무료 상담",
+    demoLabel:         "체험하기",
+    demoOcr:           "AI OCR",
+    demoOcrSub:        "문서 이미지 텍스트 추출 체험",
+    demoTranslate:     "현대어 번역",
+    demoTranslateSub:  "고문헌 현대어 자동 번역 체험",
+    demoBadge:         "개발중",
   },
 
   // ── HERO ────────────────────────────────────
@@ -666,6 +672,12 @@ const en: typeof ko = {
     faq:               "FAQ",
     faqSub:            "Frequently Asked Questions",
     freeConsult:       "Free Consult",
+    demoLabel:         "Try Now",
+    demoOcr:           "AI OCR",
+    demoOcrSub:        "Extract text from document images",
+    demoTranslate:     "Modern Translation",
+    demoTranslateSub:  "Auto-translate classical documents",
+    demoBadge:         "Coming Soon",
   },
 
   hero: {
