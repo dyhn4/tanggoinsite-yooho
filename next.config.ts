@@ -1,17 +1,5 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: "/:path*",
-          destination: "http://13.124.163.252/:path*",
-          has: [{ type: "host", value: "ai\\.tangoinsight\\.kr" }],
-        },
-      ],
-    };
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
