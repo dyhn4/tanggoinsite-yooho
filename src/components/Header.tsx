@@ -236,7 +236,7 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-6 py-5">
           {activeItem && (
             <>
-              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 mb-4">
+              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 mb-4 text-right">
                 {activeItem.label}
               </p>
               <div className={`flex flex-wrap gap-x-2 gap-y-2 justify-end ${activeItem.items.length >= 5 ? "max-w-5xl" : ""}`}>
