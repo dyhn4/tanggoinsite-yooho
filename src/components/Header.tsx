@@ -239,7 +239,7 @@ export default function Header() {
               <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 mb-4">
                 {activeItem.label}
               </p>
-              <div className={`flex flex-wrap gap-x-2 gap-y-2 justify-start ${activeItem.items.length >= 5 ? "max-w-5xl" : ""}`}>
+              <div className={`flex flex-wrap gap-x-2 gap-y-2 justify-end ${activeItem.items.length >= 5 ? "max-w-5xl" : ""}`}>
                 {activeItem.items.map((sub) => {
                   const Icon = sub.icon;
                   const inner = (
