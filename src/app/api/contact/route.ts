@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-const TO_EMAIL = "dyhn4@naver.com";
+const TO_EMAIL = "dyhn4@naver.com, juni0815@daum.net, qqh9514@naver.com";
 
 function buildHtml(data: {
   name: string;
