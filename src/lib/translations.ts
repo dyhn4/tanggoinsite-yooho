@@ -89,6 +89,30 @@ const ko = {
     clientsLabel:   "주요 고객사",
   },
 
+  // ── CASE STUDY (공유서재) ─────────────────────
+  caseStudy: {
+    badge: "대표 구축 사례",
+    title: ["탱고인사이트의 AI OCR 데이터가", "국립중앙도서관 '공유서재'로 공개됩니다"],
+    desc:  "고문헌·현대간행물 디지털화 및 AI OCR로 구축한 원문 데이터가 국립중앙도서관 공공 플랫폼 '공유서재'를 통해 AI 학습용 데이터로 제공되고 있습니다. 텍스트, 표, 삽화, 사진 등 다양한 형태의 고품질 데이터를 누구나 열람하고 활용할 수 있습니다.",
+    orgLabel: "국립중앙도서관 · nl.go.kr/aiocr",
+    cta: "공유서재 바로가기",
+    siteTag: "open data library",
+    siteName: "공유서재",
+    siteTagline: ["과거의 기록과 미래의 데이터로", "지식을 이어나가는 공유서재"],
+    statsLabel: "공유서재 데이터 현황",
+    statsHeadline: "AI 학습 데이터 총",
+    statsTotal: "38,332,587건",
+    stats: [
+      { label: "텍스트",       value: "3,974건" },
+      { label: "표",          value: "7,030건" },
+      { label: "삽화",        value: "7,444건" },
+      { label: "사진",        value: "4,680건" },
+      { label: "광고",        value: "2,331건" },
+      { label: "글자 데이터셋", value: "38,307,128건" },
+    ],
+    searchPlaceholder: "검색어를 입력하세요",
+  },
+
   // ── SERVICES ────────────────────────────────
   services: {
     badge:    "핵심 기능",
@@ -734,6 +758,29 @@ const en: typeof ko = {
     pageUnit:       "pages",
     footnote:       "※ Covers documents published from 1934 to 2025",
     clientsLabel:   "Key Clients",
+  },
+
+  caseStudy: {
+    badge: "Featured Case Study",
+    title: ["Tangoinsight's AI OCR data is now public", "via the National Library of Korea's 'Gongyou Seojae'"],
+    desc:  "Text data digitized from heritage documents and modern publications using our AI OCR is now available as public AI training data through 'Gongyou Seojae' (Open Data Library), a platform by the National Library of Korea. High-quality text, tables, illustrations, and photo data are open for anyone to browse and use.",
+    orgLabel: "National Library of Korea · nl.go.kr/aiocr",
+    cta: "Visit Gongyou Seojae",
+    siteTag: "open data library",
+    siteName: "Gongyou Seojae",
+    siteTagline: ["Connecting knowledge through", "records of the past and data of the future"],
+    statsLabel: "Gongyou Seojae Data Status",
+    statsHeadline: "Total AI Training Data",
+    statsTotal: "38,332,587",
+    stats: [
+      { label: "Text",          value: "3,974" },
+      { label: "Tables",        value: "7,030" },
+      { label: "Illustrations", value: "7,444" },
+      { label: "Photos",        value: "4,680" },
+      { label: "Ads",           value: "2,331" },
+      { label: "Character Sets",value: "38,307,128" },
+    ],
+    searchPlaceholder: "Enter a search term",
   },
 
   services: {
