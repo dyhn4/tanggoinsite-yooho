@@ -224,7 +224,7 @@ export default function Header() {
 
       {/* ── 전체 너비 메가 패널 (데스크탑) ── */}
       <div
-        className={`hidden md:block absolute left-0 right-0 top-full transition-all duration-200 ${
+        className={`hidden md:block absolute left-0 right-1.5 top-full transition-all duration-200 ${
           activeItem
             ? "opacity-100 visible translate-y-0"
             : "opacity-0 invisible -translate-y-1 pointer-events-none"
