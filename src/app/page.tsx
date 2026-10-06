@@ -8,7 +8,7 @@ import Services from "@/components/Services";
 import Technology from "@/components/Technology";
 import Process from "@/components/Process";
 import Achievement from "@/components/Achievement";
-// import CaseStudy from "@/components/CaseStudy"; // 승인 대기중, 임시 숨김 처리
+import CaseStudy from "@/components/CaseStudy";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
@@ -98,11 +98,9 @@ export default function Home() {
           <Achievement />
         </section>
 
-        {/* 공유서재 사례 섹션 — 승인 대기중, 임시 숨김 처리
         <section className="min-h-screen">
           <CaseStudy />
         </section>
-        */}
 
         <section className="min-h-screen">
           <About />
