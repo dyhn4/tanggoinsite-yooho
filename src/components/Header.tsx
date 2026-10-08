@@ -27,7 +27,8 @@ type NavItem = {
   items: NavSubItem[];
 };
 
-const darkIndexes = [0, 1, 5, 7];
+// 각 값은 src/app/page.tsx <section> 순서의 인덱스. 섹션을 추가/삭제하면 이 배열도 맞춰서 갱신해야 함.
+const darkIndexes = [0, 1, 7, 9];
 
 export default function Header() {
   const { lang, setLang } = useLanguage();
