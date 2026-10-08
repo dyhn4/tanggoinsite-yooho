@@ -128,6 +128,19 @@ const ko = {
     ],
   },
 
+  // ── DOCUMENT HANDLING (물리자료 처리) ─────────
+  handling: {
+    badge: "물리자료 처리 역량",
+    title: ["스캔부터 제본까지,", "원본 손상 없이 한 번에 책임집니다"],
+    subtitle: "AI 인식 기술은 물론, 해철·스캔·이미지 보정·제본까지 — 자료 디지털화의 모든 물리적 공정을 자체 작업장에서 직접 수행합니다.",
+    items: [
+      { title: "스캔",       desc: "자료 특성에 맞춘 전용 스캐너로 원본 손상 없이 고속·고화질 스캔을 진행합니다. 해철이 불가능한 자료는 오버헤드 스캐너로 안전하게 처리합니다.", tags: ["비접촉식 고속 스캐너", "400~600dpi", "곡률·그림자 보정 스캔"] },
+      { title: "해철",       desc: "제본된 자료를 스캔 가능한 상태로 안전하게 분리합니다. 해철·제본 전문 업체와 기술협약을 맺고 전용 작업장에서 체계적으로 진행합니다.", tags: ["전문 작업장 운영", "기술협약 체결", "원본 손상 최소화"] },
+      { title: "제본",       desc: "스캔이 끝난 원본은 전문 제본 공정을 거쳐 원래 모습 그대로 복원하여 반납합니다.", tags: ["원본 복원", "재제본 공정", "품질 검수 후 반납"] },
+      { title: "이미지 보정", desc: "자체 개발한 자동 보정 프로그램(Tango Image)으로 기울기, 그림자, 곡률까지 교정해 OCR 인식률을 극대화합니다.", tags: ["자동 기울기 보정", "배경/잡티 제거", "자동 중앙정렬"] },
+    ],
+  },
+
   // ── TECHNOLOGY ──────────────────────────────
   technology: {
     badge:        "솔루션",
@@ -794,6 +807,18 @@ const en: typeof ko = {
       { title: "AI Document Chat",         desc: "Ask questions, translate, and summarize recognized documents with an AI assistant. Find what you need in vast archives through natural conversation.", tags: ["Doc Q&A", "Auto Translation", "Summarization"] },
       { title: "Secure Deployment",        desc: "Flexible deployment supporting On-Premise and Cloud. Classified institutional records can be processed safely on isolated internal networks.", tags: ["On-Premise", "Cloud", "Internal Network"] },
       { title: "High-Speed Bulk Processing",desc: "High-speed processing averaging under 2 sec per page. Cloud parallel processing handles archiving projects of hundreds of thousands of pages rapidly.", tags: ["<2 sec/page", "Parallel", "Large Scale"] },
+    ],
+  },
+
+  handling: {
+    badge: "Physical Document Handling",
+    title: ["From Scanning to Rebinding —", "We Handle It All Without Damage"],
+    subtitle: "Beyond AI recognition, we perform every physical step of digitization — unbinding, scanning, image correction, and rebinding — in our own workshops.",
+    items: [
+      { title: "Scanning",         desc: "Dedicated scanners matched to document type ensure high-speed, high-quality scans without damage. Materials that can't be unbound are safely scanned with overhead scanners.", tags: ["Non-contact high-speed scanners", "400-600dpi", "Curvature & shadow correction"] },
+      { title: "Unbinding",        desc: "Bound materials are safely disassembled into scannable condition. We operate dedicated workshops under technical partnership with specialized unbinding/binding firms.", tags: ["Dedicated workshops", "Technical partnership", "Minimal damage"] },
+      { title: "Rebinding",        desc: "After scanning, original materials go through a professional rebinding process and are restored to their original form before return.", tags: ["Original restoration", "Rebinding process", "QC before return"] },
+      { title: "Image Correction", desc: "Our in-house auto-correction program (Tango Image) fixes tilt, shadows, and curvature to maximize OCR recognition rates.", tags: ["Auto tilt correction", "Background/noise removal", "Auto centering"] },
     ],
   },
 

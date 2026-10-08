@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import DocumentHandling from "@/components/DocumentHandling";
 import Technology from "@/components/Technology";
 import Process from "@/components/Process";
 import Achievement from "@/components/Achievement";
@@ -108,6 +109,10 @@ export default function Home() {
 
         <section className="min-h-screen">
           <Services />
+        </section>
+
+        <section className="min-h-screen">
+          <DocumentHandling />
         </section>
 
         <section className="min-h-screen">
